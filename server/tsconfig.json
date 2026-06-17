@@ -34,7 +34,8 @@
 
     // Paths
     "paths": {
-      "@config": ["./src/config/index.js"]
+      "@config": ["./src/config/index.js"],
+      "@types": ["./src/types/index.js"]
     }
   }
 }
