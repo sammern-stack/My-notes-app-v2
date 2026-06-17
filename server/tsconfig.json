@@ -5,7 +5,7 @@
     "outDir": "./dist",
 
     // Environment Settings
-    "module": "commonjs",
+    "module": "nodenext",
     "moduleResolution": "nodenext",
     "target": "esnext",
     "types": [],
@@ -30,6 +30,11 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    // Paths
+    "paths": {
+      "@config": ["./src/config/index.js"]
+    }
   }
 }
