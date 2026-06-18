@@ -1,5 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { Request, Response, NextFunction } from "express";
+import { config } from "@config";
 import { AppError } from "@utils/CustomErrors.js";
 
 // ——— Helpers —————————————————————————————————————————————————————————————————————————————————————
@@ -26,11 +27,10 @@ export const errorHandler = (
 
   // Fallback for unknown errors
   console.log(`Unexpected Error: ${error}`);
-  const message =
-    process.env.NODE_ENV === "production"
-      ? "Something when wrong"
-      : error instanceof Error
-        ? error.message
-        : "Unknown Error";
+  const message = config.isProduction
+    ? "Something when wrong"
+    : error instanceof Error
+      ? error.message
+      : "Unknown Error";
   errorResponse(res, 500, message);
 };
