@@ -37,9 +37,12 @@
       "@config": ["./src/config/index.js"],
       "@types": ["./src/types/index.js"],
       "@utils": ["./src/utils/index.js"],
+      "@middleware": ["./src/middleware/index.js"],
       "@utils/*": ["./src/utils/*"],
       "@models/*": ["./src/models/*"],
-      "@middleware": ["./src/middleware/index.js"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@services/*": ["./src/services/*"],
+      "@routes/*": ["./src/routes/*"]
     }
   }
 }

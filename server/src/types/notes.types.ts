@@ -6,3 +6,7 @@ export interface NoteModel {
 }
 
 export type TNote = Omit<NoteModel, "isArchived">;
+
+export type NotesQuery = Partial<Pick<NoteModel, "tags" | "isArchived">>;
+export type NotesParams = Partial<{ id: string }>;
+export type CreateNoteBody = TNote;
