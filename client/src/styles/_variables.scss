@@ -28,3 +28,25 @@ $fonts: (
   "noto-serif": "NotoSerifVarFont.woff2",
   "source-code-pro": "SourceCodeProVarFont.woff2",
 );
+
+// ——— Light Theme —————————————————————————————————————————————————————————————————————————————————
+:root[data-theme="light"] {
+  --primary-background: #{$neutral-000};
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-theme="system"] {
+    --primary-background: #{$neutral-000};
+  }
+}
+
+// ——— Dark Theme —————————————————————————————————————————————————————————————————————————————————
+:root[data-theme="dark"] {
+  --primary-background: #{$neutral-950};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    --primary-background: #{$neutral-000};
+  }
+}

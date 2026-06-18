@@ -5,3 +5,10 @@
     font-family: "#{$font}", sans-serif;
   }
 }
+
+#root {
+  height: 100vh;
+  background: var(--primary-background);
+  display: flex;
+  flex-direction: column;
+}
