@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 type Theme = "light" | "dark" | "system";
-type Font = "Inter" | "Noto Serif" | "Source Code Pro";
+type Font = "inter" | "noto-serif" | "source-code-pro";
 
 interface IConfigStore {
   theme: Theme;
@@ -20,7 +20,7 @@ export const useConfigStore = create<IConfigStore>()(
       theme: "light",
       setTheme: (theme) => set({ theme }),
 
-      font: "Inter",
+      font: "inter",
       setFont: (font) => set({ font }),
     }),
     {

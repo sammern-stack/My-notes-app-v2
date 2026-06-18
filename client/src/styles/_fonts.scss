@@ -1,26 +1,11 @@
-@font-face {
-  font-family: "Inter";
-  src: url("../assets/fonts/inter/Inter-VariableFont_opsz,wght.woff2")
-    format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+@use "./variables" as *;
 
-@font-face {
-  font-family: "Noto Serif";
-  src: url("../assets/fonts/noto-serif/NotoSerif-VariableFont_wdth\,wght.woff2")
-    format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Source Code Pro";
-  src: url("../assets/fonts/source-code-pro/SourceCodePro-VariableFont_wght.woff2")
-    format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
+@each $font, $url in $fonts {
+  @font-face {
+    font-family: #{$font};
+    src: url("../assets/fonts/#{$font}/#{$url}") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
 }
