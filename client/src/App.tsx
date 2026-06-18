@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AppLoader } from "@common-components";
+import { AppLoader } from "@components/common";
 
 // ——— Lazy Import Pages ———————————————————————————————————————————————————————————————————————————
 const Home = lazy(() => import("@pages/Home/Home"));

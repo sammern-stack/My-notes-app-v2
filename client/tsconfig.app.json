@@ -24,7 +24,7 @@
     /* Relative Paths */
     "paths": {
       "@/*": ["./src/*"],
-      "@common-components": ["./src/components/common/index"],
+      "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
     }
   },
