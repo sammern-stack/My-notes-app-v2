@@ -1,9 +1,7 @@
 @use "./styles/global" as *;
 
-.font {
-  @each $font, $url in $fonts {
-    &--#{$font} {
-      font-family: "#{$font}", sans-serif;
-    }
+@each $font, $url in $fonts {
+  :root[data-font="#{$font}"] {
+    font-family: "#{$font}", sans-serif;
   }
 }

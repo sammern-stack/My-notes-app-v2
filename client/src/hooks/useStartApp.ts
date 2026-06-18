@@ -7,6 +7,6 @@ export const useStartApp = () => {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    document.documentElement.className = `font--${font}`;
+    document.documentElement.setAttribute("data-font", font);
   }, [theme, font]);
 };
