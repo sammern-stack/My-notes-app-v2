@@ -26,6 +26,7 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
+      "@stores/*": ["./src/stores/*"],
     }
   },
   "include": ["src"]
