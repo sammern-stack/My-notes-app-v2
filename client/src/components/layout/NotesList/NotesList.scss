@@ -1,6 +1,26 @@
 @use "../../../styles/global" as *;
 
-.notes-list {
-  width: 290px;
-  border-right: 1px solid var(--primary-stroke);
+.notes {
+  &__list {
+    width: 290px;
+    border-right: 1px solid var(--primary-stroke);
+    @include flex-gap(16px, column);
+    padding: 20px 16px 20px 32px;
+  }
+
+  &__create-btn {
+    padding: 12px 16px;
+    @include font-size(4);
+    background: $blue-500;
+    border-radius: 8px;
+    color: $neutral-000;
+
+    &:hover {
+      background: $blue-700;
+    }
+  }
+
+  &__list-content {
+    @include flex-gap(4px, column);
+  }
 }

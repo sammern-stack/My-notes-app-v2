@@ -1,0 +1,35 @@
+@use "../../../../styles/global" as *;
+
+.notes {
+  &__card {
+    @include flex-gap(12px, column);
+    padding: 8px;
+    border-radius: 6px;
+  }
+
+  &__card-title {
+    @include font-size(3);
+    color: var(--primary-color);
+  }
+
+  &__card-tags {
+    @include flex-gap(4px);
+  }
+
+  &__card-tag {
+    @include font-size(6);
+    color: var(--primary-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--tag-background);
+  }
+
+  &__card-createdAt {
+    @include font-size(6);
+    color: var(--secondary-color);
+  }
+
+  &__list-divider {
+    @include divider-styles;
+  }
+}
