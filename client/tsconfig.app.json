@@ -28,7 +28,8 @@
       "@pages/*": ["./src/pages/*"],
       "@stores": ["./src/stores/index.ts"],
       "@hooks": ["./src/hooks/index.ts"],
-      "@utils": ["./src/utils/index.ts"]
+      "@utils": ["./src/utils/index.ts"],
+      "@types": ["./src/types/index.ts"]
     }
   },
   "include": ["src"]
