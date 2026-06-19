@@ -27,7 +27,8 @@
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
       "@stores": ["./src/stores/index.ts"],
-      "@hooks": ["./src/hooks/index.ts"]
+      "@hooks": ["./src/hooks/index.ts"],
+      "@utils": ["./src/utils/index.ts"]
     }
   },
   "include": ["src"]

@@ -13,10 +13,12 @@ export default defineConfig({
   plugins: [react(), svgr({ include: "**/*.svg" })],
   resolve: {
     alias: {
+      "@": resolvePath("./src"),
       "@pages": resolvePath("./src/pages"),
       "@components": resolvePath("./src/components"),
       "@stores": resolvePath("./src/stores"),
       "@hooks": resolvePath("./src/hooks"),
+      "@utils": resolvePath("./src/utils"),
     },
   },
 });
