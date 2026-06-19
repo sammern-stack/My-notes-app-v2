@@ -2,4 +2,33 @@
 
 .note {
   flex: 1;
+  @include flex-gap(16px, column);
+  padding: 20px 24px;
+
+  &__title {
+    @include font-size(1);
+    color: var(--primary-color);
+
+    & > input {
+      @include input-styles($position: note);
+    }
+  }
+
+  &__properties {
+    @include flex-gap(8px, column);
+  }
+
+  &__divider {
+    @include divider-styles;
+  }
+
+  &__content {
+    flex: 1;
+    @include font-size(5);
+    color: var(--secondary-color);
+  }
+
+  &__actions {
+    @include flex-gap(16px);
+  }
 }

@@ -33,7 +33,10 @@ $fonts: (
 :root[data-theme="light"] {
   // Colors
   --primary-background: #{$neutral-000};
+  --secondary-background: #{$neutral-100};
   --primary-color: #{$neutral-950};
+  --secondary-color: #{$neutral-700};
+  --subtle-text-color: #{$neutral-400};
 
   // Strokes
   --primary-stroke: #{$neutral-200};
@@ -44,7 +47,10 @@ $fonts: (
   :root[data-theme="system"] {
     // Colors
     --primary-background: #{$neutral-000};
+    --secondary-background: #{$neutral-100};
     --primary-color: #{$neutral-950};
+    --secondary-color: #{$neutral-700};
+    --subtle-text-color: #{$neutral-400};
 
     // Strokes
     --primary-stroke: #{$neutral-200};
@@ -56,7 +62,10 @@ $fonts: (
 :root[data-theme="dark"] {
   // Colors
   --primary-background: #{$neutral-950};
+  --secondary-background: #{$neutral-800};
   --primary-color: #{$neutral-000};
+  --secondary-color: #{$neutral-200};
+  --subtle-text-color: #{$neutral-300};
 
   // Strokes
   --primary-stroke: #{$neutral-800};
@@ -67,7 +76,10 @@ $fonts: (
   :root[data-theme="system"] {
     // Colors
     --primary-background: #{$neutral-950};
+    --secondary-background: #{$neutral-800};
     --primary-color: #{$neutral-000};
+    --secondary-color: #{$neutral-200};
+    --subtle-text-color: #{$neutral-300};
 
     // Strokes
     --primary-stroke: #{$neutral-800};

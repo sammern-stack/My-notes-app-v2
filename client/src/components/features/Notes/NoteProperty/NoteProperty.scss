@@ -1,0 +1,37 @@
+@use "../../../../styles/global" as *;
+
+$properties: tags, last-edited;
+
+.note {
+  @each $property in $properties {
+    &__#{$property} {
+      @include flex-gap(8px);
+      @include font-size(5);
+      align-items: center;
+      color: var(--primary-color);
+    }
+
+    &__#{$property}-name {
+      width: 115px;
+      @include flex-gap(6px);
+      align-items: center;
+      padding: 4px 0;
+    }
+
+    &__#{$property}-value {
+      color: var(--subtle-text-color);
+
+
+      @if ($property == tags) {
+        flex: 1;
+
+        & > input {
+          @include input-styles($position: note);
+          color: inherit;
+        }
+      } @else {
+        width: fit-content;
+      }
+    }
+  }
+}

@@ -62,3 +62,27 @@
   flex-direction: $direction;
   gap: $gap;
 }
+
+@mixin input-styles($position) {
+  @if ($position == note) {
+    border: none;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: inherit;
+    }
+  }
+
+  @if ($position == search or $position == auth) {
+  }
+}
+
+@mixin divider-styles {
+  width: 100%;
+  height: 1px;
+  background: var(--primary-stroke);
+}
