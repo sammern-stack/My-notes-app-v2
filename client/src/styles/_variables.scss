@@ -33,18 +33,22 @@ $fonts: (
 :root[data-theme="light"] {
   // Colors
   --primary-background: #{$neutral-000};
+  --primary-color: #{$neutral-950};
 
   // Strokes
   --primary-stroke: #{$neutral-200};
+  --subtle-stroke: #{$neutral-300};
 }
 
 @media (prefers-color-scheme: light) {
   :root[data-theme="system"] {
     // Colors
     --primary-background: #{$neutral-000};
+    --primary-color: #{$neutral-950};
 
     // Strokes
     --primary-stroke: #{$neutral-200};
+    --subtle-stroke: #{$neutral-300};
   }
 }
 
@@ -52,17 +56,21 @@ $fonts: (
 :root[data-theme="dark"] {
   // Colors
   --primary-background: #{$neutral-950};
+  --primary-color: #{$neutral-000};
 
   // Strokes
   --primary-stroke: #{$neutral-800};
+  --subtle-stroke: #{$neutral-600};
 }
 
 @media (prefers-color-scheme: dark) {
   :root[data-theme="system"] {
     // Colors
     --primary-background: #{$neutral-950};
+    --primary-color: #{$neutral-000};
 
     // Strokes
     --primary-stroke: #{$neutral-800};
+    --subtle-stroke: #{$neutral-600};
   }
 }
