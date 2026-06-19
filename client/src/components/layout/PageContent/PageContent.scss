@@ -3,6 +3,7 @@
 .page {
   flex: 1;
   display: flex;
+  min-height: 0;
 
   &__content {
     @include scrollable-child($height: full);

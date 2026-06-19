@@ -1,0 +1,12 @@
+@use "../../../../styles/global" as *;
+
+.sidebar {
+  &__render-options {
+    @include flex-gap(4px, column);
+  }
+
+  &__render-option {
+    @include flex-gap(8px);
+    padding: 10px 12px;
+  }
+}

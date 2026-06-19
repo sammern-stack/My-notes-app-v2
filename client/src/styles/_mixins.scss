@@ -1,5 +1,4 @@
-@mixin preset-font($font, $size) {
-  font-family: $font, sans-serif;
+@mixin font-size($size) {
   line-height: 120%;
 
   @if ($size == 1) {
@@ -49,10 +48,17 @@
 }
 
 @mixin scrollable {
-  @include scrollable-child();
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+@mixin flex-gap($gap, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
 }

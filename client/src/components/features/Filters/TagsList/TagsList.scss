@@ -1,0 +1,13 @@
+@use "../../../../styles/global" as *;
+
+.sidebar {
+  &__tags-list {
+    @include scrollable;
+    gap: 4px;
+  }
+
+  &__tag-item {
+    @include flex-gap(8px);
+    padding: 10px 12px;
+  }
+}
