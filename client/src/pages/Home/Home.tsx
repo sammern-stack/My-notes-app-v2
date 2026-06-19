@@ -1,30 +1,22 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import "./Home.scss";
 import {
+  PageContent,
   ActiveNote,
-  Header,
   NotesList,
-  Sidebar
-} from "@components/layout"
+  Sidebar,
+} from "@components/layout";
 
 // ——— Home Component ——————————————————————————————————————————————————————————————————————————————
 const Home = () => {
   return (
-    <div className="home">
-      <Sidebar position="left"/>
+    <PageContent className="home">
+      <NotesList />
 
-      <div className="home__content">
-        <Header />
+      <ActiveNote />
 
-        <div className="home__body">
-          <NotesList />
-
-          <ActiveNote />
-
-          <Sidebar position="right"/>
-        </div>
-      </div>
-    </div>
+      <Sidebar position="right" />
+    </PageContent>
   );
 };
 
