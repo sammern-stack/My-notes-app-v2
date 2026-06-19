@@ -31,22 +31,38 @@ $fonts: (
 
 // ——— Light Theme —————————————————————————————————————————————————————————————————————————————————
 :root[data-theme="light"] {
+  // Colors
   --primary-background: #{$neutral-000};
+
+  // Strokes
+  --primary-stroke: #{$neutral-200};
 }
 
 @media (prefers-color-scheme: light) {
   :root[data-theme="system"] {
+    // Colors
     --primary-background: #{$neutral-000};
+
+    // Strokes
+    --primary-stroke: #{$neutral-200};
   }
 }
 
 // ——— Dark Theme —————————————————————————————————————————————————————————————————————————————————
 :root[data-theme="dark"] {
+  // Colors
   --primary-background: #{$neutral-950};
+
+  // Strokes
+  --primary-stroke: #{$neutral-800};
 }
 
 @media (prefers-color-scheme: dark) {
   :root[data-theme="system"] {
-    --primary-background: #{$neutral-000};
+    // Colors
+    --primary-background: #{$neutral-950};
+
+    // Strokes
+    --primary-stroke: #{$neutral-800};
   }
 }

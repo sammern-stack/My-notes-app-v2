@@ -1,0 +1,6 @@
+@use "../../../styles/global" as *;
+
+.page-header {
+  height: 81px;
+  border-bottom: 1px solid var(--primary-stroke);
+}

@@ -1,0 +1,14 @@
+@use "../../../styles/global" as *;
+
+.page {
+  flex: 1;
+  display: flex;
+
+  &__content {
+    @include scrollable-child($height: full);
+  }
+
+  &__body {
+    @include scrollable-child($height: full, $direction: row);
+  }
+}

@@ -38,3 +38,21 @@
     letter-spacing: -0.2px;
   }
 }
+
+@mixin scrollable-child($height: auto, $direction: column) {
+  @if ($height == full) {
+    flex: 1;
+  }
+  display: flex;
+  flex-direction: $direction;
+  min-height: 0;
+}
+
+@mixin scrollable {
+  @include scrollable-child();
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

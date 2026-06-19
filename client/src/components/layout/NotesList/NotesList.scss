@@ -1,0 +1,6 @@
+@use "../../../styles/global" as *;
+
+.notes-list {
+  width: 290px;
+  border-right: 1px solid var(--primary-stroke);
+}
