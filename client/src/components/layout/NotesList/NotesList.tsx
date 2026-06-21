@@ -1,33 +1,17 @@
 import { NoteCard } from "@components/features/Notes";
 import "./NotesList.scss";
-
-// Temporary Data
-const NOTES = [
-  {
-    title: "Note Title 1",
-    tags: ["tag-1", "tag-2"],
-    createdAt: new Date(Date.now()),
-  },
-  {
-    title: "Note Title 2",
-    tags: ["tag-1", "tag-2"],
-    createdAt: new Date(Date.now()),
-  },
-  {
-    title: "Note Title 3",
-    tags: ["tag-1", "tag-2"],
-    createdAt: new Date(Date.now()),
-  },
-];
+import { useNotesStore } from "@stores";
 
 export const NotesList = () => {
+  const notes = useNotesStore((s) => s.notes);
+
   return (
     <div className="notes__list">
       <button className="notes__create-btn">+ Create New Note</button>
 
       <div className="notes__list-content">
-        {NOTES.map((note) => (
-          <NoteCard key={note.title} note={note} />
+        {notes.map((note) => (
+          <NoteCard key={note._id} note={note} />
         ))}
       </div>
     </div>

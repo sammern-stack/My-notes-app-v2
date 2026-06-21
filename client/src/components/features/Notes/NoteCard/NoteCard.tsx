@@ -1,12 +1,9 @@
 import { formatDate } from "@/utils";
+import type { NoteModel } from "@types";
 import "./NoteCard.scss";
 
 interface NoteCardProps {
-  note: {
-    title: string;
-    tags: string[];
-    createdAt: Date;
-  };
+  note: NoteModel;
 }
 
 export const NoteCard = ({ note }: NoteCardProps) => {
@@ -26,7 +23,7 @@ export const NoteCard = ({ note }: NoteCardProps) => {
         </div>
 
         <div className="notes__card-createdAt">
-          {formatDate(note.createdAt.toLocaleDateString())}
+          {formatDate(note.createdAt)}
         </div>
       </div>
 

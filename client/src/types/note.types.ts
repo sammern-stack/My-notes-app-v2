@@ -4,8 +4,8 @@ export interface NoteModel {
   tags: string[];
   content: string;
   isArchived: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type TNote = Pick<NoteModel, "title" | "tags" | "content">;
