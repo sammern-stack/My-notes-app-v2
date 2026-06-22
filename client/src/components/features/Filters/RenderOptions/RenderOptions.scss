@@ -6,7 +6,21 @@
   }
 
   &__render-option {
-    @include flex-gap(8px);
+    // @include flex-gap(8px);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
     padding: 10px 12px;
+    border-radius: 8px;
+
+    &--active {
+      background: var(--secondary-background);
+      @include borderWithBefore(var(--primary-stroke));
+    }
+
+    & > p {
+      flex: 1;
+      text-align: left;
+    }
   }
 }

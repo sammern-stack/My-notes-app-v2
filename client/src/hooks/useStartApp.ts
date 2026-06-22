@@ -14,7 +14,7 @@ export const useStartApp = () => {
   const setTags = useNotesStore((s) => s.setTags);
 
   useEffect(() => {
-    setNotes();
+    setNotes({});
     setTags();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
