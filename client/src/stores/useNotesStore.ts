@@ -12,13 +12,10 @@ interface NotesStore {
   notes: NoteModel[];
   setNotes: () => Promise<void>;
 
-  selectedNoteId: string | null;
-  setSelectedNoteId: (id: string) => void;
-
   // Api Requests
   fetchNotes: () => Promise<NoteModel[]>;
   fetchNote: (id: string) => Promise<NoteModel>;
-  createNewNote: (note: CreateNoteBody) => Promise<void>;
+  createNewNote: (note: CreateNoteBody) => Promise<NoteModel>;
 }
 
 // ——— Utility —————————————————————————————————————————————————————————————————————————————————————
@@ -31,12 +28,13 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
   notes: [],
   setNotes: async () => {
     const notes = await get().fetchNotes();
-    console.log(JSON.stringify(notes, null, 2));
-    set({ notes })
-  },
 
-  selectedNoteId: null,
-  setSelectedNoteId: (id) => set({ selectedNoteId: id }),
+    const sortedNotes = [...notes].sort((a, b) =>
+      b.createdAt.localeCompare(a.createdAt),
+    );
+
+    set({ notes: sortedNotes });
+  },
 
   // Api Requests
   fetchNotes: async () => {
@@ -55,5 +53,6 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
     const res = await createNoteRequest(note);
     if (!res.ok) return throwError("creating note", res.error);
     await get().setNotes();
+    return res.data;
   },
 }));
