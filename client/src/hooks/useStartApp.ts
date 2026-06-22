@@ -11,9 +11,11 @@ export const useStartApp = () => {
   }, [theme, font]);
 
   const setNotes = useNotesStore((s) => s.setNotes);
+  const setTags = useNotesStore((s) => s.setTags);
 
   useEffect(() => {
     setNotes();
+    setTags();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
