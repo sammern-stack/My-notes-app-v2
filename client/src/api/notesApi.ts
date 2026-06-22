@@ -13,6 +13,6 @@ export const getNoteRequest = (id: string): RequestFn<NoteModel> => {
   return apiCall(() => api.get(`/notes/${id}`));
 };
 
-export const createNoteRequest = (note: CreateNoteBody): RequestFn<void> => {
+export const createNoteRequest = (note: CreateNoteBody): RequestFn<NoteModel> => {
   return apiCall(() => api.post("/notes", note));
 };
