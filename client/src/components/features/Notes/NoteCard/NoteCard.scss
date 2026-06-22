@@ -5,6 +5,10 @@
     @include flex-gap(12px, column);
     padding: 8px;
     border-radius: 6px;
+
+    &--active {
+      background: var(--secondary-background);
+    }
   }
 
   &__card-title {

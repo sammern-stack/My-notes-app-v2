@@ -1,11 +1,21 @@
+import { useEditorStore } from "@stores";
 import { NoteAction, NoteProperty } from "@components/features/Notes";
 import "./ActiveNote.scss";
 
 export const ActiveNote = () => {
+  const selectedNote = useEditorStore((s) => s.selectedNote);
+  const setSelectedNoteTitle = useEditorStore((s) => s.setSelectedNoteTitle);
+  const setSelectedNoteTags = useEditorStore((s) => s.setSelectedNoteTags);
+
   return (
     <div className="note">
       <h1 className="note__title">
-        <input type="text" placeholder="Enter a title..." />
+        <input
+          type="text"
+          placeholder="Enter a title..."
+          value={selectedNote.title}
+          onChange={(e) => setSelectedNoteTitle(e.target.value)}
+        />
       </h1>
 
       <div className="note__properties">
@@ -13,6 +23,8 @@ export const ActiveNote = () => {
           <input
             type="text"
             placeholder="Add tags separated by commas (e.g. Work, Planning)"
+            value={selectedNote.tags}
+            onChange={(e) => setSelectedNoteTags(e.target.value)}
           />
         </NoteProperty>
 
@@ -30,8 +42,8 @@ export const ActiveNote = () => {
       <div className="note__divider"></div>
 
       <div className="note__actions">
-        <NoteAction position="note" action="save"/>
-        <NoteAction position="note" action="cancel"/>
+        <NoteAction position="note" action="save" />
+        <NoteAction position="note" action="cancel" />
       </div>
     </div>
   );

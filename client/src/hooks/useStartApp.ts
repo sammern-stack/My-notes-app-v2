@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useConfigStore, useNotesStore } from "@stores";
+import { useConfigStore, useNotesStore, useEditorStore } from "@stores";
 
 export const useStartApp = () => {
   const theme = useConfigStore((s) => s.theme);
@@ -16,4 +16,22 @@ export const useStartApp = () => {
     setNotes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
+  const setSelectedNote = useEditorStore((s) => s.setSelectedNote);
+  const fetchNote = useNotesStore((s) => s.fetchNote);
+
+  useEffect(() => {
+    (async () => {
+      if (!selectedNoteId) return;
+
+      const note = await fetchNote(selectedNoteId);
+
+      setSelectedNote({
+        title: note.title,
+        tags: note.tags.join(", "),
+        content: note.content,
+      });
+    })();
+  }, [selectedNoteId, fetchNote, setSelectedNote]);
 };
