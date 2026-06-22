@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
-import type { CreateNoteBody, NoteModel } from "@types";
+import type { CreateNoteBody, NoteModel, NotesQuery } from "@types";
 import {
   createNoteRequest,
   getNoteRequest,
@@ -10,13 +10,13 @@ import {
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface NotesStore {
   notes: NoteModel[];
-  setNotes: () => Promise<void>;
+  setNotes: (query: NotesQuery) => Promise<void>;
 
   tags: Set<string>;
   setTags: () => Promise<void>;
 
   // Api Requests
-  fetchNotes: () => Promise<NoteModel[]>;
+  fetchNotes: (query: NotesQuery) => Promise<NoteModel[]>;
   fetchNote: (id: string) => Promise<NoteModel>;
   createNewNote: (note: CreateNoteBody) => Promise<NoteModel>;
 
@@ -32,8 +32,8 @@ const throwError = (reason: string, error: string) => {
 // ——— Notes Store —————————————————————————————————————————————————————————————————————————————————
 export const useNotesStore = create<NotesStore>((set, get) => ({
   notes: [],
-  setNotes: async () => {
-    const notes = await get().fetchNotes();
+  setNotes: async (query) => {
+    const notes = await get().fetchNotes(query);
 
     const sortedNotes = [...notes].sort((a, b) =>
       b.createdAt.localeCompare(a.createdAt),
@@ -44,7 +44,7 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
 
   tags: new Set(),
   setTags: async () => {
-    const notes = await get().fetchNotes();
+    const notes = await get().fetchNotes({});
     const tags = notes
       .flatMap((note) => note.tags)
       .sort((a, b) => a.localeCompare(b));
@@ -52,8 +52,8 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
   },
 
   // Api Requests
-  fetchNotes: async () => {
-    const res = await getNotesRequest({});
+  fetchNotes: async (query) => {
+    const res = await getNotesRequest(query);
     if (!res.ok) return throwError("fetching notes", res.error);
     return res.data;
   },
@@ -73,7 +73,7 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
 
   // Helpers
   syncNotes: async () => {
-    await get().setNotes();
+    await get().setNotes({});
     await get().setTags();
   },
 }));
