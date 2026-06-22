@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useConfigStore, useNotesStore, useEditorStore } from "@stores";
+import { useConfigStore, useNotesStore, useEditorStore, useFiltersStore } from "@stores";
 
 export const useStartApp = () => {
   const theme = useConfigStore((s) => s.theme);
@@ -10,11 +10,11 @@ export const useStartApp = () => {
     document.documentElement.setAttribute("data-font", font);
   }, [theme, font]);
 
-  const setNotes = useNotesStore((s) => s.setNotes);
+  const applyFilters = useFiltersStore((s) => s.applyFilters);
   const setTags = useNotesStore((s) => s.setTags);
 
   useEffect(() => {
-    setNotes({});
+    applyFilters();
     setTags();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

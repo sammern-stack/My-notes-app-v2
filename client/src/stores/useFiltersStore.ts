@@ -68,6 +68,7 @@ export const useFiltersStore = create<FiltersStore>()(
       name: "filters",
       partialize: (s) => ({
         renderOption: s.renderOption,
+        tagFilters: s.tagFilters,
       }),
     },
   ),
