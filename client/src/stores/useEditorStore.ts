@@ -21,11 +21,9 @@ interface EditorStore {
   cashedSelectedId: NullString;
   setCashedSelectedId: (id: NullString) => void;
 
-  selectedNote: EditorNote;
-  setSelectedNote: (note: EditorNote) => void;
-  setSelectedNoteTitle: (title: string) => void;
-  setSelectedNoteTags: (tags: string) => void;
-  setSelectedNoteContent: (content: string) => void;
+  activeNote: EditorNote;
+  setActiveNote: (note: EditorNote) => void;
+  setActiveNoteField: (field: keyof EditorNote, value: string) => void;
 }
 
 // ——— Editor Store ————————————————————————————————————————————————————————————————————————————————
@@ -41,24 +39,16 @@ export const useEditorStore = create<EditorStore>()(
       cashedSelectedId: null,
       setCashedSelectedId: (id) => set({ cashedSelectedId: id }),
 
-      selectedNote: {
+      activeNote: {
         title: "",
         tags: "",
         content: "",
       },
 
-      setSelectedNote: (note) => set({ selectedNote: note }),
+      setActiveNote: (note) => set({ activeNote: note }),
 
-      setSelectedNoteTitle: (title) => {
-        set((s) => ({ selectedNote: { ...s.selectedNote, title } }));
-      },
-
-      setSelectedNoteTags: (tags) => {
-        set((s) => ({ selectedNote: { ...s.selectedNote, tags } }));
-      },
-
-      setSelectedNoteContent: (content) => {
-        set((s) => ({ selectedNote: { ...s.selectedNote, content } }));
+      setActiveNoteField: (field, value) => {
+        set((s) => ({ activeNote: { ...s.activeNote, [field]: value } }));
       },
     }),
     {

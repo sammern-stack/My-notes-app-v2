@@ -1,11 +1,21 @@
+// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@stores";
 import { NoteAction, NoteProperty } from "@components/features/Notes";
+import type { InputChangeEvent } from "@types";
 import "./ActiveNote.scss";
 
+// ——— ActiveNote Component ————————————————————————————————————————————————————————————————————————
 export const ActiveNote = () => {
-  const selectedNote = useEditorStore((s) => s.selectedNote);
-  const setSelectedNoteTitle = useEditorStore((s) => s.setSelectedNoteTitle);
-  const setSelectedNoteTags = useEditorStore((s) => s.setSelectedNoteTags);
+  const { title, tags } = useEditorStore((s) => s.activeNote);
+  const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
+
+  const handleTitleChange = (e: InputChangeEvent) => {
+    setActiveNoteField("title", e.target.value);
+  };
+
+  const handleTagsChange = (e: InputChangeEvent) => {
+    setActiveNoteField("tags", e.target.value);
+  };
 
   return (
     <div className="note">
@@ -13,8 +23,8 @@ export const ActiveNote = () => {
         <input
           type="text"
           placeholder="Enter a title..."
-          value={selectedNote.title}
-          onChange={(e) => setSelectedNoteTitle(e.target.value)}
+          value={title}
+          onChange={handleTitleChange}
         />
       </h1>
 
@@ -23,8 +33,8 @@ export const ActiveNote = () => {
           <input
             type="text"
             placeholder="Add tags separated by commas (e.g. Work, Planning)"
-            value={selectedNote.tags}
-            onChange={(e) => setSelectedNoteTags(e.target.value)}
+            value={tags}
+            onChange={handleTagsChange}
           />
         </NoteProperty>
 
