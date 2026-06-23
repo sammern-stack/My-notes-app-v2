@@ -6,7 +6,8 @@
     padding: 8px;
     border-radius: 6px;
 
-    &--active {
+    &--active,
+    &:hover {
       background: var(--secondary-background);
     }
   }
@@ -14,6 +15,7 @@
   &__card-title {
     @include font-size(3);
     color: var(--primary-color);
+    text-align: left;
   }
 
   &__card-tags {
@@ -31,6 +33,7 @@
   &__card-createdAt {
     @include font-size(6);
     color: var(--secondary-color);
+    text-align: left;
   }
 
   &__list-divider {

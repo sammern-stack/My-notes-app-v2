@@ -1,12 +1,15 @@
+// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@stores";
 import { formatDate } from "@/utils";
 import type { NoteModel } from "@types";
 import "./NoteCard.scss";
 
+// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface NoteCardProps {
   note: NoteModel;
 }
 
+// ——— Note Card Component —————————————————————————————————————————————————————————————————————————
 export const NoteCard = ({ note }: NoteCardProps) => {
   const { _id, title, tags, createdAt } = note;
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
@@ -17,9 +20,7 @@ export const NoteCard = ({ note }: NoteCardProps) => {
 
   return (
     <>
-      <div className="notes__list-divider"></div>
-
-      <div
+      <button
         className={`notes__card ${isNoteActive ? "notes__card--active" : ""}`}
         onClick={handleSelect}
       >
@@ -34,7 +35,7 @@ export const NoteCard = ({ note }: NoteCardProps) => {
         </div>
 
         <div className="notes__card-createdAt">{formatDate(createdAt)}</div>
-      </div>
+      </button>
 
       <div className="notes__list-divider"></div>
     </>

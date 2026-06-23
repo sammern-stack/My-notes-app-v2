@@ -6,26 +6,25 @@ export const NotesList = () => {
   const notes = useNotesStore((s) => s.notes);
   const editorState = useEditorStore((s) => s.editorState);
   const setEditorState = useEditorStore((s) => s.setEditorState);
-  const setSelectedNote = useEditorStore((s) => s.setSelectedNote);
+  const setActiveNote = useEditorStore((s) => s.setActiveNote);
   const setCashedSelectedId = useEditorStore((s) => s.setCashedSelectedId);
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
 
+  const handleCreateNote = () => {
+    setEditorState("creating");
+    setCashedSelectedId(selectedNoteId);
+    setSelectedNoteId(null);
+    setActiveNote({
+      title: "",
+      tags: "",
+      content: "",
+    });
+  };
+
   return (
     <div className="notes__list">
-      <button
-        className="notes__create-btn"
-        onClick={() => {
-          setEditorState("creating");
-          setCashedSelectedId(selectedNoteId);
-          setSelectedNoteId(null);
-          setSelectedNote({
-            title: "",
-            tags: "",
-            content: "",
-          });
-        }}
-      >
+      <button className="notes__create-btn" onClick={handleCreateNote}>
         + Create New Note
       </button>
 
