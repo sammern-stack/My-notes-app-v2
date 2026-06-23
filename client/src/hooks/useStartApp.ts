@@ -1,6 +1,13 @@
+// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEffect } from "react";
-import { useConfigStore, useNotesStore, useEditorStore, useFiltersStore } from "@stores";
+import {
+  useConfigStore,
+  useNotesStore,
+  useEditorStore,
+  useFiltersStore,
+} from "@stores";
 
+// ——— Start Up App Hook ———————————————————————————————————————————————————————————————————————————
 export const useStartApp = () => {
   const theme = useConfigStore((s) => s.theme);
   const font = useConfigStore((s) => s.font);
@@ -20,20 +27,15 @@ export const useStartApp = () => {
   }, []);
 
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
-  const setSelectedNote = useEditorStore((s) => s.setSelectedNote);
+  const setActiveNote = useEditorStore((s) => s.setActiveNote);
   const fetchNote = useNotesStore((s) => s.fetchNote);
 
   useEffect(() => {
-    (async () => {
+    const renderActiveNote = async () => {
       if (!selectedNoteId) return;
-
-      const note = await fetchNote(selectedNoteId);
-
-      setSelectedNote({
-        title: note.title,
-        tags: note.tags.join(", "),
-        content: note.content,
-      });
-    })();
-  }, [selectedNoteId, fetchNote, setSelectedNote]);
+      const { title, tags, content } = await fetchNote(selectedNoteId);
+      setActiveNote({ title, tags: tags.join(", "), content });
+    };
+    renderActiveNote();
+  }, [selectedNoteId, fetchNote, setActiveNote]);
 };
