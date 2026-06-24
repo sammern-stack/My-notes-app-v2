@@ -20,6 +20,11 @@
     }
   }
 
+  &__archived-text {
+    @include font-size(5);
+    color: var(--secondary-color);
+  }
+
   &__list-content {
     @include flex-gap(4px, column);
   }
