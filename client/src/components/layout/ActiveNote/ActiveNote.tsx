@@ -1,12 +1,16 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@stores";
-import { NoteAction, NoteProperty } from "@components/features/Notes";
+import {
+  NoteAction,
+  NoteEditor,
+  NoteProperty,
+} from "@components/features/Notes";
 import type { InputChangeEvent } from "@types";
 import "./ActiveNote.scss";
 
 // ——— ActiveNote Component ————————————————————————————————————————————————————————————————————————
 export const ActiveNote = () => {
-  const { title, tags } = useEditorStore((s) => s.activeNote);
+  const { title, tags, content } = useEditorStore((s) => s.activeNote);
   const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
 
   const handleTitleChange = (e: InputChangeEvent) => {
@@ -15,6 +19,10 @@ export const ActiveNote = () => {
 
   const handleTagsChange = (e: InputChangeEvent) => {
     setActiveNoteField("tags", e.target.value);
+  };
+
+  const handleChange = (html: string) => {
+    setActiveNoteField("content", html);
   };
 
   return (
@@ -46,7 +54,7 @@ export const ActiveNote = () => {
       <div className="note__divider"></div>
 
       <div className="note__content">
-        <p>Start typing your note here...</p>
+        <NoteEditor content={content} onChange={handleChange} />
       </div>
 
       <div className="note__divider"></div>

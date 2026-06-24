@@ -49,7 +49,6 @@ export const NoteAction = (props: NoteActionProps) => {
       const note = {
         ...activeNote,
         tags: normalizeTags(activeNote.tags),
-        content: "temporary content",
       };
 
       const newNote = await createNewNote(note);
