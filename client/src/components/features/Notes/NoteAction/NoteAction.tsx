@@ -26,6 +26,8 @@ export const NoteAction = (props: NoteActionProps) => {
   const setCashedSelectedId = useEditorStore((s) => s.setCashedSelectedId);
   const createNewNote = useNotesStore((s) => s.createNewNote);
 
+  if (editorState === "creating" && props.position === "sidebar") return null;
+
   const renderContent = () =>
     props.position === "sidebar" ? (
       <>

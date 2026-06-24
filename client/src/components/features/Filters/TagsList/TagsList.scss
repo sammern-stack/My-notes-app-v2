@@ -13,6 +13,7 @@
     justify-content: space-between;
     padding: 10px 12px;
     border-radius: 8px;
+    color: var(--secondary-color);
 
     & > p {
       flex: 1;
@@ -21,11 +22,21 @@
 
     &--active {
       background: var(--secondary-background);
+      color: var(--primary-color);
       @include borderWithBefore(var(--primary-stroke));
+
+      & > svg {
+        color: $blue-700;
+      }
     }
 
     &:hover {
       background: var(--secondary-background);
+      color: var(--primary-color);
+
+      & > svg {
+        color: $blue-700;
+      }
     }
   }
 }
