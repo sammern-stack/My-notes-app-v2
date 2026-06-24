@@ -6,7 +6,7 @@ export const NotesList = () => {
   const notes = useNotesStore((s) => s.notes);
   const editorState = useEditorStore((s) => s.editorState);
   const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
-  const renderOption = useFiltersStore((s) => s.renderOption);
+  const helperText = useFiltersStore((s) => s.generateHelperText());
 
   return (
     <div className="notes__list">
@@ -15,12 +15,7 @@ export const NotesList = () => {
       </button>
 
       <div className="notes__list-content">
-        {renderOption === "archived" && (
-          <div className="notes__archived-text">
-            All your archived notes are stored here. You can restore or delete
-            them anytime.
-          </div>
-        )}
+        {helperText && <div className="notes__archived-text">{helperText}</div>}
 
         {editorState === "creating" && (
           <div className="notes__card notes__card--active notes__card-title">

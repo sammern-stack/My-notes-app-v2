@@ -28,6 +28,7 @@ interface FiltersStore {
 
   // Helpers
   applyFilters: () => void;
+  generateHelperText: () => string | null;
 }
 
 // ——— Filters Store ———————————————————————————————————————————————————————————————————————————————
@@ -62,6 +63,19 @@ export const useFiltersStore = create<FiltersStore>()(
         const { renderOption, tagFilters } = get();
         const query = buildQuery(renderOption, tagFilters);
         useNotesStore.getState().setNotes(query);
+      },
+
+      generateHelperText: () => {
+        const { renderOption, tagFilters } = get();
+        if (renderOption === "all" && tagFilters.length === 0) return null;
+
+        const tags = tagFilters.join(", ");
+
+        const doesShownArchived = renderOption === "archived";
+        const hasOneTag = tagFilters.length === 1;
+        const isTagsEmpty = tags.length === 0;
+
+        return `All ${doesShownArchived ? "your archived" : ""} notes ${!isTagsEmpty ? `with the "${tags}" ${hasOneTag ? "tag" : "tags"}` : ""} are ${doesShownArchived ? "stored" : "shown"} here. ${doesShownArchived ? "You can restore them or delete them anytime" : ""}`;
       },
     }),
     {
