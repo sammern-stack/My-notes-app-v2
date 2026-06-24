@@ -8,7 +8,7 @@ $properties: tags, last-edited;
       @include flex-gap(8px);
       @include font-size(5);
       align-items: center;
-      color: var(--primary-color);
+      color: var(--secondary-color);
     }
 
     &__#{$property}-name {
@@ -28,6 +28,7 @@ $properties: tags, last-edited;
         & > input {
           @include input-styles($position: note);
           color: inherit;
+          background: transparent;
         }
       } @else {
         width: fit-content;

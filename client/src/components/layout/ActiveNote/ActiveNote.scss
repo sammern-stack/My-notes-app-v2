@@ -11,6 +11,8 @@
 
     & > input {
       @include input-styles($position: note);
+      background: transparent;
+      color: inherit;
     }
   }
 

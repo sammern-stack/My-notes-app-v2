@@ -35,5 +35,9 @@
         color: $blue-700;
       }
     }
+
+    & > svg:last-child {
+      color: $neutral-000;
+    }
   }
 }
