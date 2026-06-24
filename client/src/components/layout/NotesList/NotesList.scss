@@ -25,6 +25,19 @@
     color: var(--secondary-color);
   }
 
+  &__empty-state {
+    @include font-size(5);
+    padding: 8px;
+    background: var(--secondary-background);
+    border: 1px solid var(--primary-stroke);
+    border-radius: 8px;
+
+    & > span {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
   &__list-content {
     @include flex-gap(4px, column);
   }

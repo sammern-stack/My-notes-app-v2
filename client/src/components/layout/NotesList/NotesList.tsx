@@ -7,15 +7,27 @@ export const NotesList = () => {
   const editorState = useEditorStore((s) => s.editorState);
   const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
   const helperText = useFiltersStore((s) => s.generateHelperText());
+  const emptyStateText = useFiltersStore((s) => s.generateEmptyStateText());
+
+  const handleCreateNote = () => startCreatingNote();
 
   return (
     <div className="notes__list">
-      <button className="notes__create-btn" onClick={() => startCreatingNote()}>
+      <button className="notes__create-btn" onClick={handleCreateNote}>
         + Create New Note
       </button>
 
       <div className="notes__list-content">
         {helperText && <div className="notes__archived-text">{helperText}</div>}
+
+        {emptyStateText && (
+          <div className="notes__empty-state">
+            {emptyStateText}{" "}
+            {emptyStateText.endsWith(", or") && (
+              <span onClick={handleCreateNote}>create new note</span>
+            )}
+          </div>
+        )}
 
         {editorState === "creating" && (
           <div className="notes__card notes__card--active notes__card-title">
