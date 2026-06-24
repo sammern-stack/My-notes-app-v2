@@ -30,6 +30,7 @@ interface FiltersStore {
   applyFilters: () => void;
   generateHelperText: () => string | null;
   generateEmptyStateText: () => string | null;
+  generatePageTitle: () => string;
 }
 
 // ——— Filters Store ———————————————————————————————————————————————————————————————————————————————
@@ -86,6 +87,18 @@ export const useFiltersStore = create<FiltersStore>()(
         return get().renderOption === "all"
           ? "You don’t have any notes yet. Start a new note to capture your thoughts and ideas."
           : "No notes have been archived yet. Move notes here for safekeeping, or";
+      },
+
+      generatePageTitle: () => {
+        const { renderOption, tagFilters } = get();
+
+        if (tagFilters.length === 0) {
+          return renderOption === "all" ? "All Notes" : "Archived Notes";
+        }
+
+        return renderOption === "all"
+          ? `Notes Tagged: ${tagFilters.join(", ")}`
+          : `Archived Notes Tagged: ${tagFilters.join(", ")}`;
       },
     }),
     {

@@ -37,6 +37,7 @@ $fonts: (
   --tag-background: #{$neutral-200};
   --primary-color: #{$neutral-950};
   --secondary-color: #{$neutral-700};
+  --title-color: #{$neutral-600};
   --subtle-text-color: #{$neutral-400};
 
   // Strokes
@@ -52,6 +53,7 @@ $fonts: (
     --tag-background: #{$neutral-200};
     --primary-color: #{$neutral-950};
     --secondary-color: #{$neutral-700};
+    --title-color: #{$neutral-600};
     --subtle-text-color: #{$neutral-400};
 
     // Strokes
@@ -68,6 +70,7 @@ $fonts: (
   --tag-background: #{$neutral-700};
   --primary-color: #{$neutral-000};
   --secondary-color: #{$neutral-200};
+  --title-color: #{$neutral-300};
   --subtle-text-color: #{$neutral-300};
 
   // Strokes
@@ -83,6 +86,7 @@ $fonts: (
     --tag-background: #{$neutral-700};
     --primary-color: #{$neutral-000};
     --secondary-color: #{$neutral-200};
+    --title-color: #{$neutral-300};
     --subtle-text-color: #{$neutral-300};
 
     // Strokes
