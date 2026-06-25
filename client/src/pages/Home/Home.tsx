@@ -1,23 +1,17 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
+import { PageContent, OpenNote, NotesList, Sidebar } from "@components/layout";
+
 import "./Home.scss";
-import {
-  PageContent,
-  ActiveNote,
-  NotesList,
-  Sidebar,
-} from "@components/layout";
 
-// ——— Home Component ——————————————————————————————————————————————————————————————————————————————
-const Home = () => {
-  return (
-    <PageContent className="home">
-      <NotesList />
+// ——— Component ———————————————————————————————————————————————————————————————————————————————————
+const Home = () => (
+  <PageContent className="home">
+    <NotesList />
 
-      <ActiveNote />
+    <OpenNote />
 
-      <Sidebar position="right" />
-    </PageContent>
-  );
-};
+    <Sidebar position="right" />
+  </PageContent>
+);
 
 export default Home;
