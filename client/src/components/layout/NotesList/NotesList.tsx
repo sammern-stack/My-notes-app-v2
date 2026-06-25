@@ -1,7 +1,11 @@
+// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useNotesStore, useEditorStore, useFiltersStore } from "@stores";
+
 import { NoteCard } from "@components/features/Notes";
+
 import "./NotesList.scss";
 
+// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const NotesList = () => {
   const notes = useNotesStore((s) => s.notes);
   const editorState = useEditorStore((s) => s.editorState);
@@ -17,8 +21,12 @@ export const NotesList = () => {
         <button className="notes__create-btn" onClick={handleCreateNote}>
           + Create New Note
         </button>
+
         <div className="notes__list-content">
-          {helperText && <div className="notes__archived-text">{helperText}</div>}
+          {helperText && (
+            <div className="notes__archived-text">{helperText}</div>
+          )}
+
           {emptyStateText && (
             <div className="notes__empty-state">
               {emptyStateText}{" "}
@@ -27,11 +35,13 @@ export const NotesList = () => {
               )}
             </div>
           )}
+
           {editorState === "creating" && (
             <div className="notes__card notes__card--active notes__card-title">
               Untitled Note
             </div>
           )}
+
           {notes.map((note) => (
             <NoteCard key={note._id} note={note} />
           ))}

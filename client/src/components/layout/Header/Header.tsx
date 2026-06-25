@@ -1,8 +1,12 @@
-import { SearchBar } from "@components/features/Filters";
-import { Icon } from "@/components/shared";
-import "./Header.scss";
+// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useFiltersStore } from "@/stores";
 
+import { SearchBar } from "@components/features/Filters";
+import { Icon } from "@/components/shared";
+
+import "./Header.scss";
+
+// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const Header = () => {
   const pageTitle = useFiltersStore((s) => s.generatePageTitle());
 

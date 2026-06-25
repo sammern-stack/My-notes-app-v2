@@ -1,21 +1,25 @@
+// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
+import type { ReactNode } from "react";
+
 import { Sidebar, Header } from "@components/layout";
+
 import "./PageContent.scss";
 
+// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface PageContentProps {
   className: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export const PageContent = ({ className, children }: PageContentProps) => {
-  return (
-    <div className={`page page--${className} ${className}`}>
-      <Sidebar position="left" />
+// ——— Component ———————————————————————————————————————————————————————————————————————————————————
+export const PageContent = ({ className, children }: PageContentProps) => (
+  <div className={`page page--${className} ${className}`}>
+    <Sidebar position="left" />
 
-      <div className={`page__content ${className}__content`}>
-        <Header />
+    <div className={`page__content ${className}__content`}>
+      <Header />
 
-        <div className={`page__body ${className}__body`}>{children}</div>
-      </div>
+      <div className={`page__body ${className}__body`}>{children}</div>
     </div>
-  );
-};
+  </div>
+);

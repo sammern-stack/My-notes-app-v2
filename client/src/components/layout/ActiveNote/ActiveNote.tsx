@@ -1,11 +1,14 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@stores";
+
 import {
   NoteAction,
   NoteEditor,
   NoteProperty,
 } from "@components/features/Notes";
+
 import type { InputChangeEvent } from "@types";
+
 import "./ActiveNote.scss";
 
 // ——— ActiveNote Component ————————————————————————————————————————————————————————————————————————
