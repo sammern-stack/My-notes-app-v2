@@ -41,8 +41,8 @@ export const OpenNote = () => {
       <div className="note__divider"></div>
 
       <div className="note__actions">
-        <NoteAction position="note" action="save" />
-        <NoteAction position="note" action="cancel" />
+        <NoteAction action="save" />
+        <NoteAction action="cancel" />
       </div>
     </div>
   );
