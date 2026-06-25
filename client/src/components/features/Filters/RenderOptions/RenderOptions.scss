@@ -37,7 +37,7 @@
     }
 
     & > svg:last-child {
-      color: $neutral-000;
+      color: var(--primary-color);
     }
   }
 }
