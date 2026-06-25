@@ -4,16 +4,15 @@ import { capitalizeStr } from "@utils";
 import { Icon } from "./Icon";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
-type LabelWithIconOwnProps<E extends ElementType = "div"> = {
+type BaseProps<E extends ElementType = "div"> = {
   as?: E;
   className?: string;
   icon: string;
-  label: string;
+  label?: string;
 };
 
-type LabelWithIconProps<E extends ElementType = "div"> =
-  LabelWithIconOwnProps<E> &
-    Omit<ComponentPropsWithoutRef<E>, keyof LabelWithIconOwnProps>;
+type LabelWithIconProps<E extends ElementType = "div"> = BaseProps<E> &
+  Omit<ComponentPropsWithoutRef<E>, keyof BaseProps>;
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const LabelWithIcon = <E extends ElementType = "div">({
@@ -28,7 +27,7 @@ export const LabelWithIcon = <E extends ElementType = "div">({
   return (
     <Component className={className} {...rest}>
       <Icon name={icon} />
-      <p>{capitalizeStr(label)}</p>
+      {label && <p>{capitalizeStr(label)}</p>}
     </Component>
   );
 };

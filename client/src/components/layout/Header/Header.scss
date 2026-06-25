@@ -10,15 +10,6 @@
     border-bottom: 1px solid var(--primary-stroke);
   }
 
-  &__title {
-    @include font-size(1);
-    color: var(--primary-color);
-
-    & > span:first-child {
-      color: var(--title-color);
-    }
-  }
-
   &__header-content {
     @include flex-gap(16px);
     align-items: center;
