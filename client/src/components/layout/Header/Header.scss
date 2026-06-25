@@ -13,5 +13,9 @@
   &__header-content {
     @include flex-gap(16px);
     align-items: center;
+
+    & > a {
+      display: flex;
+    }
   }
 }

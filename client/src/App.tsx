@@ -6,6 +6,7 @@ import { AppLoader } from "@components/common";
 
 // ——— Lazy Import Pages ———————————————————————————————————————————————————————————————————————————
 const Home = lazy(() => import("@pages/Home/Home"));
+const Settings = lazy(() => import("@pages/Settings/Settings"));
 
 // ——— App Component ———————————————————————————————————————————————————————————————————————————————
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Suspense fallback={<AppLoader />}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

@@ -4,6 +4,7 @@ import { SearchBar } from "@components/features/Filters";
 import { LabelWithIcon } from "@/components/shared";
 
 import "./Header.scss";
+import { Link } from "react-router-dom";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const Header = () => (
@@ -13,11 +14,13 @@ export const Header = () => (
     <div className="page__header-content">
       <SearchBar />
 
-      <LabelWithIcon
-        as="button"
-        className="page__settings-toggle"
-        icon="icon-settings"
-      />
+      <Link to="/settings">
+        <LabelWithIcon
+          as="button"
+          className="page__settings-toggle"
+          icon="icon-settings"
+        />
+      </Link>
     </div>
   </div>
 );

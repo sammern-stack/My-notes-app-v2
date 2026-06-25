@@ -3,15 +3,16 @@ import { RenderOptions, TagsList } from "@components/features/Filters";
 import { Icon } from "@components/shared";
 
 import "./Sidebar.scss";
+import { Link } from "react-router-dom";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const NavigationSidebar = () => {
   return (
     <div className="sidebar sidebar--left">
       <div className="sidebar__logo-wrapper">
-        <a href="http://localhost:5173/">
+        <Link to="/">
           <Icon name="logo" />
-        </a>
+        </Link>
       </div>
 
       <div className="sidebar__filters">
