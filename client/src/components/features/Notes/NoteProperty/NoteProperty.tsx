@@ -1,28 +1,17 @@
-import { capitalizeStr } from "@/utils";
-import { Icon } from "@components/shared";
+// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
+import { TagsProperty } from "./TagsProperty";
+import { DatesProperty } from "./DatesProperty";
+
 import "./NoteProperty.scss";
 
-interface NotePropertyProps {
-  label: string;
-  children: React.ReactNode;
-  icon: string;
-}
+type NotePropertyProps =
+  | { property: "tags" }
+  | { property: "date"; date: "updatedAt" | "createdAt" };
 
-export const NoteProperty = ({
-  label,
-  children: value,
-  icon,
-}: NotePropertyProps) => {
-  const labelClassName = label.split(" ").join("-");
-
-  return (
-    <div className={`note__${labelClassName}`}>
-      <div className={`note__${labelClassName}-name`}>
-        <Icon name={icon} />
-        <p>{capitalizeStr(label)}</p>
-      </div>
-
-      <div className={`note__${labelClassName}-value`}>{value}</div>
-    </div>
+export const NoteProperty = (props: NotePropertyProps) => {
+  return props.property === "tags" ? (
+    <TagsProperty />
+  ) : (
+    <DatesProperty date={props.date} />
   );
 };

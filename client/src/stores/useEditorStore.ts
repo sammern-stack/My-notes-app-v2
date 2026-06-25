@@ -7,6 +7,8 @@ const EDITOR_EMPTY_NOTE = {
   title: "",
   tags: "",
   content: "",
+  updatedAt: "",
+  createdAt: ""
 };
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
@@ -16,6 +18,8 @@ type EditorNote = {
   title: string;
   tags: string;
   content: string;
+  updatedAt: string;
+  createdAt: string;
 };
 
 interface EditorStore {

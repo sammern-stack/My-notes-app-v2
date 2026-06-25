@@ -33,8 +33,15 @@ export const useStartApp = () => {
   useEffect(() => {
     const renderActiveNote = async () => {
       if (!selectedNoteId) return;
-      const { title, tags, content } = await fetchNote(selectedNoteId);
-      setActiveNote({ title, tags: tags.join(", "), content });
+      const note = await fetchNote(selectedNoteId);
+
+      setActiveNote({
+        title: note.title,
+        tags: note.tags.join(", "),
+        content: note.content,
+        updatedAt: note.updatedAt,
+        createdAt: note.createdAt,
+      });
     };
     renderActiveNote();
   }, [selectedNoteId, fetchNote, setActiveNote]);

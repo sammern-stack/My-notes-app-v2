@@ -1,6 +1,6 @@
 @use "../../../../styles/global" as *;
 
-$properties: tags, last-edited;
+$properties: tags, updatedAt, createdAt;
 
 .note {
   @each $property in $properties {
@@ -11,7 +11,7 @@ $properties: tags, last-edited;
       color: var(--secondary-color);
     }
 
-    &__#{$property}-name {
+    &__#{$property}-label {
       width: 115px;
       @include flex-gap(6px);
       align-items: center;
