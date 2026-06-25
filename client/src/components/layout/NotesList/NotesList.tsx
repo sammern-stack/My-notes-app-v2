@@ -13,31 +13,29 @@ export const NotesList = () => {
 
   return (
     <div className="notes__list">
-      <button className="notes__create-btn" onClick={handleCreateNote}>
-        + Create New Note
-      </button>
-
-      <div className="notes__list-content">
-        {helperText && <div className="notes__archived-text">{helperText}</div>}
-
-        {emptyStateText && (
-          <div className="notes__empty-state">
-            {emptyStateText}{" "}
-            {emptyStateText.endsWith(", or") && (
-              <span onClick={handleCreateNote}>create new note</span>
-            )}
-          </div>
-        )}
-
-        {editorState === "creating" && (
-          <div className="notes__card notes__card--active notes__card-title">
-            Untitled Note
-          </div>
-        )}
-
-        {notes.map((note) => (
-          <NoteCard key={note._id} note={note} />
-        ))}
+      <div className="notes__wrapper">
+        <button className="notes__create-btn" onClick={handleCreateNote}>
+          + Create New Note
+        </button>
+        <div className="notes__list-content">
+          {helperText && <div className="notes__archived-text">{helperText}</div>}
+          {emptyStateText && (
+            <div className="notes__empty-state">
+              {emptyStateText}{" "}
+              {emptyStateText.endsWith(", or") && (
+                <span onClick={handleCreateNote}>create new note</span>
+              )}
+            </div>
+          )}
+          {editorState === "creating" && (
+            <div className="notes__card notes__card--active notes__card-title">
+              Untitled Note
+            </div>
+          )}
+          {notes.map((note) => (
+            <NoteCard key={note._id} note={note} />
+          ))}
+        </div>
       </div>
     </div>
   );
