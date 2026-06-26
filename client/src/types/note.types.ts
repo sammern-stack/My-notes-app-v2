@@ -12,4 +12,6 @@ export type TNote = Pick<NoteModel, "title" | "tags" | "content">;
 
 export type NotesQuery = Partial<Pick<NoteModel, "tags" | "isArchived">>;
 export type NotesParams = Partial<{ id: string }>;
+
 export type CreateNoteBody = TNote;
+export type UpdateNoteBody = Partial<TNote>;

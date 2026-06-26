@@ -1,10 +1,16 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
-import type { CreateNoteBody, NoteModel, NotesQuery } from "@types";
+import type {
+  CreateNoteBody,
+  NoteModel,
+  NotesQuery,
+  UpdateNoteBody,
+} from "@types";
 import {
   createNoteRequest,
   getNoteRequest,
   getNotesRequest,
+  updateNoteRequest,
 } from "@/api/notesApi";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
@@ -19,6 +25,7 @@ interface NotesStore {
   fetchNotes: (query: NotesQuery) => Promise<NoteModel[]>;
   fetchNote: (id: string) => Promise<NoteModel>;
   createNewNote: (note: CreateNoteBody) => Promise<NoteModel>;
+  updateNote: (id: string, updates: UpdateNoteBody) => Promise<NoteModel>;
 
   // Helpers
   syncNotes: () => Promise<void>;
@@ -67,6 +74,13 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
   createNewNote: async (note: CreateNoteBody) => {
     const res = await createNoteRequest(note);
     if (!res.ok) return throwError("creating note", res.error);
+    await get().syncNotes();
+    return res.data;
+  },
+
+  updateNote: async (id, updates) => {
+    const res = await updateNoteRequest(id, updates);
+    if (!res.ok) return throwError("updating note", res.error);
     await get().syncNotes();
     return res.data;
   },
