@@ -2,4 +2,72 @@
 
 .setting {
   flex: 1;
+
+  &__panel {
+    padding: 32px;
+
+    &--theme {
+      @include flex-gap(24px, column);
+    }
+  }
+
+  &__header {
+    @include flex-gap(4px, column);
+  }
+
+  &__title {
+    @include font-size(3);
+    color: var(--primary-color);
+  }
+
+  &__description {
+    @include font-size(5);
+    color: var(--secondary-color);
+  }
+
+  &__theme-options,
+  &__font-options {
+    @include flex-gap(16px, column);
+  }
+
+  &__theme-icon,
+  &__font-icon {
+    padding: 8px;
+    background: var(--primary-background);
+    border: 1px solid var(--subtle-stroke);
+    border-radius: 12px;
+    color: var(--primary-color)
+  }
+
+  &__theme-label,
+  &__font-label {
+    width: 528px;
+    @include flex-gap(16px);
+    align-items: center;
+    padding: 16px;
+    border: 1px solid var(--primary-stroke);
+    border-radius: 12px;
+    cursor: pointer;
+
+    &--active,
+    &:hover {
+      background: var(--secondary-background);
+    }
+  }
+
+  &__theme-description,
+  &__font-description {
+    flex: 1;
+    @include flex-gap(6px, column);
+
+    & > p:first-child {
+      @include font-size(4);
+      color: var(--primary-color);
+    }
+
+    & > p:last-child {
+      @include font-size(6);
+      color: var(--secondary-color);
+    }
+  }
 }
