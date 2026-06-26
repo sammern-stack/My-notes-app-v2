@@ -11,6 +11,7 @@ const normalizeTags = (tags: string) =>
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const SaveBtn = () => {
   const activeNote = useEditorStore((s) => s.activeNote);
+  const setActiveNote = useEditorStore((s) => s.setActiveNote);
   const editorState = useEditorStore((s) => s.editorState);
   const setEditorState = useEditorStore((s) => s.setEditorState);
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
@@ -19,8 +20,6 @@ export const SaveBtn = () => {
   const updateNote = useNotesStore((s) => s.updateNote);
 
   const handleSave = async () => {
-    if (!selectedNoteId) return;
-
     if (editorState === "creating") {
       const newNote = await createNewNote({
         ...activeNote,
@@ -31,7 +30,7 @@ export const SaveBtn = () => {
       setEditorState("updating");
     }
 
-    if (editorState === "updating") {
+    if (selectedNoteId && editorState === "updating") {
       const updatedNote = await updateNote(selectedNoteId, {
         title: activeNote.title,
         tags: normalizeTags(activeNote.tags),
@@ -39,6 +38,14 @@ export const SaveBtn = () => {
       });
 
       setSelectedNoteId(updatedNote._id);
+
+      setActiveNote({
+        title: updatedNote.title,
+        tags: updatedNote.tags.join(", "),
+        content: updatedNote.content,
+        createdAt: updatedNote.createdAt,
+        updatedAt: updatedNote.updatedAt,
+      });
     }
   };
 
