@@ -1,0 +1,58 @@
+@use "../../../styles/global" as *;
+
+.settings {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+
+    &--wrapper {
+      flex: 1;
+      width: 290px;
+      border-right: 1px solid var(--primary-stroke);
+      @include flex-gap(8px, column);
+      min-height: 0;
+      padding: 20px 16px 20px 32px;
+    }
+  }
+
+  &__item {
+    @include flex-gap(8px);
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--secondary-color);
+
+    &--active {
+      background: var(--secondary-background);
+      @include borderWithBefore(var(--primary-stroke));
+      color: var(--primary-color);
+
+      & > svg {
+        color: $blue-700;
+      }
+    }
+
+    & > p {
+      flex: 1;
+      text-align: left;
+    }
+
+    &:hover {
+      background: var(--secondary-background);
+      color: var(--primary-color);
+
+      & > svg {
+        color: $blue-700;
+      }
+    }
+
+    & > svg:last-child {
+      color: var(--primary-color);
+    }
+  }
+
+  &__divider {
+    @include divider-styles;
+  }
+}

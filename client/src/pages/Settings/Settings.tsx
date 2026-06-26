@@ -1,12 +1,12 @@
-import { PageContent } from "@/components/layout";
+import { PageContent, SettingsList, ActiveSetting } from "@/components/layout";
+
 import "./Settings.scss";
 
-const Settings = () => {
-  return (
-    <PageContent className="settings">
-      <h1>Settings Page</h1>
-    </PageContent>
-  );
-};
+const Settings = () => (
+  <PageContent className="settings">
+    <SettingsList />
+    <ActiveSetting />
+  </PageContent>
+);
 
 export default Settings;
