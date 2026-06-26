@@ -40,3 +40,10 @@ export const updateNote = asyncHandler(
     sendSuccess(res, 200, "Note updated successfully", updatedNote);
   },
 );
+
+export const deleteNote = asyncHandler(
+  async (req: Request<NotesParams>, res: Response) => {
+    await noteService.deleteNote(req.params.id!);
+    sendSuccess(res, 200, "Note deleted successfully", {});
+  },
+);

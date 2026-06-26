@@ -54,7 +54,7 @@ export const updateNote = async (
   const note = await Note.findById(id);
   if (!note) throw new NotFoundError("note");
 
-  const updatedNote = await Note.findOneAndUpdate({ _id: note._id }, updates, {
+  const updatedNote = await Note.findByIdAndUpdate(note._id, updates, {
     returnDocument: "after",
     runValidators: true,
   });
@@ -62,4 +62,13 @@ export const updateNote = async (
   if (!updatedNote) throw new NotFoundError("note");
 
   return updatedNote;
+};
+
+export const deleteNote = async (id: string): Promise<void> => {
+  if (!isValidMongooseId(id)) throw new ValidationError("Invalid ID");
+
+  const note = await Note.findById(id);
+  if (!note) throw new NotFoundError("note");
+
+  await Note.findByIdAndDelete(note._id);
 };
