@@ -1,30 +1,34 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useFiltersStore } from "@stores";
-
-import { SelectOption } from "@/components/shared";
-
-import "./TagsList.scss";
+import type { MouseEventHandler } from "react";
+import { capitalizeStr } from "@utils";
+import { Icon } from "./Icon";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
-interface TagItemProps {
-  tag: string;
+interface SelectOptionProps {
+  className: string;
+  isActive: boolean;
+  onSelect: MouseEventHandler<HTMLButtonElement>;
+  icon: string;
+  label: string;
 }
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
-export const TagItem = ({ tag }: TagItemProps) => {
-  const tagFilters = useFiltersStore((s) => s.tagFilters);
-  const addTagFilter = useFiltersStore((s) => s.addTagFilter);
-  const removeTagFilter = useFiltersStore((s) => s.removeTagFilter);
-
-  const isSelected = tagFilters.includes(tag);
-
+export const SelectOption = ({
+  className,
+  isActive,
+  onSelect,
+  icon,
+  label,
+}: SelectOptionProps) => {
   return (
-    <SelectOption
-      className="sidebar__tag-item"
-      label={tag}
-      isActive={isSelected}
-      onSelect={() => (isSelected ? removeTagFilter(tag) : addTagFilter(tag))}
-      icon="icon-tag"
-    />
+    <button
+      className={`${className} ${isActive ? `${className}--active` : ""}`}
+      onClick={onSelect}
+    >
+      <Icon name={icon} width="20" />
+      <p>{capitalizeStr(label)}</p>
+
+      {isActive && <Icon name="icon-chevron-right" />}
+    </button>
   );
 };

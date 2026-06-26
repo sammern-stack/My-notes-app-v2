@@ -1,36 +1,26 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { capitalizeStr } from "@utils";
-import { Icon } from "@/components/shared";
-import "./RenderOptions.scss";
 import { useFiltersStore } from "@stores";
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
-type Option = "all" | "archived";
+import { SelectOption } from "@/components/shared";
 
+import "./RenderOptions.scss";
+
+// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface RenderOptionProps {
-  option: Option;
+  option: "all" | "archived";
 }
 
-export const RenderOption = (props: RenderOptionProps) => {
+export const RenderOption = ({ option }: RenderOptionProps) => {
   const renderOption = useFiltersStore((s) => s.renderOption);
   const setRenderOption = useFiltersStore((s) => s.setRenderOption);
 
-  const handleSelectOption = () => setRenderOption(props.option);
-
   return (
-    <button
-      className={`sidebar__render-option ${renderOption === props.option ? "sidebar__render-option--active" : ""}`}
-      onClick={handleSelectOption}
-    >
-      <Icon
-        name={props.option === "all" ? "icon-home" : "icon-archive"}
-        width="20"
-      />
-      <p>{capitalizeStr(props.option)} Notes</p>
-
-      {renderOption === props.option && (
-        <Icon name="icon-chevron-right"/>
-      )}
-    </button>
+    <SelectOption
+      className="sidebar__render-option"
+      label={`${option} Notes`}
+      isActive={renderOption === option}
+      onSelect={() => setRenderOption(option)}
+      icon={option === "all" ? "icon-home" : "icon-archive"}
+    />
   );
 };
