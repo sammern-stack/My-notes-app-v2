@@ -2,6 +2,7 @@
 import type { ReactNode } from "react";
 
 import { Sidebar, Header } from "@components/layout";
+import { Dialog } from "@components/common";
 
 import "./PageContent.scss";
 
@@ -21,5 +22,7 @@ export const PageContent = ({ className, children }: PageContentProps) => (
 
       <div className={`page__body ${className}__body`}>{children}</div>
     </div>
+
+    <Dialog />
   </div>
 );
