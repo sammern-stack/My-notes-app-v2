@@ -31,3 +31,7 @@ export const updateNoteRequest = (
 ): RequestFn<NoteModel> => {
   return apiCall(() => api.put(`/notes/${id}`, updates));
 };
+
+export const deleteNoteRequest = (id: string): RequestFn<void> => {
+  return apiCall(() => api.delete(`/notes/${id}`));
+};

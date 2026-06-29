@@ -8,6 +8,7 @@ import type {
 } from "@types";
 import {
   createNoteRequest,
+  deleteNoteRequest,
   getNoteRequest,
   getNotesRequest,
   updateNoteRequest,
@@ -26,6 +27,7 @@ interface NotesStore {
   fetchNote: (id: string) => Promise<NoteModel>;
   createNewNote: (note: CreateNoteBody) => Promise<NoteModel>;
   updateNote: (id: string, updates: UpdateNoteBody) => Promise<NoteModel>;
+  deleteNote: (id: string) => Promise<void>;
 
   // Helpers
   syncNotes: () => Promise<void>;
@@ -83,6 +85,12 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
     if (!res.ok) return throwError("updating note", res.error);
     await get().syncNotes();
     return res.data;
+  },
+
+  deleteNote: async (id) => {
+    const res = await deleteNoteRequest(id);
+    if (!res.ok) return throwError("deleting note", res.error);
+    await get().syncNotes();
   },
 
   // Helpers

@@ -1,6 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useNotesStore } from "./useNotesStore";
 
 // ——— Constants ———————————————————————————————————————————————————————————————————————————————————
 const EDITOR_EMPTY_NOTE = {
@@ -39,6 +40,7 @@ interface EditorStore {
 
   // Actions
   startCreatingNote: () => void;
+  selectFirstNote: () => void;
 }
 
 // ——— Editor Store ————————————————————————————————————————————————————————————————————————————————
@@ -68,6 +70,11 @@ export const useEditorStore = create<EditorStore>()(
         get().setSelectedNoteId(null);
         get().setActiveNote(EDITOR_EMPTY_NOTE);
       },
+
+      selectFirstNote: () => {
+        const notes = useNotesStore.getState().notes;
+        get().setSelectedNoteId(notes[0]._id);
+      }
     }),
     {
       name: "editor",

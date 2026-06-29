@@ -26,9 +26,9 @@ export const useStartApp = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const setActiveNote = useEditorStore((s) => s.setActiveNote);
   const fetchNote = useNotesStore((s) => s.fetchNote);
+  const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
 
   useEffect(() => {
     const renderActiveNote = async () => {
