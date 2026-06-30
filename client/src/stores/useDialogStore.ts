@@ -2,7 +2,7 @@
 import { create } from "zustand";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
-type Purpose = "delete" | "archive" | null;
+type Purpose = "delete" | "archive" | "restore" | null;
 
 interface DialogStore {
   dialogIsOpen: boolean;

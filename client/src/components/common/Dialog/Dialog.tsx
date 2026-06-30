@@ -11,7 +11,9 @@ export const Dialog = () => {
   const dialogPurpose = useDialogStore((s) => s.dialogPurpose);
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const selectFirstNote = useEditorStore((s) => s.selectFirstNote);
+  const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
   const deleteNote = useNotesStore((s) => s.deleteNote);
+  const toggleIsArchived = useNotesStore((s) => s.toggleIsArchived);
 
   if (!dialogIsOpen || !dialogPurpose) return null;
 
@@ -35,9 +37,24 @@ export const Dialog = () => {
       content:
         "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
       onClick: () => {
-        alert("Coming Soon...");
+        if (!selectedNoteId) return;
+        toggleIsArchived(selectedNoteId);
+        setDialogIsOpen(false);
+        setActiveNoteField("isArchived", true)
       },
     },
+
+    restore: {
+      icon: "icon-restore",
+      title: "Restore Note",
+      content: "Are you sure you want to restore this note?",
+      onClick: () => {
+        if (!selectedNoteId) return;
+        toggleIsArchived(selectedNoteId);
+        setDialogIsOpen(false);
+        setActiveNoteField("isArchived", false);
+      },
+    }
   }[dialogPurpose];
 
   const handleCancel = () => setDialogIsOpen(false);

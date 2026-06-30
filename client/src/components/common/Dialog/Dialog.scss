@@ -61,6 +61,12 @@
       background: $red-500;
       color: var(--primary-background);
     }
+
+    &--archive,
+    &--restore {
+      background: $blue-500;
+      color: var(--primary-background);
+    }
   }
 
   &__dialog-backdrop {
