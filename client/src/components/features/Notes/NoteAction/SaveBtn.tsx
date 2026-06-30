@@ -43,6 +43,7 @@ export const SaveBtn = () => {
         title: updatedNote.title,
         tags: updatedNote.tags.join(", "),
         content: updatedNote.content,
+        isArchived: updatedNote.isArchived,
         createdAt: updatedNote.createdAt,
         updatedAt: updatedNote.updatedAt,
       });
