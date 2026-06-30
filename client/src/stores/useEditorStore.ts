@@ -8,6 +8,7 @@ const EDITOR_EMPTY_NOTE = {
   title: "",
   tags: "",
   content: "",
+  isArchived: false,
   updatedAt: "",
   createdAt: ""
 };
@@ -19,6 +20,7 @@ type EditorNote = {
   title: string;
   tags: string;
   content: string;
+  isArchived: boolean,
   updatedAt: string;
   createdAt: string;
 };
@@ -36,7 +38,7 @@ interface EditorStore {
 
   activeNote: EditorNote;
   setActiveNote: (note: EditorNote) => void;
-  setActiveNoteField: (field: keyof EditorNote, value: string) => void;
+  setActiveNoteField: (field: keyof EditorNote, value: string | boolean) => void;
 
   // Actions
   startCreatingNote: () => void;

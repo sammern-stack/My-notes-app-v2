@@ -39,6 +39,7 @@ export const useStartApp = () => {
         title: note.title,
         tags: note.tags.join(", "),
         content: note.content,
+        isArchived: note.isArchived,
         updatedAt: note.updatedAt,
         createdAt: note.createdAt,
       });
