@@ -27,6 +27,7 @@ interface FiltersStore {
   clearTagFilters: () => void;
 
   // Helpers
+  getQuery: () => NotesQuery;
   applyFilters: () => void;
   generateHelperText: () => string | null;
   generateEmptyStateText: () => string | null;
@@ -61,6 +62,11 @@ export const useFiltersStore = create<FiltersStore>()(
       },
 
       // Helpers
+      getQuery: () => {
+        const { renderOption, tagFilters } = get();
+        return buildQuery(renderOption, tagFilters);
+      },
+
       applyFilters: () => {
         const { renderOption, tagFilters } = get();
         const query = buildQuery(renderOption, tagFilters);

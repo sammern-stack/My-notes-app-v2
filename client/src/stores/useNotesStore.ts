@@ -1,6 +1,8 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
 
+import { useFiltersStore } from "./useFiltersStore";
+
 import {
   createNoteRequest,
   deleteNoteRequest,
@@ -91,7 +93,7 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
 
   // Helpers
   syncNotes: async () => {
-    await get().setNotes({});
+    await get().setNotes(useFiltersStore.getState().getQuery());
     await get().setTags();
   },
 
