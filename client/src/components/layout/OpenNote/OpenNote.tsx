@@ -13,7 +13,7 @@ import "./OpenNote.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const OpenNote = () => {
-  const { title, content } = useEditorStore((s) => s.activeNote);
+  const { title, content, isArchived } = useEditorStore((s) => s.activeNote);
   const { handleNoteTitle, handleNoteContent } = useOpenNote();
 
   return (
@@ -29,6 +29,7 @@ export const OpenNote = () => {
 
       <div className="note__properties">
         <NoteProperty property="tags" />
+        {isArchived && <NoteProperty property="status" />}
         <NoteProperty property="date" date="updatedAt" />
       </div>
 

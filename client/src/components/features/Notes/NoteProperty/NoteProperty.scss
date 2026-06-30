@@ -1,6 +1,6 @@
 @use "../../../../styles/global" as *;
 
-$properties: tags, updatedAt, createdAt;
+$properties: tags, updatedAt, createdAt, isArchived;
 
 .note {
   @each $property in $properties {
