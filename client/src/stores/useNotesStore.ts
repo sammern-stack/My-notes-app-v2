@@ -1,18 +1,22 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
-import type {
-  CreateNoteBody,
-  NoteModel,
-  NotesQuery,
-  UpdateNoteBody,
-} from "@types";
+
 import {
   createNoteRequest,
   deleteNoteRequest,
   getNoteRequest,
   getNotesRequest,
+  toggleIsArchivedRequest,
   updateNoteRequest,
 } from "@/api/notesApi";
+
+import type {
+  CreateNoteBody,
+  NoteModel,
+  NotesQuery,
+  RequestFn,
+  UpdateNoteBody,
+} from "@types";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface NotesStore {
@@ -27,16 +31,16 @@ interface NotesStore {
   fetchNote: (id: string) => Promise<NoteModel>;
   createNewNote: (note: CreateNoteBody) => Promise<NoteModel>;
   updateNote: (id: string, updates: UpdateNoteBody) => Promise<NoteModel>;
+  toggleIsArchived: (id: string) => Promise<NoteModel>;
   deleteNote: (id: string) => Promise<void>;
 
   // Helpers
   syncNotes: () => Promise<void>;
+  handleRequest: <T extends object | void>(
+    fn: () => RequestFn<T>,
+    shouldSync?: boolean,
+  ) => Promise<T>;
 }
-
-// ——— Utility —————————————————————————————————————————————————————————————————————————————————————
-const throwError = (reason: string, error: string) => {
-  throw new Error(`Error occurred while ${reason}: ${error}`);
-};
 
 // ——— Notes Store —————————————————————————————————————————————————————————————————————————————————
 export const useNotesStore = create<NotesStore>((set, get) => ({
@@ -62,40 +66,44 @@ export const useNotesStore = create<NotesStore>((set, get) => ({
 
   // Api Requests
   fetchNotes: async (query) => {
-    const res = await getNotesRequest(query);
-    if (!res.ok) return throwError("fetching notes", res.error);
-    return res.data;
+    return get().handleRequest(() => getNotesRequest(query), false);
   },
 
   fetchNote: async (id) => {
-    const res = await getNoteRequest(id);
-    if (!res.ok) return throwError("fetching note", res.error);
-    return res.data;
+    return get().handleRequest(() => getNoteRequest(id), false);
   },
 
   createNewNote: async (note: CreateNoteBody) => {
-    const res = await createNoteRequest(note);
-    if (!res.ok) return throwError("creating note", res.error);
-    await get().syncNotes();
-    return res.data;
+    return get().handleRequest(() => createNoteRequest(note));
   },
 
   updateNote: async (id, updates) => {
-    const res = await updateNoteRequest(id, updates);
-    if (!res.ok) return throwError("updating note", res.error);
-    await get().syncNotes();
-    return res.data;
+    return get().handleRequest(() => updateNoteRequest(id, updates));
+  },
+
+  toggleIsArchived: async (id) => {
+    return get().handleRequest(() => toggleIsArchivedRequest(id));
   },
 
   deleteNote: async (id) => {
-    const res = await deleteNoteRequest(id);
-    if (!res.ok) return throwError("deleting note", res.error);
-    await get().syncNotes();
+    await get().handleRequest(() => deleteNoteRequest(id));
   },
 
   // Helpers
   syncNotes: async () => {
     await get().setNotes({});
     await get().setTags();
+  },
+
+  handleRequest: async <T extends object | void>(
+    fn: () => RequestFn<T>,
+    shouldSync = true,
+  ) => {
+    const res = await fn();
+    if (!res.ok) throw new Error(`Error occurred: ${res.error}`);
+
+    if (shouldSync) await get().syncNotes();
+
+    return res.data;
   },
 }));

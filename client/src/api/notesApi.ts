@@ -32,6 +32,10 @@ export const updateNoteRequest = (
   return apiCall(() => api.put(`/notes/${id}`, updates));
 };
 
+export const toggleIsArchivedRequest = (id: string): RequestFn<NoteModel> => {
+  return apiCall(() => api.patch(`/notes/is-archived/${id}`));
+};
+
 export const deleteNoteRequest = (id: string): RequestFn<void> => {
   return apiCall(() => api.delete(`/notes/${id}`));
 };
