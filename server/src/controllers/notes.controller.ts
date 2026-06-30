@@ -41,6 +41,13 @@ export const updateNote = asyncHandler(
   },
 );
 
+export const toggleIsArchived = asyncHandler(
+  async (req: Request<NotesParams>, res: Response) => {
+    const updatedNote = await noteService.toggleIsArchived(req.params.id!);
+    sendSuccess(res, 200, "Note updated successfully", updatedNote);
+  }
+)
+
 export const deleteNote = asyncHandler(
   async (req: Request<NotesParams>, res: Response) => {
     await noteService.deleteNote(req.params.id!);

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import type { QueryOptions as MongooseQueryOptions } from "mongoose";
 import { config } from "@config";
 
 export const connectDB = async (): Promise<void> => {
@@ -9,4 +10,9 @@ export const connectDB = async (): Promise<void> => {
     console.log(`Error occurred while connecting to db:  ${err}`);
     process.exit(1);
   }
+};
+
+export const QueryOptions: MongooseQueryOptions = {
+  returnDocument: "after",
+  runValidators: true,
 };

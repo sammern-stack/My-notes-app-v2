@@ -2,6 +2,7 @@
 import { Types } from "mongoose";
 import Note from "@models/Note.js";
 import { ConflictError, NotFoundError, ValidationError } from "@utils";
+import { QueryOptions } from "@config";
 import type {
   NoteModel,
   NotesQuery,
@@ -10,7 +11,16 @@ import type {
 } from "@types";
 
 // ——— Helpers —————————————————————————————————————————————————————————————————————————————————————
-const isValidMongooseId = (id: string) => Types.ObjectId.isValid(id);
+const validateMongooseId = (id: string) => {
+  if (!Types.ObjectId.isValid(id)) throw new ValidationError("Invalid Id");
+};
+
+const validateNote = async (id: string) => {
+  validateMongooseId(id);
+  const note = await Note.findById(id);
+  if (!note) throw new NotFoundError(`note with id ${id}`);
+  return note;
+};
 
 // ——— Services ————————————————————————————————————————————————————————————————————————————————————
 
@@ -27,12 +37,7 @@ export const getAllNotes = async (
 };
 
 export const getNoteById = async (id: string): Promise<NoteModel> => {
-  if (!isValidMongooseId(id)) throw new ValidationError("Invalid ID");
-
-  const note = await Note.findById(id);
-  if (!note) throw new NotFoundError("note");
-
-  return note;
+  return await validateNote(id);
 };
 
 export const createNewNote = async (
@@ -49,26 +54,28 @@ export const updateNote = async (
   id: string,
   updates: UpdateNoteBody,
 ): Promise<NoteModel> => {
-  if (!isValidMongooseId(id)) throw new ValidationError("Invalid ID");
+  const { _id } = await validateNote(id);
 
-  const note = await Note.findById(id);
-  if (!note) throw new NotFoundError("note");
+  const updatedNote = await Note.findByIdAndUpdate(_id, updates, QueryOptions);
+  if (!updatedNote) throw new NotFoundError("note");
 
-  const updatedNote = await Note.findByIdAndUpdate(note._id, updates, {
-    returnDocument: "after",
-    runValidators: true,
-  });
+  return updatedNote;
+};
 
+export const toggleIsArchived = async (id: string): Promise<NoteModel> => {
+  const { _id, isArchived } = await validateNote(id);
+
+  const updatedNote = await Note.findByIdAndUpdate(
+    _id,
+    { isArchived: !isArchived },
+    QueryOptions,
+  );
   if (!updatedNote) throw new NotFoundError("note");
 
   return updatedNote;
 };
 
 export const deleteNote = async (id: string): Promise<void> => {
-  if (!isValidMongooseId(id)) throw new ValidationError("Invalid ID");
-
-  const note = await Note.findById(id);
-  if (!note) throw new NotFoundError("note");
-
-  await Note.findByIdAndDelete(note._id);
+  const { _id } = await validateNote(id);
+  await Note.findByIdAndDelete(_id);
 };
