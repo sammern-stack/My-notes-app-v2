@@ -1,7 +1,10 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { Request, Response } from "express";
 import * as noteService from "./notes.service.js";
-import { asyncHandler, sendSuccess } from "@utils";
+
+import { asyncHandler } from "../../shared/utils/asyncHandler.js";
+import { sendSuccess } from "../../shared/utils/apiResponse.js";
+
 import type {
   NotesQuery,
   NotesParams,

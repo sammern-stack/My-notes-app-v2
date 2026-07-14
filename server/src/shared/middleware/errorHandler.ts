@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { Request, Response, NextFunction } from "express";
 import { config } from "@config";
-import { AppError } from "@utils/CustomErrors.js";
+import { AppError } from "../utils/customErrors.js";
 
 // ——— Helpers —————————————————————————————————————————————————————————————————————————————————————
 const errorResponse = (

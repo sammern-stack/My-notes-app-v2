@@ -1,7 +1,13 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { Types } from "mongoose";
 import Note from "./Note.js";
-import { ConflictError, NotFoundError, ValidationError } from "@utils";
+
+import {
+  ConflictError,
+  NotFoundError,
+  ValidationError,
+} from "../../shared/utils/customErrors.js";
+
 import { QueryOptions } from "@config";
 import type {
   NoteModel,

@@ -2,7 +2,7 @@
 import express from "express";
 import cors from "cors";
 import { corsOptions } from "@config";
-import { errorHandler } from "@middleware";
+import { errorHandler } from "./shared/middleware/errorHandler.js";
 import apiRoutes from "./routes/api.routes.js";
 
 // ——— Express App —————————————————————————————————————————————————————————————————————————————————
