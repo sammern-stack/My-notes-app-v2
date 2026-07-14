@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import type { NoteModel } from "@types";
+import type { NoteModel } from "./notes.types.js";
 
 const NoteSchema = new Schema<NoteModel>(
   {

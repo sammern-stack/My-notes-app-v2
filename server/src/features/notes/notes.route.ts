@@ -1,20 +1,21 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { Router } from "express";
-import {
-  getNotes,
-  getNote,
-  createNote,
-  updateNote,
-  toggleIsArchived,
-  deleteNote,
-} from "@controllers/notes.controller.js";
+import * as notesController from "./notes.controller.js";
 
 // ——— Routes ——————————————————————————————————————————————————————————————————————————————————————
 const router = Router();
 
-router.route("/").get(getNotes).post(createNote);
-router.route("/:id").get(getNote).put(updateNote).delete(deleteNote);
+router
+  .route("/")
+  .get(notesController.getNotes)
+  .post(notesController.createNote);
 
-router.patch("/is-archived/:id", toggleIsArchived);
+  router
+  .route("/:id")
+  .get(notesController.getNote)
+  .put(notesController.updateNote)
+  .delete(notesController.deleteNote);
+
+router.patch("/is-archived/:id", notesController.toggleIsArchived);
 
 export default router;

@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { Types } from "mongoose";
-import Note from "@models/Note.js";
+import Note from "./Note.js";
 import { ConflictError, NotFoundError, ValidationError } from "@utils";
 import { QueryOptions } from "@config";
 import type {
@@ -8,7 +8,7 @@ import type {
   NotesQuery,
   CreateNoteBody,
   UpdateNoteBody,
-} from "@types";
+} from "./notes.types.js";
 
 // ——— Helpers —————————————————————————————————————————————————————————————————————————————————————
 const validateMongooseId = (id: string) => {

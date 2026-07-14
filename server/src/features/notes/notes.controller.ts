@@ -1,13 +1,13 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { Request, Response } from "express";
-import * as noteService from "@services/notes.service.js";
-import { asyncHandler, NotFoundError, sendSuccess } from "@utils";
+import * as noteService from "./notes.service.js";
+import { asyncHandler, sendSuccess } from "@utils";
 import type {
   NotesQuery,
   NotesParams,
   CreateNoteBody,
   UpdateNoteBody,
-} from "@types";
+} from "./notes.types.js";
 
 // ——— Controllers —————————————————————————————————————————————————————————————————————————————————
 export const getNotes = asyncHandler(
@@ -45,8 +45,8 @@ export const toggleIsArchived = asyncHandler(
   async (req: Request<NotesParams>, res: Response) => {
     const updatedNote = await noteService.toggleIsArchived(req.params.id!);
     sendSuccess(res, 200, "Note updated successfully", updatedNote);
-  }
-)
+  },
+);
 
 export const deleteNote = asyncHandler(
   async (req: Request<NotesParams>, res: Response) => {
