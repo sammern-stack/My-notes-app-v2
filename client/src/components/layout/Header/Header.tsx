@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { PageTitle } from "@/components/common";
-import { SearchBar } from "@components/features/Filters";
+import { SearchBar } from "@/features/settings";
 import { LabelWithIcon } from "@/components/shared";
 
 import "./Header.scss";

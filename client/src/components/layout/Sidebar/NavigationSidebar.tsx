@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { RenderOptions, TagsList } from "@components/features/Filters";
+import { RenderOptions, TagsList } from "@/features/settings";
 import { Icon } from "@components/shared";
 
 import "./Sidebar.scss";
