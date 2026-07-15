@@ -1,10 +1,8 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import "dotenv/config";
 import app from "./src/app.js";
-import { config } from "@config";
+import { PORT } from "@/config/env.js";
 import { connectDB } from "@/lib/db.js";
-
-const PORT = config.port;
 
 const startServer = async () => {
   await connectDB();

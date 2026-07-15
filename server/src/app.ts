@@ -9,8 +9,9 @@ import apiRoutes from "./routes/api.routes.js";
 const app = express();
 
 // ——— Middleware ——————————————————————————————————————————————————————————————————————————————————
-app.use(express.json());
 app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // ——— Routes ——————————————————————————————————————————————————————————————————————————————————————
 app.use("/api", apiRoutes);

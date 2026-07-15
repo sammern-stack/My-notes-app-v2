@@ -1,9 +1,9 @@
 import { connect } from "mongoose";
-import { config } from "@config";
+import { MONGODB_URI } from "@/config/env.js";
 
-export const connectDB = async (): Promise<void> => {
+export const connectDB = async () => {
   try {
-    const conn = await connect(config.mongodbUri);
+    const conn = await connect(MONGODB_URI);
     console.log(`Database connected successfully at ${conn.connection.host}`);
   } catch (err) {
     console.log(`Error occurred while connecting to db:  ${err}`);
