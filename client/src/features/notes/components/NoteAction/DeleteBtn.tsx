@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useDialogStore } from "@stores";
+import { useDialogStore } from "@/shared/stores";
 import { LabelWithIcon } from "@/shared/components";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————

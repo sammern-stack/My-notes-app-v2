@@ -1,4 +1,4 @@
-import { useConfigStore } from "@stores";
+import { useConfigStore } from "@/shared/stores";
 import { Icon } from "@/shared/components";
 
 export const ThemeSetting = () => {

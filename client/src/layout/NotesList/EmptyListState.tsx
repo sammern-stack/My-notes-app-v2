@@ -1,4 +1,4 @@
-import { useEditorStore, useFiltersStore } from "@/stores";
+import { useEditorStore, useFiltersStore } from "@/shared/stores";
 
 export const EmptyListState = () => {
   const emptyStateText = useFiltersStore((s) => s.generateEmptyStateText());

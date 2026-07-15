@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useEditorStore } from "@stores";
+import { useEditorStore } from "@/shared/stores";
 
 import { formatDate } from "@/shared/utils";
 

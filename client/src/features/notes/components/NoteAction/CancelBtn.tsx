@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useEditorStore, useNotesStore } from "@stores";
+import { useEditorStore, useNotesStore } from "@/shared/stores";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const CancelBtn = () => {

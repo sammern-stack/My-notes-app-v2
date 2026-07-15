@@ -1,4 +1,4 @@
-import { useFiltersStore } from "@stores";
+import { useFiltersStore } from "@/shared/stores";
 
 export const HelperText = () => {
   const helperText = useFiltersStore((s) => s.generateHelperText());

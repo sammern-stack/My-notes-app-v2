@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useEditorStore, useNotesStore } from "@stores";
+import { useEditorStore, useNotesStore } from "@/shared/stores";
 
 // ——— Helper ——————————————————————————————————————————————————————————————————————————————————————
 const normalizeTags = (tags: string) =>

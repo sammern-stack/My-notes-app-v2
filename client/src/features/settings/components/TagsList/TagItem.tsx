@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useLocation } from "react-router-dom";
 
-import { useFiltersStore } from "@stores";
+import { useFiltersStore } from "@/shared/stores";
 
 import { SelectOption } from "@/shared/components";
 

@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useConfigStore } from "@stores";
+import { useConfigStore } from "@/shared/stores";
 
 import { ThemeSetting } from "./ThemeSetting";
 import { FontSetting } from "./FontSetting";

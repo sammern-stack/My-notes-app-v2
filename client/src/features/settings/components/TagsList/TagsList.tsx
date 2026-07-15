@@ -1,4 +1,4 @@
-import { useNotesStore } from "@stores";
+import { useNotesStore } from "@/shared/stores";
 import { TagItem } from "./TagItem";
 import "./TagsList.scss";
 

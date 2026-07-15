@@ -5,7 +5,7 @@ import {
   useNotesStore,
   useEditorStore,
   useFiltersStore,
-} from "@stores";
+} from "@/shared/stores";
 
 // ——— Start Up App Hook ———————————————————————————————————————————————————————————————————————————
 export const useStartApp = () => {

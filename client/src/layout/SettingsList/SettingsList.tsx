@@ -1,4 +1,4 @@
-import { useConfigStore } from "@stores";
+import { useConfigStore } from "@/shared/stores";
 import { Container, SelectOption } from "@/shared/components";
 import "./SettingsList.scss";
 

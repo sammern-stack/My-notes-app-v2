@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useNotesStore } from "@stores";
+import { useNotesStore } from "@/shared/stores";
 
 import { EmptyListState } from "./EmptyListState";
 import { HelperText } from "./HelperText";
