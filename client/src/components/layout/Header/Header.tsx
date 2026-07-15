@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { PageTitle } from "@/components/common";
+import { PageTitle } from "@/shared/components";
 import { SearchBar } from "@/features/settings";
 import { LabelWithIcon } from "@/components/shared";
 

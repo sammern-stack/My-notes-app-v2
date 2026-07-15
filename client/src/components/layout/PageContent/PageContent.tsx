@@ -2,7 +2,7 @@
 import type { ReactNode } from "react";
 
 import { Sidebar, Header } from "@components/layout";
-import { Dialog } from "@components/common";
+import { Dialog } from "@/shared/components";
 
 import "./PageContent.scss";
 

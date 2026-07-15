@@ -2,7 +2,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useStartApp } from "@hooks";
-import { AppLoader } from "@components/common";
+import { AppLoader } from "@/shared/components";
 
 // ——— Lazy Import Pages ———————————————————————————————————————————————————————————————————————————
 const Home = lazy(() => import("@pages/Home/Home"));
