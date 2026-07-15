@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import api from "./axios";
+import api from "@/shared/lib/axios";
 import { apiCall } from "@utils";
 
 import type {
