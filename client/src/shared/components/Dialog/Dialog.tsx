@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useDialogStore, useEditorStore, useNotesStore } from "@stores";
-import { capitalizeStr } from "@/utils";
+import { capitalizeStr } from "@/shared/utils";
 import { Icon } from "@/shared/components";
 import "./Dialog.scss";
 

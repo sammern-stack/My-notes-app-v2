@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { ComponentPropsWithoutRef, ElementType } from "react";
-import { capitalizeStr } from "@utils";
+import { capitalizeStr } from "@/shared/utils";
 import { Icon } from "../Icon/Icon";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————

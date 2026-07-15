@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@stores";
 
-import { formatDate } from "@/utils";
+import { formatDate } from "@/shared/utils";
 
 import { LabelWithIcon } from "@/shared/components";
 

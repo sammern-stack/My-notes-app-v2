@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import api from "@/shared/lib/axios";
-import { apiCall } from "@utils";
+import { apiCall } from "@/shared/utils";
 
 import type {
   CreateNoteBody,

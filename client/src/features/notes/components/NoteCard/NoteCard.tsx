@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@stores";
-import { formatDate } from "@/utils";
+import { formatDate } from "@/shared/utils";
 import type { NoteModel } from "@types";
 import "./NoteCard.scss";
 
