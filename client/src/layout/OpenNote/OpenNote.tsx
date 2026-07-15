@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@stores";
 
-import { useOpenNote } from "@hooks";
+import { useOpenNote } from "@/features/notes";
 
 import {
   NoteAction,

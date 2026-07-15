@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useStartApp } from "@hooks";
+import { useStartApp } from "@/shared/hooks";
 import { AppLoader } from "@/shared/components";
 
 // ——— Lazy Import Pages ———————————————————————————————————————————————————————————————————————————
