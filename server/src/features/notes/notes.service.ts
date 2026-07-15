@@ -8,7 +8,7 @@ import {
   ValidationError,
 } from "../../shared/utils/customErrors.js";
 
-import { QueryOptions } from "@config";
+import { queryOptions } from "@/config/db.js";
 import type {
   NoteModel,
   NotesQuery,
@@ -62,7 +62,7 @@ export const updateNote = async (
 ): Promise<NoteModel> => {
   const { _id } = await validateNote(id);
 
-  const updatedNote = await Note.findByIdAndUpdate(_id, updates, QueryOptions);
+  const updatedNote = await Note.findByIdAndUpdate(_id, updates, queryOptions);
   if (!updatedNote) throw new NotFoundError("note");
 
   return updatedNote;
@@ -74,7 +74,7 @@ export const toggleIsArchived = async (id: string): Promise<NoteModel> => {
   const updatedNote = await Note.findByIdAndUpdate(
     _id,
     { isArchived: !isArchived },
-    QueryOptions,
+    queryOptions,
   );
   if (!updatedNote) throw new NotFoundError("note");
 

@@ -1,7 +1,8 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import "dotenv/config";
 import app from "./src/app.js";
-import { config, connectDB } from "@config";
+import { config } from "@config";
+import { connectDB } from "@/lib/db.js";
 
 const PORT = config.port;
 
