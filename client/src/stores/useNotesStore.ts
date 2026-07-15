@@ -10,7 +10,7 @@ import {
   getNotesRequest,
   toggleIsArchivedRequest,
   updateNoteRequest,
-} from "@/api/notesApi";
+} from "@/features/notes/services/notesApi";
 
 import type {
   CreateNoteBody,
