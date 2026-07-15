@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { MouseEventHandler } from "react";
 import { capitalizeStr } from "@utils";
-import { Icon } from "./Icon";
+import { Icon } from "../Icon/Icon";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface SelectOptionProps {

@@ -1,7 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { PageTitle } from "@/shared/components";
+import { PageTitle, LabelWithIcon } from "@/shared/components";
 import { SearchBar } from "@/features/settings";
-import { LabelWithIcon } from "@/components/shared";
 
 import "./Header.scss";
 import { Link } from "react-router-dom";

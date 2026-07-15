@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 import { capitalizeStr } from "@utils";
-import { Icon } from "./Icon";
+import { Icon } from "../Icon/Icon";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 type BaseProps<E extends ElementType = "div"> = {

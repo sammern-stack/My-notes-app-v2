@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { LabelWithIcon } from "@components/shared";
+import { LabelWithIcon } from "@/shared/components";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const IsArchivedProperty = () => (

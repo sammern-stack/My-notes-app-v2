@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { RenderOptions, TagsList } from "@/features/settings";
-import { Icon } from "@components/shared";
+import { Icon } from "@/shared/components";
 
 import "./Sidebar.scss";
 import { Link } from "react-router-dom";

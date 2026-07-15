@@ -3,7 +3,7 @@ import { useConfigStore } from "@stores";
 
 import { ThemeSetting } from "./ThemeSetting";
 import { FontSetting } from "./FontSetting";
-import { Container } from "@/components/shared";
+import { Container } from "@/shared/components";
 
 import "./ActiveSetting.scss";
 

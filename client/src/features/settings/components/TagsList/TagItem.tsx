@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import { useFiltersStore } from "@stores";
 
-import { SelectOption } from "@/components/shared";
+import { SelectOption } from "@/shared/components";
 
 import "./TagsList.scss";
 

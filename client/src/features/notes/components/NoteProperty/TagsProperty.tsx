@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@stores";
 
-import { LabelWithIcon } from "@components/shared";
+import { LabelWithIcon } from "@/shared/components";
 
 import type { InputChangeEvent } from "@types";
 

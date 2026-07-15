@@ -1,5 +1,5 @@
 import { useConfigStore } from "@stores";
-import { Icon } from "@/components/shared";
+import { Icon } from "@/shared/components";
 
 export const FontSetting = () => {
   const font = useConfigStore((s) => s.font);

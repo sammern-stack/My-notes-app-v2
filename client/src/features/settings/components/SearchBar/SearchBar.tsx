@@ -1,4 +1,4 @@
-import { Icon } from "@/components/shared";
+import { Icon } from "@/shared/components";
 import "./SearchBar.scss";
 
 export const SearchBar = () => {

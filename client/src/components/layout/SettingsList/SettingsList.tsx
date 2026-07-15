@@ -1,5 +1,5 @@
 import { useConfigStore } from "@stores";
-import { Container, SelectOption } from "@components/shared";
+import { Container, SelectOption } from "@/shared/components";
 import "./SettingsList.scss";
 
 export const SettingsList = () => {

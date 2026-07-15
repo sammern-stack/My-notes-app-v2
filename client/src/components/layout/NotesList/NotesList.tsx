@@ -6,7 +6,7 @@ import { HelperText } from "./HelperText";
 import { UntitledNote } from "./UntitledNote";
 
 import { NoteAction, NoteCard } from "@/features/notes";
-import { Container } from "@components/shared";
+import { Container } from "@/shared/components";
 
 import "./NotesList.scss";
 

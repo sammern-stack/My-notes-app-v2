@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useDialogStore, useEditorStore } from "@stores";
-import { LabelWithIcon } from "@/components/shared";
+import { LabelWithIcon } from "@/shared/components";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const ArchiveBtn = () => {

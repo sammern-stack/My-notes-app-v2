@@ -3,7 +3,7 @@ import { useEditorStore } from "@stores";
 
 import { formatDate } from "@/utils";
 
-import { LabelWithIcon } from "@components/shared";
+import { LabelWithIcon } from "@/shared/components";
 
 // ——— Types ————————————————————————————————————————————————————————————————————————————————————————
 interface DatesPropertyProps {
