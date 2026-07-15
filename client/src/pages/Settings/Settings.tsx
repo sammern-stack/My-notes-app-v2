@@ -1,4 +1,4 @@
-import { PageContent, SettingsList, ActiveSetting } from "@/components/layout";
+import { PageContent, SettingsList, ActiveSetting } from "@/layout";
 
 import "./Settings.scss";
 

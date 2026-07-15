@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { PageContent, OpenNote, NotesList, Sidebar } from "@components/layout";
+import { PageContent, OpenNote, NotesList, Sidebar } from "@/layout";
 
 import "./Home.scss";
 

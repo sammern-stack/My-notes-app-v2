@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { ReactNode } from "react";
 
-import { Sidebar, Header } from "@components/layout";
+import { Sidebar, Header } from "../";
 import { Dialog } from "@/shared/components";
 
 import "./PageContent.scss";
