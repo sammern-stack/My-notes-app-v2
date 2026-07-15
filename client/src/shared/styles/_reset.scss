@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 *,
 *::before,
 *::after {
@@ -17,6 +19,19 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@each $font, $url in $fonts {
+  :root[data-font="#{$font}"] {
+    font-family: "#{$font}", sans-serif;
+  }
+}
+
+#root {
+  height: 100vh;
+  background: var(--primary-background);
+  display: flex;
+  flex-direction: column;
 }
 
 img,

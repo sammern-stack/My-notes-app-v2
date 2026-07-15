@@ -1,5 +1,3 @@
-@use "../../../styles/global" as *;
-
 .sidebar {
   @include scrollable-child();
 
@@ -39,6 +37,6 @@
 
   &__tags-title {
     @include font-size(4);
-    color: $neutral-500;
+    color: var(--neutral-500);
   }
 }

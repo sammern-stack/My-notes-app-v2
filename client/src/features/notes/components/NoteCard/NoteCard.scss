@@ -1,5 +1,3 @@
-@use "../../../../styles/global" as *;
-
 .notes {
   &__card {
     @include flex-gap(12px, column);

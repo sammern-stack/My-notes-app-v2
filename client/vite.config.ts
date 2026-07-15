@@ -22,4 +22,20 @@ export default defineConfig({
       "@types": resolvePath("./src/types"),
     },
   },
+  css: {
+    modules: {
+      localsConvention: "camelCase",
+    },
+    preprocessorOptions: {
+      scss: {
+        additionalData: (src: string, filename: string) => {
+          const normalize = filename.replace(/\\/g, "/");
+          const shouldExclude = normalize.includes("/shared/styles");
+
+          if (shouldExclude) return src;
+          return `@use "@/shared/styles/mixins" as *;\n${src}`;
+        },
+      },
+    },
+  },
 });

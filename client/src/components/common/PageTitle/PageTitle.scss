@@ -1,5 +1,3 @@
-@use "../../../styles/global" as *;
-
 .page {
   &__title {
     @include font-size(1);

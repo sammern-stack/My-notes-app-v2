@@ -1,5 +1,3 @@
-@use "../../../../styles/global" as *;
-
 .note {
   &__action {
     @include flex-gap(8px);
@@ -15,8 +13,8 @@
     }
 
     &--save {
-      background: $blue-500;
-      color: $neutral-000;
+      background: var(--blue-500);
+      color: var(--neutral-000);
     }
 
     &--cancel {
