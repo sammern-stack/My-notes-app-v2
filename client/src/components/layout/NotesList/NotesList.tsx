@@ -5,7 +5,7 @@ import { EmptyListState } from "./EmptyListState";
 import { HelperText } from "./HelperText";
 import { UntitledNote } from "./UntitledNote";
 
-import { NoteAction, NoteCard } from "@components/features/Notes";
+import { NoteAction, NoteCard } from "@/features/notes";
 import { Container } from "@components/shared";
 
 import "./NotesList.scss";

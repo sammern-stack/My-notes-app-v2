@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { NoteAction } from "@components/features/Notes";
+import { NoteAction } from "@/features/notes";
 
 import "./Sidebar.scss";
 

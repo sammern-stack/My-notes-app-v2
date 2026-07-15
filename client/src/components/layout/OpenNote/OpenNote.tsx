@@ -7,7 +7,7 @@ import {
   NoteAction,
   NoteEditor,
   NoteProperty,
-} from "@components/features/Notes";
+} from "@/features/notes";
 
 import "./OpenNote.scss";
 
