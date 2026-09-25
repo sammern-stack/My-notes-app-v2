@@ -11,7 +11,7 @@ const buildQuery = (render: RenderOption, tags: string[]): NotesQuery => {
   return query;
 };
 
-type RenderOption = "all" | "archived";
+export type RenderOption = "all" | "archived";
 
 interface FiltersStore {
   renderOption: RenderOption;
