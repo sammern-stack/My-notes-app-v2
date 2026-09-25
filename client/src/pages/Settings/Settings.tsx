@@ -1,5 +1,5 @@
 import styles from "./Settings.module.scss";
-import { PageContent, ActiveSetting } from "@/layout";
+import { PageContent } from "@/layout";
 import { useConfigStore } from "@/shared/stores";
 import { settingsListConfig } from "./settings.config";
 import ChevronRightIcon from "@/assets/images/icon-chevron-right.svg?react";
@@ -8,11 +8,15 @@ const Settings = () => {
   const settingTab = useConfigStore((s) => s.settingTab);
   const setSettingTab = useConfigStore((s) => s.setSettingTab);
 
+  const activeSetting = settingsListConfig.find(({ tab }) => tab === settingTab);
+  const ActiveView = activeSetting?.view;
+
   return (
     <PageContent className="settings">
       <div className={styles.settings}>
         {settingsListConfig.map(({ tab, label, icon: Icon }) => (
           <button
+            key={tab}
             className={[
               styles.settings__setting,
               settingTab === tab && styles["settings__setting--active"],
@@ -25,7 +29,7 @@ const Settings = () => {
         ))}
         <div className={styles.settings__divider}></div>
       </div>
-      <ActiveSetting />
+      {ActiveView && <ActiveView />}
     </PageContent>
   );
 };
