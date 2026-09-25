@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 type Theme = "light" | "dark" | "system";
 type Font = "inter" | "noto-serif" | "source-code-pro";
-type SettingTab = "theme" | "font";
+export type SettingTab = "theme" | "font";
 
 interface IConfigStore {
   theme: Theme;
