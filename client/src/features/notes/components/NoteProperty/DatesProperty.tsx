@@ -4,6 +4,7 @@ import { useEditorStore } from "@/shared/stores";
 import { formatDate } from "@/shared/utils";
 
 import { LabelWithIcon } from "@/shared/components";
+import ClockIcon from "@/assets/images/icon-clock.svg?react";
 import styles from "./NoteProperty.module.scss";
 
 // ——— Types ————————————————————————————————————————————————————————————————————————————————————————
@@ -19,7 +20,7 @@ export const DatesProperty = ({ date }: DatesPropertyProps) => {
     <div className={styles[`note__${date}`]}>
       <LabelWithIcon
         className={styles[`note__${date}-label`]}
-        icon="icon-clock"
+        icon={ClockIcon}
         label={date === "updatedAt" ? "last edited" : "created at"}
       />
 

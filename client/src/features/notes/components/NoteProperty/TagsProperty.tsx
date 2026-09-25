@@ -2,6 +2,7 @@
 import { useEditorStore } from "@/shared/stores";
 
 import { LabelWithIcon } from "@/shared/components";
+import TagIcon from "@/assets/images/icon-tag.svg?react";
 
 import type { InputChangeEvent } from "@/shared/types/react.types";
 import styles from "./NoteProperty.module.scss";
@@ -18,7 +19,7 @@ export const TagsProperty = () => {
     <div className={styles["note__tags"]}>
       <LabelWithIcon
         className={styles["note__tags-label"]}
-        icon="icon-tag"
+        icon={TagIcon}
         label="tags"
       />
 

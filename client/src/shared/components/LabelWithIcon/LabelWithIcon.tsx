@@ -1,13 +1,17 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import type { ComponentPropsWithoutRef, ElementType } from "react";
+import type {
+  ComponentPropsWithoutRef,
+  ComponentType,
+  ElementType,
+  SVGProps,
+} from "react";
 import { capitalizeStr } from "@/shared/utils";
-import { Icon } from "../Icon/Icon";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 type BaseProps<E extends ElementType = "div"> = {
   as?: E;
   className?: string;
-  icon: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   label?: string;
 };
 
@@ -23,10 +27,11 @@ export const LabelWithIcon = <E extends ElementType = "div">({
   ...rest
 }: LabelWithIconProps<E>) => {
   const Component = as ?? "div";
+  const IconComponent = icon;
 
   return (
     <Component className={className} {...rest}>
-      <Icon name={icon} />
+      <IconComponent />
       {label && <p>{capitalizeStr(label)}</p>}
     </Component>
   );

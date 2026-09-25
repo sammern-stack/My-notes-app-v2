@@ -1,5 +1,7 @@
 import { useConfigStore } from "@/shared/stores";
-import { Icon } from "@/shared/components";
+import SunIcon from "@/assets/images/icon-sun.svg?react";
+import MoonIcon from "@/assets/images/icon-moon.svg?react";
+import SystemThemeIcon from "@/assets/images/icon-system-theme.svg?react";
 import styles from "./ActiveSetting.module.scss";
 
 export const ThemeSetting = () => {
@@ -23,7 +25,7 @@ export const ThemeSetting = () => {
           className={`${styles["setting__theme-label"]} ${theme === "light" ? styles["setting__theme-label--active"] : ""}`}
         >
           <div className={styles["setting__theme-icon"]}>
-            <Icon name="icon-sun" />
+            <SunIcon />
           </div>
 
           <div className={styles["setting__theme-description"]}>
@@ -46,7 +48,7 @@ export const ThemeSetting = () => {
           className={`${styles["setting__theme-label"]} ${theme === "dark" ? styles["setting__theme-label--active"] : ""}`}
         >
           <div className={styles["setting__theme-icon"]}>
-            <Icon name="icon-moon" />
+            <MoonIcon />
           </div>
 
           <div className={styles["setting__theme-description"]}>
@@ -69,7 +71,7 @@ export const ThemeSetting = () => {
           className={`${styles["setting__theme-label"]} ${theme === "system" ? styles["setting__theme-label--active"] : ""}`}
         >
           <div className={styles["setting__theme-icon"]}>
-            <Icon name="icon-system-theme" />
+            <SystemThemeIcon />
           </div>
 
           <div className={styles["setting__theme-description"]}>

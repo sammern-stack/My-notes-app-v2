@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { useFiltersStore } from "@/shared/stores";
 
 import { SelectOption } from "@/shared/components";
+import HomeIcon from "@/assets/images/icon-home.svg?react";
+import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 
 import styles from "./RenderOptions.module.scss";
 
@@ -33,7 +35,7 @@ export const RenderOption = ({ option }: RenderOptionProps) => {
       label={`${option} Notes`}
       isActive={isActive()}
       onSelect={handleSelect}
-      icon={option === "all" ? "icon-home" : "icon-archive"}
+      icon={option === "all" ? HomeIcon : ArchiveIcon}
     />
   );
 };

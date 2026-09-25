@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useFiltersStore } from "@/shared/stores";
 
 import { SelectOption } from "@/shared/components";
+import TagIcon from "@/assets/images/icon-tag.svg?react";
 
 import styles from "./TagsList.module.scss";
 
@@ -37,7 +38,7 @@ export const TagItem = ({ tag }: TagItemProps) => {
       label={tag}
       isActive={isActive()}
       onSelect={handleSelect}
-      icon="icon-tag"
+      icon={TagIcon}
     />
   );
 };

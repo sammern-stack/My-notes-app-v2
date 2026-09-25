@@ -1,5 +1,7 @@
 import { useConfigStore } from "@/shared/stores";
 import { Container, SelectOption } from "@/shared/components";
+import SunIcon from "@/assets/images/icon-sun.svg?react";
+import FontIcon from "@/assets/images/icon-font.svg?react";
 import styles from "./SettingsList.module.scss";
 
 export const SettingsList = () => {
@@ -16,7 +18,7 @@ export const SettingsList = () => {
         activeClassName={styles["settings__item--active"]}
         isActive={settingTab === "theme"}
         label="Color Theme"
-        icon="icon-sun"
+        icon={SunIcon}
         onSelect={() => setSettingTab("theme")}
       />
 
@@ -25,7 +27,7 @@ export const SettingsList = () => {
         activeClassName={styles["settings__item--active"]}
         isActive={settingTab === "font"}
         label="Font Theme"
-        icon="icon-font"
+        icon={FontIcon}
         onSelect={() => setSettingTab("font")}
       />
 

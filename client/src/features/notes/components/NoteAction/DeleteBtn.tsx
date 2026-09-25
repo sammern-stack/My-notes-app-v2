@@ -1,6 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useDialogStore } from "@/shared/stores";
 import { LabelWithIcon } from "@/shared/components";
+import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 import styles from "./NoteAction.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
@@ -12,8 +13,8 @@ export const DeleteBtn = () => {
     <LabelWithIcon
       as="button"
       className={`${styles["note__action"]} ${styles["note__action--delete"]}`}
+      icon={DeleteIcon}
       label="Delete Note"
-      icon="icon-delete"
       onClick={() => {
         setDialogPurpose("delete");
         setDialogIsOpen(true);

@@ -10,7 +10,7 @@ const resolvePath = (p: string) => path.resolve(__dirname, p);
 // ——— Vite Config —————————————————————————————————————————————————————————————————————————————————
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr({ include: "**/*.svg" })],
+  plugins: [react(), svgr()],
   resolve: {
     alias: {
       "@": resolvePath("./src"),

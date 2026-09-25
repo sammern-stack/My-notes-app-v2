@@ -1,6 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { PageTitle, LabelWithIcon } from "@/shared/components";
 import { SearchBar } from "@/features/settings";
+import SettingsIcon from "@/assets/images/icon-settings.svg?react";
 
 import styles from "./Header.module.scss";
 import { Link } from "react-router-dom";
@@ -17,7 +18,7 @@ export const Header = () => (
         <LabelWithIcon
           as="button"
           className="page__settings-toggle"
-          icon="icon-settings"
+          icon={SettingsIcon}
         />
       </Link>
     </div>

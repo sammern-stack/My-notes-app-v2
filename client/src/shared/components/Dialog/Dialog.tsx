@@ -5,12 +5,14 @@ import {
   useFiltersStore,
 } from "@/shared/stores";
 import { capitalizeStr } from "@/shared/utils";
-import { Icon } from "@/shared/components";
 import {
   useDeleteNote,
   useGetNotes,
   useToggleIsArchived,
 } from "@/features/notes";
+import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
+import DeleteIcon from "@/assets/images/icon-delete.svg?react";
+import RestoreIcon from "@/assets/images/icon-restore.svg?react";
 import styles from "./Dialog.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
@@ -32,7 +34,7 @@ export const Dialog = () => {
 
   const dialogContent = {
     delete: {
-      icon: "icon-delete",
+      icon: DeleteIcon,
       title: "Delete Note",
       content:
         "Are you sure you want to permanently delete this note? This action cannot be undone.",
@@ -46,7 +48,7 @@ export const Dialog = () => {
     },
 
     archive: {
-      icon: "icon-archive",
+      icon: ArchiveIcon,
       title: "Archive Note",
       content:
         "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
@@ -59,7 +61,7 @@ export const Dialog = () => {
     },
 
     restore: {
-      icon: "icon-restore",
+      icon: RestoreIcon,
       title: "Restore Note",
       content: "Are you sure you want to restore this note?",
       onClick: async () => {
@@ -70,6 +72,7 @@ export const Dialog = () => {
       },
     },
   }[dialogPurpose];
+  const DialogIcon = dialogContent.icon;
 
   const handleCancel = () => setDialogIsOpen(false);
 
@@ -78,7 +81,7 @@ export const Dialog = () => {
       <div className={styles["page__dialog"]}>
         <div className={styles["page__dialog-content"]}>
           <div className={styles["page__dialog-icon"]}>
-            <Icon name={dialogContent.icon} />
+            <DialogIcon />
           </div>
 
           <div className={styles["page__dialog-body"]}>

@@ -1,5 +1,7 @@
 import { useConfigStore } from "@/shared/stores";
-import { Icon } from "@/shared/components";
+import SansSerifIcon from "@/assets/images/icon-font-sans-serif.svg?react";
+import SerifIcon from "@/assets/images/icon-font-serif.svg?react";
+import MonospaceIcon from "@/assets/images/icon-font-monospace.svg?react";
 import styles from "./ActiveSetting.module.scss";
 
 export const FontSetting = () => {
@@ -23,7 +25,7 @@ export const FontSetting = () => {
           className={`${styles["setting__font-label"]} ${font === "inter" ? styles["setting__font-label--active"] : ""}`}
         >
           <div className={styles["setting__font-icon"]}>
-            <Icon name="icon-font-sans-serif" />
+            <SansSerifIcon />
           </div>
 
           <div className={styles["setting__font-description"]}>
@@ -46,7 +48,7 @@ export const FontSetting = () => {
           className={`${styles["setting__font-label"]} ${font === "noto-serif" ? styles["setting__font-label--active"] : ""}`}
         >
           <div className={styles["setting__font-icon"]}>
-            <Icon name="icon-font-serif" />
+            <SerifIcon />
           </div>
 
           <div className={styles["setting__font-description"]}>
@@ -69,7 +71,7 @@ export const FontSetting = () => {
           className={`${styles["setting__font-label"]} ${font === "source-code-pro" ? styles["setting__font-label--active"] : ""}`}
         >
           <div className={styles["setting__font-icon"]}>
-            <Icon name="icon-font-monospace" />
+            <MonospaceIcon />
           </div>
 
           <div className={styles["setting__font-description"]}>

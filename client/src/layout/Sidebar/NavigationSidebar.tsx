@@ -1,6 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { RenderOptions, TagsList } from "@/features/settings";
-import { Icon } from "@/shared/components";
+import LogoIcon from "@/assets/images/logo.svg?react";
 
 import styles from "./Sidebar.module.scss";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ export const NavigationSidebar = () => {
     <div className={`${styles.sidebar} ${styles["sidebar--left"]}`}>
       <div className={styles["sidebar__logo-wrapper"]}>
         <Link to="/">
-          <Icon name="logo" />
+          <LogoIcon />
         </Link>
       </div>
 
