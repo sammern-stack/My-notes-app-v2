@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import * as notesApi from "../services/notesApi2";
+import * as notesApi from "../services/notesApi";
 import type {
   CreateNoteBody,
   NotesQuery,
