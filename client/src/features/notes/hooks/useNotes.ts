@@ -10,7 +10,11 @@ export const useGetNotes = (filters?: NotesQuery) => {
   return useQuery({
     queryKey: ["notes", filters],
     queryFn: () => notesApi.getNotesReq(filters),
-    select: (response) => response.data,
+    select: (response) =>
+      [...response.data].sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      ),
   });
 };
 

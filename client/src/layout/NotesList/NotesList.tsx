@@ -1,39 +1,45 @@
-import { useFiltersStore } from "@/shared/stores";
-
-import { EmptyListState } from "./EmptyListState";
-import { HelperText } from "./HelperText";
-import { UntitledNote } from "./UntitledNote";
-
-import { NoteAction, NoteCard, useGetNotes } from "@/features/notes";
-import { Container } from "@/shared/components";
-
 import styles from "./NotesList.module.scss";
+import { useEditorStore, useFiltersStore } from "@/shared/stores";
+import { NoteAction, NoteCard, useGetNotes } from "@/features/notes";
 
 export const NotesList = () => {
   const getQuery = useFiltersStore((s) => s.getQuery);
-  const { data: fetchedNotes = [] } = useGetNotes(getQuery());
-  const notes = [...fetchedNotes].sort((a, b) =>
-    b.createdAt.localeCompare(a.createdAt),
+  const { data: notes = [] } = useGetNotes(getQuery());
+  const editorState = useEditorStore((s) => s.editorState);
+  const helperText = useFiltersStore((s) => s.generateHelperText());
+  const emptyStateText = useFiltersStore((s) =>
+    s.generateEmptyStateText(notes.length),
   );
+  const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
+
+  const handleCreateNote = () => startCreatingNote();
 
   return (
-    <Container
-      className={styles["notes__list"]}
-      wrapperClassName={styles["notes__list--wrapper"]}
-    >
+    <div className={styles.notesList}>
       <NoteAction action="create" />
 
-      <div className={styles["notes__list-content"]}>
-        <HelperText />
+      <div className={styles.notesList__content}>
+        {helperText && (
+          <div className={styles.notesList__helperText}>{helperText}</div>
+        )}
 
-        <EmptyListState notesCount={notes.length} />
+        {emptyStateText && (
+          <div className={styles.notesList__empty}>
+            {emptyStateText}{" "}
+            {emptyStateText.endsWith(", or") && (
+              <span onClick={handleCreateNote}>create new note</span>
+            )}
+          </div>
+        )}
 
-        <UntitledNote />
+        {editorState === "creating" && (
+          <div className={styles.notesList__untitledNote}>Untitled Note</div>
+        )}
 
         {notes.map((note) => (
           <NoteCard key={note._id} note={note} />
         ))}
       </div>
-    </Container>
+    </div>
   );
 };
