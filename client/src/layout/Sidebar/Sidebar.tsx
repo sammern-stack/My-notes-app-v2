@@ -33,7 +33,7 @@ export const Sidebar = () => {
         </Link>
       </div>
       <div className={styles.sidebar__filters}>
-        <div className={styles["sidebar__render-options"]}>
+        <div className={styles.sidebar__renderOptions}>
           {RenderOptions.map((option) => {
             const isActive = IsSettingsPage ? false : renderOption === option;
 
