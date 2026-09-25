@@ -1,7 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { useNotesStore } from "./useNotesStore";
 import type { NotesQuery } from "@/shared/types/note.types";
 
 // ——— Helpers —————————————————————————————————————————————————————————————————————————————————————
@@ -28,9 +27,8 @@ interface FiltersStore {
 
   // Helpers
   getQuery: () => NotesQuery;
-  applyFilters: () => void;
   generateHelperText: () => string | null;
-  generateEmptyStateText: () => string | null;
+  generateEmptyStateText: (notesCount: number) => string | null;
   generatePageTitle: () => string;
 }
 
@@ -41,36 +39,26 @@ export const useFiltersStore = create<FiltersStore>()(
       renderOption: "all",
       setRenderOption: (option) => {
         set({ renderOption: option });
-        get().applyFilters();
       },
 
       tagFilters: [],
 
       addTagFilter: (tag) => {
         set((s) => ({ tagFilters: [...s.tagFilters, tag] }));
-        get().applyFilters();
       },
 
       removeTagFilter: (tag) => {
         set((s) => ({ tagFilters: s.tagFilters.filter((t) => t !== tag) }));
-        get().applyFilters();
       },
 
       clearTagFilters: () => {
         set({ tagFilters: [] });
-        get().applyFilters();
       },
 
       // Helpers
       getQuery: () => {
         const { renderOption, tagFilters } = get();
         return buildQuery(renderOption, tagFilters);
-      },
-
-      applyFilters: () => {
-        const { renderOption, tagFilters } = get();
-        const query = buildQuery(renderOption, tagFilters);
-        useNotesStore.getState().setNotes(query);
       },
 
       generateHelperText: () => {
@@ -86,9 +74,8 @@ export const useFiltersStore = create<FiltersStore>()(
         return `All ${doesShownArchived ? "your archived" : ""} notes ${!isTagsEmpty ? `with the "${tags}" ${hasOneTag ? "tag" : "tags"}` : ""} are ${doesShownArchived ? "stored" : "shown"} here. ${doesShownArchived ? "You can restore them or delete them anytime" : ""}`;
       },
 
-      generateEmptyStateText: () => {
-        const { notes } = useNotesStore.getState();
-        if (notes.length !== 0 || get().tagFilters.length !== 0) return null;
+      generateEmptyStateText: (notesCount) => {
+        if (notesCount !== 0 || get().tagFilters.length !== 0) return null;
 
         return get().renderOption === "all"
           ? "You don’t have any notes yet. Start a new note to capture your thoughts and ideas."

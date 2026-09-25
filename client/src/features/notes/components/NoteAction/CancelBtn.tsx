@@ -1,5 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useEditorStore, useNotesStore } from "@/shared/stores";
+import { useEditorStore } from "@/shared/stores";
+import { useGetNote } from "@/features/notes";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const CancelBtn = () => {
@@ -10,7 +11,7 @@ export const CancelBtn = () => {
   const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
   const cashedSelectedId = useEditorStore((s) => s.cashedSelectedId);
   const setCashedSelectedId = useEditorStore((s) => s.setCashedSelectedId);
-  const fetchNote = useNotesStore((s) => s.fetchNote);
+  const { refetch: refetchNote } = useGetNote(selectedNoteId ?? "");
 
   const handleCancel = async () => {
     if (editorState === "creating") {
@@ -20,13 +21,15 @@ export const CancelBtn = () => {
     }
 
     if (selectedNoteId && editorState === "updating") {
-      const prevNote = await fetchNote(selectedNoteId);
+      const { data: prevNote } = await refetchNote();
+      if (!prevNote) return;
       setActiveNote({
         title: prevNote.title,
         tags: prevNote.tags.join(", "),
         content: prevNote.content,
         createdAt: prevNote.createdAt,
         updatedAt: prevNote.updatedAt,
+        isArchived: prevNote.isArchived,
       });
     }
   };

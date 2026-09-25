@@ -1,7 +1,16 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useDialogStore, useEditorStore, useNotesStore } from "@/shared/stores";
+import {
+  useDialogStore,
+  useEditorStore,
+  useFiltersStore,
+} from "@/shared/stores";
 import { capitalizeStr } from "@/shared/utils";
 import { Icon } from "@/shared/components";
+import {
+  useDeleteNote,
+  useGetNotes,
+  useToggleIsArchived,
+} from "@/features/notes";
 import "./Dialog.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
@@ -12,8 +21,12 @@ export const Dialog = () => {
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const selectFirstNote = useEditorStore((s) => s.selectFirstNote);
   const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
-  const deleteNote = useNotesStore((s) => s.deleteNote);
-  const toggleIsArchived = useNotesStore((s) => s.toggleIsArchived);
+  const getQuery = useFiltersStore((s) => s.getQuery);
+  const { refetch: refetchNotes } = useGetNotes(getQuery());
+  const { mutateAsync: deleteNote } = useDeleteNote();
+  const { mutateAsync: toggleIsArchived } = useToggleIsArchived(
+    selectedNoteId ?? "",
+  );
 
   if (!dialogIsOpen || !dialogPurpose) return null;
 
@@ -23,10 +36,11 @@ export const Dialog = () => {
       title: "Delete Note",
       content:
         "Are you sure you want to permanently delete this note? This action cannot be undone.",
-      onClick: () => {
+      onClick: async () => {
         if (!selectedNoteId) return;
-        deleteNote(selectedNoteId);
-        selectFirstNote();
+        await deleteNote(selectedNoteId);
+        const { data: notes = [] } = await refetchNotes();
+        selectFirstNote(notes);
         setDialogIsOpen(false);
       },
     },
@@ -36,11 +50,11 @@ export const Dialog = () => {
       title: "Archive Note",
       content:
         "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
-      onClick: () => {
+      onClick: async () => {
         if (!selectedNoteId) return;
-        toggleIsArchived(selectedNoteId);
+        await toggleIsArchived();
         setDialogIsOpen(false);
-        setActiveNoteField("isArchived", true)
+        setActiveNoteField("isArchived", true);
       },
     },
 
@@ -48,13 +62,13 @@ export const Dialog = () => {
       icon: "icon-restore",
       title: "Restore Note",
       content: "Are you sure you want to restore this note?",
-      onClick: () => {
+      onClick: async () => {
         if (!selectedNoteId) return;
-        toggleIsArchived(selectedNoteId);
+        await toggleIsArchived();
         setDialogIsOpen(false);
         setActiveNoteField("isArchived", false);
       },
-    }
+    },
   }[dialogPurpose];
 
   const handleCancel = () => setDialogIsOpen(false);

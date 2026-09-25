@@ -1,5 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useEditorStore, useNotesStore } from "@/shared/stores";
+import { useEditorStore } from "@/shared/stores";
+import { useCreateNote, useUpdateNote } from "@/features/notes";
 
 // ——— Helper ——————————————————————————————————————————————————————————————————————————————————————
 const normalizeTags = (tags: string) =>
@@ -16,12 +17,12 @@ export const SaveBtn = () => {
   const setEditorState = useEditorStore((s) => s.setEditorState);
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
-  const createNewNote = useNotesStore((s) => s.createNewNote);
-  const updateNote = useNotesStore((s) => s.updateNote);
+  const { mutateAsync: createNote } = useCreateNote();
+  const { mutateAsync: updateNote } = useUpdateNote(selectedNoteId ?? "");
 
   const handleSave = async () => {
     if (editorState === "creating") {
-      const newNote = await createNewNote({
+      const newNote = await createNote({
         ...activeNote,
         tags: normalizeTags(activeNote.tags),
       });
@@ -31,7 +32,7 @@ export const SaveBtn = () => {
     }
 
     if (selectedNoteId && editorState === "updating") {
-      const updatedNote = await updateNote(selectedNoteId, {
+      const updatedNote = await updateNote({
         title: activeNote.title,
         tags: normalizeTags(activeNote.tags),
         content: activeNote.content,

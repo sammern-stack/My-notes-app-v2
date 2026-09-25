@@ -1,7 +1,13 @@
 import { useEditorStore, useFiltersStore } from "@/shared/stores";
 
-export const EmptyListState = () => {
-  const emptyStateText = useFiltersStore((s) => s.generateEmptyStateText());
+interface EmptyListStateProps {
+  notesCount: number;
+}
+
+export const EmptyListState = ({ notesCount }: EmptyListStateProps) => {
+  const emptyStateText = useFiltersStore((s) =>
+    s.generateEmptyStateText(notesCount),
+  );
   const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
 
   const handleCreateNote = () => startCreatingNote();

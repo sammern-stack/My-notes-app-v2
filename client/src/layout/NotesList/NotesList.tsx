@@ -1,18 +1,22 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import { useNotesStore } from "@/shared/stores";
+import { useFiltersStore } from "@/shared/stores";
 
 import { EmptyListState } from "./EmptyListState";
 import { HelperText } from "./HelperText";
 import { UntitledNote } from "./UntitledNote";
 
-import { NoteAction, NoteCard } from "@/features/notes";
+import { NoteAction, NoteCard, useGetNotes } from "@/features/notes";
 import { Container } from "@/shared/components";
 
 import "./NotesList.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const NotesList = () => {
-  const notes = useNotesStore((s) => s.notes);
+  const getQuery = useFiltersStore((s) => s.getQuery);
+  const { data: fetchedNotes = [] } = useGetNotes(getQuery());
+  const notes = [...fetchedNotes].sort((a, b) =>
+    b.createdAt.localeCompare(a.createdAt),
+  );
 
   return (
     <Container className="notes__list">
@@ -21,7 +25,7 @@ export const NotesList = () => {
       <div className="notes__list-content">
         <HelperText />
 
-        <EmptyListState />
+        <EmptyListState notesCount={notes.length} />
 
         <UntitledNote />
 

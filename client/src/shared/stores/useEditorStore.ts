@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { useNotesStore } from "./useNotesStore";
+import type { NoteModel } from "@/shared/types/note.types";
 
 // ——— Constants ———————————————————————————————————————————————————————————————————————————————————
 const EDITOR_EMPTY_NOTE = {
@@ -10,7 +10,7 @@ const EDITOR_EMPTY_NOTE = {
   content: "",
   isArchived: false,
   updatedAt: "",
-  createdAt: ""
+  createdAt: "",
 };
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
@@ -20,7 +20,7 @@ type EditorNote = {
   title: string;
   tags: string;
   content: string;
-  isArchived: boolean,
+  isArchived: boolean;
   updatedAt: string;
   createdAt: string;
 };
@@ -38,11 +38,14 @@ interface EditorStore {
 
   activeNote: EditorNote;
   setActiveNote: (note: EditorNote) => void;
-  setActiveNoteField: (field: keyof EditorNote, value: string | boolean) => void;
+  setActiveNoteField: (
+    field: keyof EditorNote,
+    value: string | boolean,
+  ) => void;
 
   // Actions
   startCreatingNote: () => void;
-  selectFirstNote: () => void;
+  selectFirstNote: (notes: NoteModel[]) => void;
 }
 
 // ——— Editor Store ————————————————————————————————————————————————————————————————————————————————
@@ -73,10 +76,9 @@ export const useEditorStore = create<EditorStore>()(
         get().setActiveNote(EDITOR_EMPTY_NOTE);
       },
 
-      selectFirstNote: () => {
-        const notes = useNotesStore.getState().notes;
-        get().setSelectedNoteId(notes[0]._id);
-      }
+      selectFirstNote: (notes) => {
+        get().setSelectedNoteId(notes[0]?._id ?? null);
+      },
     }),
     {
       name: "editor",

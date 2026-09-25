@@ -10,6 +10,7 @@ export const useGetNotes = (filters?: NotesQuery) => {
   return useQuery({
     queryKey: ["notes", filters],
     queryFn: () => notesApi.getNotesReq(filters),
+    select: (response) => response.data,
   });
 };
 
@@ -18,6 +19,7 @@ export const useGetNote = (noteId: string) => {
     queryKey: ["note", noteId],
     queryFn: () => notesApi.getNoteReq(noteId),
     enabled: Boolean(noteId),
+    select: (response) => response.data,
   });
 };
 
@@ -25,7 +27,8 @@ export const useCreateNote = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (note: CreateNoteBody) => notesApi.createNoteReq(note),
+    mutationFn: async (note: CreateNoteBody) =>
+      (await notesApi.createNoteReq(note)).data,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
     },
@@ -36,8 +39,8 @@ export const useUpdateNote = (noteId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (updates: UpdateNoteBody) =>
-      notesApi.updateNoteReq(noteId, updates),
+    mutationFn: async (updates: UpdateNoteBody) =>
+      (await notesApi.updateNoteReq(noteId, updates)).data,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
       queryClient.invalidateQueries({ queryKey: ["note", noteId] });
@@ -49,7 +52,7 @@ export const useToggleIsArchived = (noteId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => notesApi.toggleIsArchivedReq(noteId),
+    mutationFn: async () => (await notesApi.toggleIsArchivedReq(noteId)).data,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
       queryClient.invalidateQueries({ queryKey: ["note", noteId] });
@@ -61,7 +64,8 @@ export const useDeleteNote = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (noteId: string) => notesApi.deleteNoteReq(noteId),
+    mutationFn: async (noteId: string) =>
+      (await notesApi.deleteNoteReq(noteId)).data,
     onSuccess: (_, noteId) => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
       queryClient.removeQueries({ queryKey: ["note", noteId] });
