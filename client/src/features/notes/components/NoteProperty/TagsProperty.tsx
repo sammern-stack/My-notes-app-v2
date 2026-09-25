@@ -4,6 +4,7 @@ import { useEditorStore } from "@/shared/stores";
 import { LabelWithIcon } from "@/shared/components";
 
 import type { InputChangeEvent } from "@/shared/types/react.types";
+import styles from "./NoteProperty.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const TagsProperty = () => {
@@ -14,14 +15,14 @@ export const TagsProperty = () => {
     setActiveNoteField("tags", e.target.value);
 
   return (
-    <div className="note__tags">
+    <div className={styles["note__tags"]}>
       <LabelWithIcon
-        className="note__tags-label"
+        className={styles["note__tags-label"]}
         icon="icon-tag"
         label="tags"
       />
 
-      <div className="note__tags-value">
+      <div className={styles["note__tags-value"]}>
         <input
           type="text"
           placeholder="Add tags separated by commas (e.g. Work, Planning)"

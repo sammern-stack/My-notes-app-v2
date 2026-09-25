@@ -2,26 +2,26 @@
 import { RenderOptions, TagsList } from "@/features/settings";
 import { Icon } from "@/shared/components";
 
-import "./Sidebar.scss";
+import styles from "./Sidebar.module.scss";
 import { Link } from "react-router-dom";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const NavigationSidebar = () => {
   return (
-    <div className="sidebar sidebar--left">
-      <div className="sidebar__logo-wrapper">
+    <div className={`${styles.sidebar} ${styles["sidebar--left"]}`}>
+      <div className={styles["sidebar__logo-wrapper"]}>
         <Link to="/">
           <Icon name="logo" />
         </Link>
       </div>
 
-      <div className="sidebar__filters">
+      <div className={styles["sidebar__filters"]}>
         <RenderOptions />
 
-        <div className="sidebar__divider"></div>
+        <div className={styles["sidebar__divider"]}></div>
 
-        <div className="sidebar__tags-header">
-          <div className="sidebar__tags-title">Tags</div>
+        <div className={styles["sidebar__tags-header"]}>
+          <div className={styles["sidebar__tags-title"]}>Tags</div>
         </div>
 
         <TagsList />

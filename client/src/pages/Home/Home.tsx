@@ -1,8 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { PageContent, OpenNote, NotesList, Sidebar } from "@/layout";
 
-import "./Home.scss";
-
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 const Home = () => (
   <PageContent className="home">

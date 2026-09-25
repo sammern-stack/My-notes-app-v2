@@ -1,17 +1,17 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useLocation } from "react-router-dom";
 import { useFiltersStore } from "@/shared/stores";
-import "./PageTitle.scss";
+import styles from "./PageTitle.module.scss";
 
 export const PageTitle = () => {
   const location = useLocation();
   const pageTitle = useFiltersStore((s) => s.generatePageTitle());
 
   if (location.pathname === "/settings")
-    return <h1 className="page__title">Settings</h1>;
+    return <h1 className={styles["page__title"]}>Settings</h1>;
 
   return (
-    <h1 className="page__title">
+    <h1 className={styles["page__title"]}>
       {pageTitle.includes(":") ? (
         <>
           <span>{pageTitle.split(":")[0]}:</span>

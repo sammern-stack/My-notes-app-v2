@@ -4,6 +4,7 @@ import { useEditorStore } from "@/shared/stores";
 import { formatDate } from "@/shared/utils";
 
 import { LabelWithIcon } from "@/shared/components";
+import styles from "./NoteProperty.module.scss";
 
 // ——— Types ————————————————————————————————————————————————————————————————————————————————————————
 interface DatesPropertyProps {
@@ -15,14 +16,14 @@ export const DatesProperty = ({ date }: DatesPropertyProps) => {
   const { createdAt, updatedAt } = useEditorStore((s) => s.activeNote);
 
   return (
-    <div className={`note__${date}`}>
+    <div className={styles[`note__${date}`]}>
       <LabelWithIcon
-        className={`note__${date}-label`}
+        className={styles[`note__${date}-label`]}
         icon="icon-clock"
         label={date === "updatedAt" ? "last edited" : "created at"}
       />
 
-      <div className={`note__${date}-value`}>
+      <div className={styles[`note__${date}-value`]}>
         {date === "updatedAt" ? formatDate(updatedAt) : formatDate(createdAt)}
       </div>
     </div>

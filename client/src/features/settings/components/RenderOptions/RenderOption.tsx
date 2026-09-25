@@ -5,7 +5,7 @@ import { useFiltersStore } from "@/shared/stores";
 
 import { SelectOption } from "@/shared/components";
 
-import "./RenderOptions.scss";
+import styles from "./RenderOptions.module.scss";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface RenderOptionProps {
@@ -28,7 +28,8 @@ export const RenderOption = ({ option }: RenderOptionProps) => {
 
   return (
     <SelectOption
-      className="sidebar__render-option"
+      className={styles["sidebar__render-option"]}
+      activeClassName={styles["sidebar__render-option--active"]}
       label={`${option} Notes`}
       isActive={isActive()}
       onSelect={handleSelect}

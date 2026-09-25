@@ -3,8 +3,6 @@ import { TagsProperty } from "./TagsProperty";
 import { DatesProperty } from "./DatesProperty";
 import { IsArchivedProperty } from "./IsArchivedProperty";
 
-import "./NoteProperty.scss";
-
 type NotePropertyProps =
   | { property: "tags" }
   | { property: "status" }

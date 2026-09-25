@@ -1,6 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useDialogStore } from "@/shared/stores";
 import { LabelWithIcon } from "@/shared/components";
+import styles from "./NoteAction.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const DeleteBtn = () => {
@@ -10,7 +11,7 @@ export const DeleteBtn = () => {
   return (
     <LabelWithIcon
       as="button"
-      className="note__action note__action--delete"
+      className={`${styles["note__action"]} ${styles["note__action--delete"]}`}
       label="Delete Note"
       icon="icon-delete"
       onClick={() => {

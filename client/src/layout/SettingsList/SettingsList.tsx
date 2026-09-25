@@ -1,15 +1,19 @@
 import { useConfigStore } from "@/shared/stores";
 import { Container, SelectOption } from "@/shared/components";
-import "./SettingsList.scss";
+import styles from "./SettingsList.module.scss";
 
 export const SettingsList = () => {
   const settingTab = useConfigStore((s) => s.settingTab);
   const setSettingTab = useConfigStore((s) => s.setSettingTab);
 
   return (
-    <Container className="settings__list">
+    <Container
+      className={styles["settings__list"]}
+      wrapperClassName={styles["settings__list--wrapper"]}
+    >
       <SelectOption
-        className="settings__item"
+        className={styles["settings__item"]}
+        activeClassName={styles["settings__item--active"]}
         isActive={settingTab === "theme"}
         label="Color Theme"
         icon="icon-sun"
@@ -17,14 +21,15 @@ export const SettingsList = () => {
       />
 
       <SelectOption
-        className="settings__item"
+        className={styles["settings__item"]}
+        activeClassName={styles["settings__item--active"]}
         isActive={settingTab === "font"}
         label="Font Theme"
         icon="icon-font"
         onSelect={() => setSettingTab("font")}
       />
 
-      <div className="settings__divider"></div>
+      <div className={styles["settings__divider"]}></div>
     </Container>
   );
 };

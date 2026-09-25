@@ -1,5 +1,5 @@
-import "./AppLoader.scss";
+import styles from "./AppLoader.module.scss";
 
 export const AppLoader = () => {
-  return <div className="app-loader">Loading...</div>;
+  return <div className={styles["app-loader"]}>Loading...</div>;
 };

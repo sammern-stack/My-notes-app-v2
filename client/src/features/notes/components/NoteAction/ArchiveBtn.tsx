@@ -1,6 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useDialogStore, useEditorStore } from "@/shared/stores";
 import { LabelWithIcon } from "@/shared/components";
+import styles from "./NoteAction.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const ArchiveBtn = () => {
@@ -11,7 +12,7 @@ export const ArchiveBtn = () => {
   return (
     <LabelWithIcon
       as="button"
-      className="note__action note__action--archive"
+      className={`${styles["note__action"]} ${styles["note__action--archive"]}`}
       label={isArchived ? "Restore Note" : "Archive Note"}
       icon={isArchived ? "icon-restore" : "icon-archive"}
       onClick={() => {

@@ -2,15 +2,15 @@
 import { PageTitle, LabelWithIcon } from "@/shared/components";
 import { SearchBar } from "@/features/settings";
 
-import "./Header.scss";
+import styles from "./Header.module.scss";
 import { Link } from "react-router-dom";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const Header = () => (
-  <div className="page__header">
+  <div className={styles["page__header"]}>
     <PageTitle />
 
-    <div className="page__header-content">
+    <div className={styles["page__header-content"]}>
       <SearchBar />
 
       <Link to="/settings">

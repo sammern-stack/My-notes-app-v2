@@ -1,8 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { ActiveNoteActions } from "./ActiveNoteActions";
 import { NavigationSidebar } from "./NavigationSidebar";
-import "./Sidebar.scss";
-
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 type SidebarProps = { position: "left" } | { position: "right" };
 

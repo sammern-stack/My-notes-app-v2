@@ -1,6 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 import { useGetNote } from "@/features/notes";
+import styles from "./NoteAction.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const CancelBtn = () => {
@@ -36,7 +37,7 @@ export const CancelBtn = () => {
 
   return (
     <button
-      className="note__action note__action--cancel"
+      className={`${styles["note__action"]} ${styles["note__action--cancel"]}`}
       onClick={handleCancel}
     >
       Cancel

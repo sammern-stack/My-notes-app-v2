@@ -1,5 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
+import styles from "@/features/notes/components/NoteCard/NoteCard.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const UntitledNote = () => {
@@ -8,7 +9,9 @@ export const UntitledNote = () => {
   if (editorState !== "creating") return null;
 
   return (
-    <div className="notes__card notes__card--active notes__card-title">
+    <div
+      className={`${styles["notes__card"]} ${styles["notes__card--active"]} ${styles["notes__card-title"]}`}
+    >
       Untitled Note
     </div>
   );

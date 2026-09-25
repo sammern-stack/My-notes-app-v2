@@ -1,5 +1,6 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
+import styles from "@/layout/NotesList/NotesList.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const CreateBtn = () => {
@@ -8,7 +9,7 @@ export const CreateBtn = () => {
   const handleCreateNote = () => startCreatingNote();
 
   return (
-    <button className="notes__create-btn" onClick={handleCreateNote}>
+    <button className={styles["notes__create-btn"]} onClick={handleCreateNote}>
       + Create New Note
     </button>
   );

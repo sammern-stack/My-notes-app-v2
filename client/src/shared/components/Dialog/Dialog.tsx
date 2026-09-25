@@ -11,7 +11,7 @@ import {
   useGetNotes,
   useToggleIsArchived,
 } from "@/features/notes";
-import "./Dialog.scss";
+import styles from "./Dialog.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const Dialog = () => {
@@ -75,33 +75,35 @@ export const Dialog = () => {
 
   return (
     <>
-      <div className="page__dialog">
-        <div className="page__dialog-content">
-          <div className="page__dialog-icon">
+      <div className={styles["page__dialog"]}>
+        <div className={styles["page__dialog-content"]}>
+          <div className={styles["page__dialog-icon"]}>
             <Icon name={dialogContent.icon} />
           </div>
 
-          <div className="page__dialog-body">
-            <div className="page__dialog-title">{dialogContent.title}</div>
+          <div className={styles["page__dialog-body"]}>
+            <div className={styles["page__dialog-title"]}>
+              {dialogContent.title}
+            </div>
 
-            <div className="page__dialog-description">
+            <div className={styles["page__dialog-description"]}>
               {dialogContent.content}
             </div>
           </div>
         </div>
 
-        <div className="page__dialog-divider"></div>
+        <div className={styles["page__dialog-divider"]}></div>
 
-        <div className="page__dialog-btns">
+        <div className={styles["page__dialog-btns"]}>
           <button
-            className="page__dialog-btn page__dialog-btn--cancel"
+            className={`${styles["page__dialog-btn"]} ${styles["page__dialog-btn--cancel"]}`}
             onClick={handleCancel}
           >
             Cancel
           </button>
 
           <button
-            className={`page__dialog-btn page__dialog-btn--${dialogPurpose}`}
+            className={`${styles["page__dialog-btn"]} ${styles[`page__dialog-btn--${dialogPurpose}`]}`}
             onClick={dialogContent.onClick}
           >
             {capitalizeStr(dialogPurpose)}
@@ -109,7 +111,7 @@ export const Dialog = () => {
         </div>
       </div>
 
-      <div className="page__dialog-backdrop"></div>
+      <div className={styles["page__dialog-backdrop"]}></div>
     </>
   );
 };

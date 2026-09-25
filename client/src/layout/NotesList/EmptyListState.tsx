@@ -1,4 +1,5 @@
 import { useEditorStore, useFiltersStore } from "@/shared/stores";
+import styles from "./NotesList.module.scss";
 
 interface EmptyListStateProps {
   notesCount: number;
@@ -15,7 +16,7 @@ export const EmptyListState = ({ notesCount }: EmptyListStateProps) => {
   if (!emptyStateText) return null;
 
   return (
-    <div className="notes__empty-state">
+    <div className={styles["notes__empty-state"]}>
       {emptyStateText}{" "}
       {emptyStateText.endsWith(", or") && (
         <span onClick={handleCreateNote}>create new note</span>

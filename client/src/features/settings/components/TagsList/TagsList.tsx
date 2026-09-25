@@ -1,6 +1,6 @@
 import { useGetNotes } from "@/features/notes";
 import { TagItem } from "./TagItem";
-import "./TagsList.scss";
+import styles from "./TagsList.module.scss";
 
 export const TagsList = () => {
   const { data: notes = [] } = useGetNotes();
@@ -9,7 +9,7 @@ export const TagsList = () => {
   );
 
   return (
-    <div className="sidebar__tags-list">
+    <div className={styles["sidebar__tags-list"]}>
       {tags.map((tag) => (
         <TagItem key={tag} tag={tag} />
       ))}

@@ -19,7 +19,6 @@ $properties: tags, updatedAt, createdAt, isArchived;
     &__#{$property}-value {
       color: var(--subtle-text-color);
 
-
       @if ($property == tags) {
         flex: 1;
 

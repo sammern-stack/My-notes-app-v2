@@ -1,12 +1,12 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { RenderOption } from "./RenderOption";
-import "./RenderOptions.scss";
+import styles from "./RenderOptions.module.scss";
 
 export const RenderOptions = () => {
   return (
-    <div className="sidebar__render-options">
-      <RenderOption option="all"/>
-      <RenderOption option="archived"/>
+    <div className={styles["sidebar__render-options"]}>
+      <RenderOption option="all" />
+      <RenderOption option="archived" />
     </div>
   );
 };

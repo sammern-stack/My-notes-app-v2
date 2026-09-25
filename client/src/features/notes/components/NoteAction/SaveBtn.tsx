@@ -1,6 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 import { useCreateNote, useUpdateNote } from "@/features/notes";
+import styles from "./NoteAction.module.scss";
 
 // ——— Helper ——————————————————————————————————————————————————————————————————————————————————————
 const normalizeTags = (tags: string) =>
@@ -52,7 +53,10 @@ export const SaveBtn = () => {
   };
 
   return (
-    <button className="note__action note__action--save" onClick={handleSave}>
+    <button
+      className={`${styles["note__action"]} ${styles["note__action--save"]}`}
+      onClick={handleSave}
+    >
       Save Note
     </button>
   );

@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { Sidebar, Header } from "../";
 import { Dialog } from "@/shared/components";
 
-import "./PageContent.scss";
+import styles from "./PageContent.module.scss";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface PageContentProps {
@@ -14,13 +14,15 @@ interface PageContentProps {
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const PageContent = ({ className, children }: PageContentProps) => (
-  <div className={`page page--${className} ${className}`}>
+  <div className={`${styles.page} ${className}`}>
     <Sidebar position="left" />
 
-    <div className={`page__content ${className}__content`}>
+    <div className={`${styles["page__content"]} ${className}__content`}>
       <Header />
 
-      <div className={`page__body ${className}__body`}>{children}</div>
+      <div className={`${styles["page__body"]} ${className}__body`}>
+        {children}
+      </div>
     </div>
 
     <Dialog />

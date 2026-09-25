@@ -6,6 +6,7 @@ import { Icon } from "../Icon/Icon";
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface SelectOptionProps {
   className: string;
+  activeClassName: string;
   isActive: boolean;
   onSelect: MouseEventHandler<HTMLButtonElement>;
   icon: string;
@@ -15,6 +16,7 @@ interface SelectOptionProps {
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const SelectOption = ({
   className,
+  activeClassName,
   isActive,
   onSelect,
   icon,
@@ -22,7 +24,7 @@ export const SelectOption = ({
 }: SelectOptionProps) => {
   return (
     <button
-      className={`${className} ${isActive ? `${className}--active` : ""}`}
+      className={`${className} ${isActive ? activeClassName : ""}`}
       onClick={onSelect}
     >
       <Icon name={icon} width="20" />

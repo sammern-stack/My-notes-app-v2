@@ -3,7 +3,7 @@ import { useEffect, useMemo } from "react";
 import { useEditor, EditorContent, EditorContext } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-import "./NoteEditor.scss";
+import styles from "./NoteEditor.module.scss";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface NoteEditorProps {
@@ -46,8 +46,11 @@ export const NoteEditor = ({
 
   return (
     <EditorContext.Provider value={providerValue}>
-      <div className="note-editor">
-        <EditorContent editor={editor} className="note-editor__content" />
+      <div className={styles["note-editor"]}>
+        <EditorContent
+          editor={editor}
+          className={styles["note-editor__content"]}
+        />
       </div>
     </EditorContext.Provider>
   );

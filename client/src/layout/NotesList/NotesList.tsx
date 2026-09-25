@@ -8,7 +8,7 @@ import { UntitledNote } from "./UntitledNote";
 import { NoteAction, NoteCard, useGetNotes } from "@/features/notes";
 import { Container } from "@/shared/components";
 
-import "./NotesList.scss";
+import styles from "./NotesList.module.scss";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const NotesList = () => {
@@ -19,10 +19,13 @@ export const NotesList = () => {
   );
 
   return (
-    <Container className="notes__list">
+    <Container
+      className={styles["notes__list"]}
+      wrapperClassName={styles["notes__list--wrapper"]}
+    >
       <NoteAction action="create" />
 
-      <div className="notes__list-content">
+      <div className={styles["notes__list-content"]}>
         <HelperText />
 
         <EmptyListState notesCount={notes.length} />

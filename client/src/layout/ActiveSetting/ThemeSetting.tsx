@@ -1,27 +1,32 @@
 import { useConfigStore } from "@/shared/stores";
 import { Icon } from "@/shared/components";
+import styles from "./ActiveSetting.module.scss";
 
 export const ThemeSetting = () => {
   const theme = useConfigStore((s) => s.theme);
   const setTheme = useConfigStore((s) => s.setTheme);
 
   return (
-    <div className="setting__panel setting__panel--theme">
-      <div className="setting__header">
-        <h3 className="setting__title">Color Theme</h3>
-        <p className="setting__description">Choose your color theme:</p>
+    <div
+      className={`${styles["setting__panel"]} ${styles["setting__panel--theme"]}`}
+    >
+      <div className={styles["setting__header"]}>
+        <h3 className={styles["setting__title"]}>Color Theme</h3>
+        <p className={styles["setting__description"]}>
+          Choose your color theme:
+        </p>
       </div>
 
-      <div className="setting__theme-options">
+      <div className={styles["setting__theme-options"]}>
         <label
           htmlFor="theme-light"
-          className={`setting__theme-label ${theme === "light" ? "setting__theme-label--active" : ""}`}
+          className={`${styles["setting__theme-label"]} ${theme === "light" ? styles["setting__theme-label--active"] : ""}`}
         >
-          <div className="setting__theme-icon">
+          <div className={styles["setting__theme-icon"]}>
             <Icon name="icon-sun" />
           </div>
 
-          <div className="setting__theme-description">
+          <div className={styles["setting__theme-description"]}>
             <p>Light Mode</p>
             <p>Pick a clean and classic light theme</p>
           </div>
@@ -30,7 +35,7 @@ export const ThemeSetting = () => {
             type="radio"
             name="theme-option"
             id="theme-light"
-            className="setting__theme-input"
+            className={styles["setting__theme-input"]}
             checked={theme === "light"}
             onChange={() => setTheme("light")}
           />
@@ -38,13 +43,13 @@ export const ThemeSetting = () => {
 
         <label
           htmlFor="theme-dark"
-          className={`setting__theme-label ${theme === "dark" ? "setting__theme-label--active" : ""}`}
+          className={`${styles["setting__theme-label"]} ${theme === "dark" ? styles["setting__theme-label--active"] : ""}`}
         >
-          <div className="setting__theme-icon">
+          <div className={styles["setting__theme-icon"]}>
             <Icon name="icon-moon" />
           </div>
 
-          <div className="setting__theme-description">
+          <div className={styles["setting__theme-description"]}>
             <p>Dark Mode</p>
             <p>Select a sleek and modern dark theme</p>
           </div>
@@ -53,7 +58,7 @@ export const ThemeSetting = () => {
             type="radio"
             name="theme-option"
             id="theme-dark"
-            className="setting__theme-input"
+            className={styles["setting__theme-input"]}
             checked={theme === "dark"}
             onChange={() => setTheme("dark")}
           />
@@ -61,13 +66,13 @@ export const ThemeSetting = () => {
 
         <label
           htmlFor="theme-system"
-          className={`setting__theme-label ${theme === "system" ? "setting__theme-label--active" : ""}`}
+          className={`${styles["setting__theme-label"]} ${theme === "system" ? styles["setting__theme-label--active"] : ""}`}
         >
-          <div className="setting__theme-icon">
+          <div className={styles["setting__theme-icon"]}>
             <Icon name="icon-system-theme" />
           </div>
 
-          <div className="setting__theme-description">
+          <div className={styles["setting__theme-description"]}>
             <p>System</p>
             <p>Adapts to your device's theme</p>
           </div>
@@ -76,7 +81,7 @@ export const ThemeSetting = () => {
             type="radio"
             name="theme-option"
             id="theme-system"
-            className="setting__theme-input"
+            className={styles["setting__theme-input"]}
             checked={theme === "system"}
             onChange={() => setTheme("system")}
           />

@@ -5,7 +5,7 @@ import { useFiltersStore } from "@/shared/stores";
 
 import { SelectOption } from "@/shared/components";
 
-import "./TagsList.scss";
+import styles from "./TagsList.module.scss";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface TagItemProps {
@@ -32,7 +32,8 @@ export const TagItem = ({ tag }: TagItemProps) => {
 
   return (
     <SelectOption
-      className="sidebar__tag-item"
+      className={styles["sidebar__tag-item"]}
+      activeClassName={styles["sidebar__tag-item--active"]}
       label={tag}
       isActive={isActive()}
       onSelect={handleSelect}

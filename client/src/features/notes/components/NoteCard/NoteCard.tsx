@@ -2,7 +2,7 @@
 import { useEditorStore } from "@/shared/stores";
 import { formatDate } from "@/shared/utils";
 import type { NoteModel } from "@/shared/types/note.types";
-import "./NoteCard.scss";
+import styles from "./NoteCard.module.scss";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface NoteCardProps {
@@ -21,23 +21,25 @@ export const NoteCard = ({ note }: NoteCardProps) => {
   return (
     <>
       <button
-        className={`notes__card ${isNoteActive ? "notes__card--active" : ""}`}
+        className={`${styles["notes__card"]} ${isNoteActive ? styles["notes__card--active"] : ""}`}
         onClick={handleSelect}
       >
-        <div className="notes__card-title">{title}</div>
+        <div className={styles["notes__card-title"]}>{title}</div>
 
-        <div className="notes__card-tags">
+        <div className={styles["notes__card-tags"]}>
           {tags.map((tag) => (
-            <div className="notes__card-tag" key={tag}>
+            <div className={styles["notes__card-tag"]} key={tag}>
               {tag}
             </div>
           ))}
         </div>
 
-        <div className="notes__card-createdAt">{formatDate(createdAt)}</div>
+        <div className={styles["notes__card-createdAt"]}>
+          {formatDate(createdAt)}
+        </div>
       </button>
 
-      <div className="notes__list-divider"></div>
+      <div className={styles["notes__list-divider"]}></div>
     </>
   );
 };
