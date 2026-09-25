@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useLocation } from "react-router-dom";
 
 import { useFiltersStore } from "@/shared/stores";
@@ -8,12 +7,10 @@ import TagIcon from "@/assets/images/icon-tag.svg?react";
 
 import styles from "./TagsList.module.scss";
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface TagItemProps {
   tag: string;
 }
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const TagItem = ({ tag }: TagItemProps) => {
   const location = useLocation();
 

@@ -1,9 +1,7 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type { ComponentType, MouseEventHandler, SVGProps } from "react";
 import { capitalizeStr } from "@/shared/utils";
 import ChevronRightIcon from "@/assets/images/icon-chevron-right.svg?react";
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface SelectOptionProps {
   className: string;
   activeClassName: string;
@@ -13,7 +11,6 @@ interface SelectOptionProps {
   label: string;
 }
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const SelectOption = ({
   className,
   activeClassName,

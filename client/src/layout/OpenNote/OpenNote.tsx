@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 
 import { useOpenNote } from "@/features/notes";
@@ -7,7 +6,6 @@ import { NoteAction, NoteEditor, NoteProperty } from "@/features/notes";
 
 import styles from "./OpenNote.module.scss";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const OpenNote = () => {
   const { title, content, isArchived } = useEditorStore((s) => s.activeNote);
   const { handleNoteTitle, handleNoteContent } = useOpenNote();

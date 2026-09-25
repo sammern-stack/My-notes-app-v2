@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useFiltersStore } from "@/shared/stores";
 
 import { EmptyListState } from "./EmptyListState";
@@ -10,7 +9,6 @@ import { Container } from "@/shared/components";
 
 import styles from "./NotesList.module.scss";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const NotesList = () => {
   const getQuery = useFiltersStore((s) => s.getQuery);
   const { data: fetchedNotes = [] } = useGetNotes(getQuery());

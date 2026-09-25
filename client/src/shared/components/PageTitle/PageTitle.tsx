@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useLocation } from "react-router-dom";
 import { useFiltersStore } from "@/shared/stores";
 import styles from "./PageTitle.module.scss";

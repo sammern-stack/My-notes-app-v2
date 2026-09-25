@@ -1,9 +1,7 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEffect } from "react";
 import { useConfigStore, useEditorStore } from "@/shared/stores";
 import { useGetNote } from "@/features/notes";
 
-// ——— Start Up App Hook ———————————————————————————————————————————————————————————————————————————
 export const useStartApp = () => {
   const theme = useConfigStore((s) => s.theme);
   const font = useConfigStore((s) => s.font);

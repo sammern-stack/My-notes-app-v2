@@ -1,10 +1,8 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useDialogStore } from "@/shared/stores";
 import { LabelWithIcon } from "@/shared/components";
 import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 import styles from "./NoteAction.module.scss";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const DeleteBtn = () => {
   const setDialogIsOpen = useDialogStore((s) => s.setDialogIsOpen);
   const setDialogPurpose = useDialogStore((s) => s.setDialogPurpose);

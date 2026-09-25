@@ -1,8 +1,6 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 type Theme = "light" | "dark" | "system";
 type Font = "inter" | "noto-serif" | "source-code-pro";
 type SettingTab = "theme" | "font";

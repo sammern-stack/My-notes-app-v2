@@ -1,16 +1,13 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 import { useCreateNote, useUpdateNote } from "@/features/notes";
 import styles from "./NoteAction.module.scss";
 
-// ——— Helper ——————————————————————————————————————————————————————————————————————————————————————
 const normalizeTags = (tags: string) =>
   tags
     .split(",")
     .map((tag) => tag.trim())
     .filter(Boolean);
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const SaveBtn = () => {
   const activeNote = useEditorStore((s) => s.activeNote);
   const setActiveNote = useEditorStore((s) => s.setActiveNote);

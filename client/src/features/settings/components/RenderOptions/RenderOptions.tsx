@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { RenderOption } from "./RenderOption";
 import styles from "./RenderOptions.module.scss";
 

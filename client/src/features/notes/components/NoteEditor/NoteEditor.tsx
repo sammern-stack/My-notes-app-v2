@@ -1,21 +1,17 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEffect, useMemo } from "react";
 import { useEditor, EditorContent, EditorContext } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 import styles from "./NoteEditor.module.scss";
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface NoteEditorProps {
   content: string;
   onChange: (html: string) => void;
   editable?: boolean;
 }
 
-// ——— Constants ———————————————————————————————————————————————————————————————————————————————————
 const extensions = [StarterKit];
 
-// ——— Note Editor Component ———————————————————————————————————————————————————————————————————————
 export const NoteEditor = ({
   content,
   onChange,

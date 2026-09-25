@@ -1,11 +1,9 @@
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface ContainerProps {
   className: string;
   wrapperClassName: string;
   children: React.ReactNode;
 }
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const Container = ({
   className,
   wrapperClassName,

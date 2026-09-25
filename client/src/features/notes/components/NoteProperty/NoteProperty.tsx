@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { TagsProperty } from "./TagsProperty";
 import { DatesProperty } from "./DatesProperty";
 import { IsArchivedProperty } from "./IsArchivedProperty";

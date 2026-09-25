@@ -1,15 +1,12 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 import { formatDate } from "@/shared/utils";
 import type { NoteModel } from "@/shared/types/note.types";
 import styles from "./NoteCard.module.scss";
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface NoteCardProps {
   note: NoteModel;
 }
 
-// ——— Note Card Component —————————————————————————————————————————————————————————————————————————
 export const NoteCard = ({ note }: NoteCardProps) => {
   const { _id, title, tags, createdAt } = note;
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);

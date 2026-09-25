@@ -1,8 +1,6 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 import styles from "@/layout/NotesList/NotesList.module.scss";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const CreateBtn = () => {
   const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
 

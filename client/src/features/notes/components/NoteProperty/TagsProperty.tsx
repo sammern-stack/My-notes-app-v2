@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 
 import { LabelWithIcon } from "@/shared/components";
@@ -7,7 +6,6 @@ import TagIcon from "@/assets/images/icon-tag.svg?react";
 import type { InputChangeEvent } from "@/shared/types/react.types";
 import styles from "./NoteProperty.module.scss";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const TagsProperty = () => {
   const { tags } = useEditorStore((s) => s.activeNote);
   const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);

@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import {
   useDialogStore,
   useEditorStore,
@@ -15,7 +14,6 @@ import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 import RestoreIcon from "@/assets/images/icon-restore.svg?react";
 import styles from "./Dialog.module.scss";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const Dialog = () => {
   const dialogIsOpen = useDialogStore((s) => s.dialogIsOpen);
   const setDialogIsOpen = useDialogStore((s) => s.setDialogIsOpen);

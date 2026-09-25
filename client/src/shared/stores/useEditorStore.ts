@@ -1,9 +1,7 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { NoteModel } from "@/shared/types/note.types";
 
-// ——— Constants ———————————————————————————————————————————————————————————————————————————————————
 const EDITOR_EMPTY_NOTE = {
   title: "",
   tags: "",
@@ -13,7 +11,6 @@ const EDITOR_EMPTY_NOTE = {
   createdAt: "",
 };
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 type EditorState = "updating" | "creating";
 type NullString = string | null;
 type EditorNote = {
@@ -48,7 +45,6 @@ interface EditorStore {
   selectFirstNote: (notes: NoteModel[]) => void;
 }
 
-// ——— Editor Store ————————————————————————————————————————————————————————————————————————————————
 export const useEditorStore = create<EditorStore>()(
   persist(
     (set, get) => ({

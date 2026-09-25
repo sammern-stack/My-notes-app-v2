@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import type {
   ComponentPropsWithoutRef,
   ComponentType,
@@ -7,7 +6,6 @@ import type {
 } from "react";
 import { capitalizeStr } from "@/shared/utils";
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 type BaseProps<E extends ElementType = "div"> = {
   as?: E;
   className?: string;
@@ -18,7 +16,6 @@ type BaseProps<E extends ElementType = "div"> = {
 type LabelWithIconProps<E extends ElementType = "div"> = BaseProps<E> &
   Omit<ComponentPropsWithoutRef<E>, keyof BaseProps>;
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const LabelWithIcon = <E extends ElementType = "div">({
   as,
   className,

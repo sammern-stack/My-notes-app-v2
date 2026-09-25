@@ -1,9 +1,7 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { NotesQuery } from "@/shared/types/note.types";
 
-// ——— Helpers —————————————————————————————————————————————————————————————————————————————————————
 const buildQuery = (render: RenderOption, tags: string[]): NotesQuery => {
   const query: Record<string, unknown> = {};
 
@@ -13,7 +11,6 @@ const buildQuery = (render: RenderOption, tags: string[]): NotesQuery => {
   return query;
 };
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 type RenderOption = "all" | "archived";
 
 interface FiltersStore {
@@ -32,7 +29,6 @@ interface FiltersStore {
   generatePageTitle: () => string;
 }
 
-// ——— Filters Store ———————————————————————————————————————————————————————————————————————————————
 export const useFiltersStore = create<FiltersStore>()(
   persist(
     (set, get) => ({

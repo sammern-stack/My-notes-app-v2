@@ -1,11 +1,9 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useDialogStore, useEditorStore } from "@/shared/stores";
 import { LabelWithIcon } from "@/shared/components";
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 import RestoreIcon from "@/assets/images/icon-restore.svg?react";
 import styles from "./NoteAction.module.scss";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const ArchiveBtn = () => {
   const { isArchived } = useEditorStore((s) => s.activeNote);
   const setDialogIsOpen = useDialogStore((s) => s.setDialogIsOpen);

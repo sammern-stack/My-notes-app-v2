@@ -1,11 +1,9 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { RenderOptions, TagsList } from "@/features/settings";
 import LogoIcon from "@/assets/images/logo.svg?react";
 
 import styles from "./Sidebar.module.scss";
 import { Link } from "react-router-dom";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const NavigationSidebar = () => {
   return (
     <div className={`${styles.sidebar} ${styles["sidebar--left"]}`}>

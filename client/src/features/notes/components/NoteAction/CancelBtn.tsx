@@ -1,9 +1,7 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 import { useGetNote } from "@/features/notes";
 import styles from "./NoteAction.module.scss";
 
-// ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const CancelBtn = () => {
   const editorState = useEditorStore((s) => s.editorState);
   const setEditorState = useEditorStore((s) => s.setEditorState);

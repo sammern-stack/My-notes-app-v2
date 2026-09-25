@@ -1,4 +1,3 @@
-// ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useLocation } from "react-router-dom";
 
 import { useFiltersStore } from "@/shared/stores";
@@ -9,7 +8,6 @@ import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 
 import styles from "./RenderOptions.module.scss";
 
-// ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface RenderOptionProps {
   option: "all" | "archived";
 }
