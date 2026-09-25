@@ -4,3 +4,11 @@ export { NoteEditor } from "./components/NoteEditor/NoteEditor";
 export { NoteProperty } from "./components/NoteProperty/NoteProperty";
 
 export { useOpenNote } from "./hooks/useOpenNote";
+export {
+  useCreateNote,
+  useDeleteNote,
+  useGetNote,
+  useGetNotes,
+  useToggleIsArchived,
+  useUpdateNote,
+} from "./hooks/useNotes";
