@@ -1,6 +1,6 @@
 import styles from "./Sidebar.module.scss";
 import { Link, useLocation } from "react-router-dom";
-import { RenderOptions } from "@/features/settings";
+import { RenderOption } from "@/features/settings";
 import { useGetNotes } from "@/features/notes";
 import { useFiltersStore } from "@/shared/stores";
 
@@ -25,7 +25,10 @@ export const Sidebar = () => {
         </Link>
       </div>
       <div className={styles.sidebar__filters}>
-        <RenderOptions />
+        <div className={styles["sidebar__render-options"]}>
+          <RenderOption option="all" />
+          <RenderOption option="archived" />
+        </div>
         <div className={styles.sidebar__divider}></div>
         <div className={styles["sidebar__tags-header"]}>
           <div className={styles["sidebar__tags-title"]}>Tags</div>

@@ -1,2 +1,2 @@
-export { RenderOptions } from "./components/RenderOptions/RenderOptions";
+export { RenderOption } from "./components/RenderOptions/RenderOption";
 export { SearchBar } from "./components/SearchBar/SearchBar";
