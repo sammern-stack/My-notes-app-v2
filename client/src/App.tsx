@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { useStartApp } from "@/shared/hooks";
 import { AppLoader } from "@/shared/components";
 
-const Home = lazy(() => import("@pages/Home/Home"));
-const Settings = lazy(() => import("@pages/Settings/Settings"));
+const Home = lazy(() => import("@/pages/Home/Home"));
+const Settings = lazy(() => import("@/pages/Settings/Settings"));
 
 function App() {
   useStartApp();
