@@ -16,9 +16,9 @@ import type {
   CreateNoteBody,
   NoteModel,
   NotesQuery,
-  RequestFn,
   UpdateNoteBody,
-} from "@types";
+} from "@/shared/types/note.types";
+import type { RequestFn } from "@/shared/types/api.types";
 
 // ——— Types ———————————————————————————————————————————————————————————————————————————————————————
 interface NotesStore {

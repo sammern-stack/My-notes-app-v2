@@ -1,5 +1,5 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
-import type { AxiosFn, RequestFn } from "@types";
+import type { AxiosFn, RequestFn } from "@/shared/types/api.types";
 
 // ——— Utility —————————————————————————————————————————————————————————————————————————————————————
 export const apiCall = async <T extends object, K extends object = object>(

@@ -2,7 +2,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { useNotesStore } from "./useNotesStore";
-import type { NotesQuery } from "@types";
+import type { NotesQuery } from "@/shared/types/note.types";
 
 // ——— Helpers —————————————————————————————————————————————————————————————————————————————————————
 const buildQuery = (render: RenderOption, tags: string[]): NotesQuery => {

@@ -7,8 +7,8 @@ import type {
   UpdateNoteBody,
   NoteModel,
   NotesQuery,
-  RequestFn,
-} from "@types";
+} from "@/shared/types/note.types";
+import type { RequestFn } from "@/shared/types/api.types";
 
 // ——— Notes Requests ——————————————————————————————————————————————————————————————————————————————
 export const getNotesRequest = (query: NotesQuery): RequestFn<NoteModel[]> => {

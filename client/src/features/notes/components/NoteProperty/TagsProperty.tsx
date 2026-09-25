@@ -3,7 +3,7 @@ import { useEditorStore } from "@/shared/stores";
 
 import { LabelWithIcon } from "@/shared/components";
 
-import type { InputChangeEvent } from "@types";
+import type { InputChangeEvent } from "@/shared/types/react.types";
 
 // ——— Component ———————————————————————————————————————————————————————————————————————————————————
 export const TagsProperty = () => {
@@ -15,7 +15,11 @@ export const TagsProperty = () => {
 
   return (
     <div className="note__tags">
-      <LabelWithIcon className="note__tags-label" icon="icon-tag" label="tags" />
+      <LabelWithIcon
+        className="note__tags-label"
+        icon="icon-tag"
+        label="tags"
+      />
 
       <div className="note__tags-value">
         <input

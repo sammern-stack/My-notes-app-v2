@@ -1,7 +1,7 @@
 // ——— Imports —————————————————————————————————————————————————————————————————————————————————————
 import { useEditorStore } from "@/shared/stores";
 
-import type { InputChangeEvent } from "@types";
+import type { InputChangeEvent } from "@/shared/types/react.types";
 
 // ——— Custom Hook —————————————————————————————————————————————————————————————————————————————————
 export const useOpenNote = () => {
