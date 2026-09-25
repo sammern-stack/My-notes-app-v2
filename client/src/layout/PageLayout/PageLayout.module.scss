@@ -1,0 +1,26 @@
+.layout {
+  flex: 1;
+  display: grid;
+  grid-template-areas:
+  "aside header"
+  "aside main";
+  grid-template-columns: 272px 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 0;
+
+  &__header {
+    grid-area: header;
+  }
+
+  &__aside {
+    grid-area: aside;
+    @include scrollable;
+    border-right: 1px solid var(--primary-stroke);
+  }
+
+  &__main {
+    grid-area: main;
+    @include scrollable;
+    display: flex;
+  }
+}

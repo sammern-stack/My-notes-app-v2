@@ -1,13 +1,13 @@
-import { PageContent, OpenNote, NotesList, Sidebar } from "@/layout";
+import { OpenNote, NotesList, PageLayout, ActiveNoteActions } from "@/layout";
+import { Dialog } from "@/shared/components";
 
 const Home = () => (
-  <PageContent className="home">
+  <PageLayout>
     <NotesList />
-
     <OpenNote />
-
-    <Sidebar position="right" />
-  </PageContent>
+    <ActiveNoteActions />
+    <Dialog />
+  </PageLayout>
 );
 
 export default Home;
