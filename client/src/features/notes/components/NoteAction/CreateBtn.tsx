@@ -1,5 +1,5 @@
 import { useEditorStore } from "@/shared/stores";
-import styles from "@/layout/NotesList/NotesList.module.scss";
+import styles from "@/layout/Sidebar/Sidebar.module.scss";
 
 export const CreateBtn = () => {
   const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
