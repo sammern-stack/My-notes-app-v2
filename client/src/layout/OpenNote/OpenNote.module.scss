@@ -18,6 +18,33 @@
     @include flex-gap(8px, column);
   }
 
+  &__property {
+    @include flex-gap(8px);
+    @include font-size(5);
+    align-items: center;
+    color: var(--secondary-color);
+  }
+
+  &__propertyLabel {
+    width: 115px;
+    @include flex-gap(6px);
+    align-items: center;
+    padding: 4px 0;
+  }
+
+  &__propertyValue {
+    width: fit-content;
+    color: var(--subtle-text-color);
+
+    flex: 1;
+
+    & > input {
+      @include input-styles($position: note);
+      color: inherit;
+      background: transparent;
+    }
+  }
+
   &__divider {
     @include divider-styles;
   }
