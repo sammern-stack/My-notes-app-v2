@@ -9,14 +9,6 @@ export const useStartApp = () => {
 
   useEffect(() => {
     if (!note) return;
-
-    setActiveNote({
-      title: note.title,
-      tags: note.tags.join(", "),
-      content: note.content,
-      isArchived: note.isArchived,
-      updatedAt: note.updatedAt,
-      createdAt: note.createdAt,
-    });
+    setActiveNote({ ...note, tags: note.tags.join(", ") });
   }, [note, setActiveNote]);
 };

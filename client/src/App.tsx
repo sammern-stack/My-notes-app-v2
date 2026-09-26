@@ -2,10 +2,11 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useStartApp } from "@/shared/hooks";
 import { useTheme, useFont } from "@/features/settings";
-import { AppLoader, Dialog } from "@/shared/components";
+import { Dialog } from "@/shared/components";
 
 const Home = lazy(() => import("@/pages/Home/Home"));
 const Settings = lazy(() => import("@/pages/Settings/Settings"));
+const Loading = lazy(() => import("@/pages/Loading/Loading"));
 
 function App() {
   useStartApp();
@@ -13,7 +14,7 @@ function App() {
   useFont();
 
   return (
-    <Suspense fallback={<AppLoader />}>
+    <Suspense fallback={<Loading />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/settings" element={<Settings />} />
