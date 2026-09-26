@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useEditorStore } from "@/shared/stores";
+import { useEditorStore } from "@/features/notes";
 import { useGetNote } from "@/features/notes";
 
 export const useStartApp = () => {

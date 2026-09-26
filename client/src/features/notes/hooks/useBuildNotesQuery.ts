@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useFiltersStore } from "@/shared/stores";
+import { useFiltersStore } from "@/features/filters";
 import type { NotesQuery } from "@/shared/types";
 
 export const useBuildNotesQuery = (): NotesQuery => {

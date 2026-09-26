@@ -12,7 +12,8 @@ import {
 import { useEmptyText, useHelperText } from "@/features/filters";
 import { PageLayout } from "@/layout";
 import { Button, Dialog } from "@/shared/components";
-import { useDialogStore, useEditorStore } from "@/shared/stores";
+import { useEditorStore } from "@/features/notes";
+import { useDialogStore } from "@/shared/stores";
 
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 import RestoreIcon from "@/assets/images/icon-restore.svg?react";

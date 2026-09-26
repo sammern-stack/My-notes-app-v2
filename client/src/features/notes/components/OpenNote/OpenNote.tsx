@@ -1,5 +1,5 @@
 import styles from "./OpenNote.module.scss";
-import { useEditorStore } from "@/shared/stores";
+import { useEditorStore } from "@/features/notes";
 import {
   useCreateNote,
   useGetNote,

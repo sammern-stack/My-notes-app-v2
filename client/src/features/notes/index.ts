@@ -15,6 +15,7 @@ export {
 export { useBuildNotesQuery } from "./hooks/useBuildNotesQuery";
 export { useStartCreateNote } from "./hooks/useStartCreateNote";
 export { useSelectFirstNote } from "./hooks/useSelectFirstNote";
+export { useEditorStore } from "./stores/editorStore";
 
 // Utils
 export { getSortedTags } from "./utils/getSortedTags";

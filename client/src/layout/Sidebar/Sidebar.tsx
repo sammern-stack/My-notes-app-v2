@@ -1,10 +1,9 @@
 import styles from "./Sidebar.module.scss";
 import { Link, useLocation } from "react-router-dom";
 import { getSortedTags, useGetNotes } from "@/features/notes";
-import { useFiltersStore } from "@/shared/stores";
+import { useFiltersStore, type RenderOption } from "@/features/filters";
 import { Button } from "@/shared/components";
 import { capitalizeStr } from "@/shared/utils";
-import type { RenderOption } from "@/shared/stores/useFiltersStore";
 
 import LogoIcon from "@/assets/images/logo.svg?react";
 import TagIcon from "@/assets/images/icon-tag.svg?react";

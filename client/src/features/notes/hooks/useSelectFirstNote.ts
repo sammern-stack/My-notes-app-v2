@@ -1,6 +1,6 @@
 import { useGetNotes } from "./useNotes";
 import { useBuildNotesQuery } from "./useBuildNotesQuery";
-import { useEditorStore } from "@/shared/stores";
+import { useEditorStore } from "@/features/notes";
 import { useEffect } from "react";
 
 export const useSelectFirstNote = () => {

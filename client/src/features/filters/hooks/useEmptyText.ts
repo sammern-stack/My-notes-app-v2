@@ -1,4 +1,4 @@
-import { useFiltersStore } from "@/shared/stores";
+import { useFiltersStore } from "@/features/filters";
 import { useMemo } from "react";
 
 export const useEmptyText = (notesCount: number) => {

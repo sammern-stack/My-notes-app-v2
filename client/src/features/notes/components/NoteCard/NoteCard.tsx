@@ -1,4 +1,4 @@
-import { useEditorStore } from "@/shared/stores";
+import { useEditorStore } from "@/features/notes";
 import { formatDate } from "@/shared/utils";
 import type { NoteModel } from "@/shared/types/note.types";
 import styles from "./NoteCard.module.scss";

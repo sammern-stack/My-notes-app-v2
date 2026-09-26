@@ -22,7 +22,6 @@ type EditorNote = {
 };
 
 interface EditorStore {
-  // States
   editorState: EditorState;
   setEditorState: (state: EditorState) => void;
 

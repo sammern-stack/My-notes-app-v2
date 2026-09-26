@@ -1,5 +1,6 @@
 import styles from "./Dialog.module.scss";
-import { useDialogStore, useEditorStore } from "@/shared/stores";
+import { useDialogStore } from "@/shared/stores";
+import { useEditorStore } from "@/features/notes";
 import { useDeleteNote, useToggleIsArchived } from "@/features/notes";
 
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";

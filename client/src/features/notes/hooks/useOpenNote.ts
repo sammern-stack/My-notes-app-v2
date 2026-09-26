@@ -1,4 +1,4 @@
-import { useEditorStore } from "@/shared/stores";
+import { useEditorStore } from "@/features/notes";
 
 import type { InputChangeEvent } from "@/shared/types/react.types";
 
