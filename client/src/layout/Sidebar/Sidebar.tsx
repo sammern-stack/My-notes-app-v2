@@ -17,7 +17,7 @@ export const Sidebar = () => {
   const location = useLocation();
   const IsSettingsPage = location.pathname === "/settings";
   const { data: notes = [] } = useGetNotes();
-  const { addTagFilter, removeTagFilter } = useFiltersStore.getState();
+  const { toggleFilter } = useFiltersStore.getState();
   const tags = [...new Set(notes.flatMap((note) => note.tags))].sort((a, b) =>
     a.localeCompare(b),
   );
@@ -66,11 +66,8 @@ export const Sidebar = () => {
               isActive && styles["sidebar__tag--active"],
             ].join(" ");
 
-            const handleToggleTag = () => {
-              if (IsSettingsPage) return;
-              if (tagFilters.includes(tag)) return removeTagFilter(tag);
-              return addTagFilter(tag);
-            };
+            const handleToggleTag = () =>
+              IsSettingsPage ? null : toggleFilter(tag);
 
             return (
               <button className={tagClasses} onClick={handleToggleTag}>

@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-
 export type RenderOption = "all" | "archived";
 
 interface FiltersStore {
@@ -9,8 +8,7 @@ interface FiltersStore {
   setRenderOption: (option: RenderOption) => void;
 
   tagFilters: string[];
-  addTagFilter: (tag: string) => void;
-  removeTagFilter: (tag: string) => void;
+  toggleFilter: (tag: string) => void;
   clearTagFilters: () => void;
 }
 
@@ -23,18 +21,14 @@ export const useFiltersStore = create<FiltersStore>()(
       },
 
       tagFilters: [],
-
-      addTagFilter: (tag) => {
-        set((s) => ({ tagFilters: [...s.tagFilters, tag] }));
+      toggleFilter: (tag) => {
+        set((s) => ({
+          tagFilters: s.tagFilters.includes(tag)
+            ? s.tagFilters.filter((t) => t !== tag)
+            : [...s.tagFilters, tag],
+        }));
       },
-
-      removeTagFilter: (tag) => {
-        set((s) => ({ tagFilters: s.tagFilters.filter((t) => t !== tag) }));
-      },
-
-      clearTagFilters: () => {
-        set({ tagFilters: [] });
-      },
+      clearTagFilters: () => set({ tagFilters: [] }),
     }),
     {
       name: "filters",
