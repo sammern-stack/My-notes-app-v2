@@ -8,17 +8,12 @@ import {
 } from "@/features/notes";
 import { formatDate } from "@/shared/utils";
 import { NoteEditor } from "@/features/notes";
+import { normalizeTags } from "@/features/notes";
 
 import TagIcon from "@/assets/images/icon-tag.svg?react";
 import StatusIcon from "@/assets/images/icon-status.svg?react";
 import ClockIcon from "@/assets/images/icon-clock.svg?react";
 import { Button } from "@/shared/components";
-
-const normalizeTags = (tags: string) =>
-  tags
-    .split(",")
-    .map((tag) => tag.trim())
-    .filter(Boolean);
 
 export const OpenNote = () => {
   const note = useEditorStore((s) => s.activeNote);

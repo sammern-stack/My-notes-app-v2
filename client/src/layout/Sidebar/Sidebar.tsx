@@ -1,6 +1,6 @@
 import styles from "./Sidebar.module.scss";
 import { Link, useLocation } from "react-router-dom";
-import { useGetNotes } from "@/features/notes";
+import { getSortedTags, useGetNotes } from "@/features/notes";
 import { useFiltersStore } from "@/shared/stores";
 
 import LogoIcon from "@/assets/images/logo.svg?react";
@@ -18,9 +18,7 @@ export const Sidebar = () => {
   const IsSettingsPage = location.pathname === "/settings";
   const { data: notes = [] } = useGetNotes();
   const { toggleFilter } = useFiltersStore.getState();
-  const tags = [...new Set(notes.flatMap((note) => note.tags))].sort((a, b) =>
-    a.localeCompare(b),
-  );
+  const tags = getSortedTags(notes);
   const tagFilters = useFiltersStore((s) => s.tagFilters);
   const renderOption = useFiltersStore((s) => s.renderOption);
   const setRenderOption = useFiltersStore((s) => s.setRenderOption);
