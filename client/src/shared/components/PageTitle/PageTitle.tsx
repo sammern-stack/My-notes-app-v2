@@ -1,10 +1,10 @@
-import { useLocation } from "react-router-dom";
-import { useFiltersStore } from "@/shared/stores";
 import styles from "./PageTitle.module.scss";
+import { useLocation } from "react-router-dom";
+import { useBuildPageTitle } from "@/shared/hooks";
 
 export const PageTitle = () => {
   const location = useLocation();
-  const pageTitle = useFiltersStore((s) => s.generatePageTitle());
+  const pageTitle = useBuildPageTitle();
 
   if (location.pathname === "/settings")
     return <h1 className={styles["page__title"]}>Settings</h1>;

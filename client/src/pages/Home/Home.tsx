@@ -1,12 +1,9 @@
 import styles from "./Home.module.scss";
 import { NoteCard, useBuildNotesQuery, useGetNotes } from "@/features/notes";
+import { useEmptyText, useHelperText } from "@/features/filters";
 import { OpenNote, PageLayout } from "@/layout";
 import { Button, Dialog } from "@/shared/components";
-import {
-  useDialogStore,
-  useEditorStore,
-  useFiltersStore,
-} from "@/shared/stores";
+import { useDialogStore, useEditorStore } from "@/shared/stores";
 
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 import RestoreIcon from "@/assets/images/icon-restore.svg?react";
@@ -15,11 +12,9 @@ import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 const Home = () => {
   const notesQuery = useBuildNotesQuery();
   const { data: notes = [] } = useGetNotes(notesQuery);
+  const emptyText = useEmptyText(notes.length);
+  const helperText = useHelperText();
   const editorState = useEditorStore((s) => s.editorState);
-  const helperText = useFiltersStore((s) => s.generateHelperText());
-  const emptyStateText = useFiltersStore((s) =>
-    s.generateEmptyStateText(notes.length),
-  );
   const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
   const { openDialog } = useDialogStore.getState();
   const { isArchived } = useEditorStore((s) => s.activeNote);
@@ -41,10 +36,10 @@ const Home = () => {
             <div className={styles.notesList__helperText}>{helperText}</div>
           )}
 
-          {emptyStateText && (
+          {emptyText && (
             <div className={styles.notesList__empty}>
-              {emptyStateText}{" "}
-              {emptyStateText.endsWith(", or") && (
+              {emptyText}{" "}
+              {emptyText.endsWith(", or") && (
                 <span onClick={handleCreateNote}>create new note</span>
               )}
             </div>

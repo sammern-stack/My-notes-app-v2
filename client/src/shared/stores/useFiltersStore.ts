@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+
 export type RenderOption = "all" | "archived";
 
 interface FiltersStore {
@@ -11,16 +12,11 @@ interface FiltersStore {
   addTagFilter: (tag: string) => void;
   removeTagFilter: (tag: string) => void;
   clearTagFilters: () => void;
-
-  // Helpers
-  generateHelperText: () => string | null;
-  generateEmptyStateText: (notesCount: number) => string | null;
-  generatePageTitle: () => string;
 }
 
 export const useFiltersStore = create<FiltersStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       renderOption: "all",
       setRenderOption: (option) => {
         set({ renderOption: option });
@@ -38,40 +34,6 @@ export const useFiltersStore = create<FiltersStore>()(
 
       clearTagFilters: () => {
         set({ tagFilters: [] });
-      },
-
-      // Helpers
-      generateHelperText: () => {
-        const { renderOption, tagFilters } = get();
-        if (renderOption === "all" && tagFilters.length === 0) return null;
-
-        const tags = tagFilters.join(", ");
-
-        const doesShownArchived = renderOption === "archived";
-        const hasOneTag = tagFilters.length === 1;
-        const isTagsEmpty = tags.length === 0;
-
-        return `All ${doesShownArchived ? "your archived" : ""} notes ${!isTagsEmpty ? `with the "${tags}" ${hasOneTag ? "tag" : "tags"}` : ""} are ${doesShownArchived ? "stored" : "shown"} here. ${doesShownArchived ? "You can restore them or delete them anytime" : ""}`;
-      },
-
-      generateEmptyStateText: (notesCount) => {
-        if (notesCount !== 0 || get().tagFilters.length !== 0) return null;
-
-        return get().renderOption === "all"
-          ? "You don’t have any notes yet. Start a new note to capture your thoughts and ideas."
-          : "No notes have been archived yet. Move notes here for safekeeping, or";
-      },
-
-      generatePageTitle: () => {
-        const { renderOption, tagFilters } = get();
-
-        if (tagFilters.length === 0) {
-          return renderOption === "all" ? "All Notes" : "Archived Notes";
-        }
-
-        return renderOption === "all"
-          ? `Notes Tagged: ${tagFilters.join(", ")}`
-          : `Archived Notes Tagged: ${tagFilters.join(", ")}`;
       },
     }),
     {
