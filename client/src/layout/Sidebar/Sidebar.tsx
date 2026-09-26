@@ -33,9 +33,9 @@ export const Sidebar = () => {
       <div className={styles.sidebar__filters}>
         <div className={styles.sidebar__renderOptions}>
           {RenderOptions.map((option) => {
-            const isActive = IsSettingsPage ? false : renderOption === option;
+            const isActive = !IsSettingsPage && renderOption === option;
             const handleClick = () =>
-              IsSettingsPage ? null : setRenderOption(option);
+              !IsSettingsPage && setRenderOption(option);
 
             return (
               <Button
@@ -54,9 +54,8 @@ export const Sidebar = () => {
         <div className={styles.sidebar__tagsTitle}>Tags</div>
         <div className={styles.sidebar__tags}>
           {tags.map((tag) => {
-            const isActive = IsSettingsPage ? false : tagFilters.includes(tag);
-            const handleClick = () =>
-              IsSettingsPage ? null : toggleFilter(tag);
+            const isActive = !IsSettingsPage && tagFilters.includes(tag);
+            const handleClick = () => !IsSettingsPage && toggleFilter(tag);
 
             return (
               <Button
