@@ -18,11 +18,10 @@ export const Sidebar = () => {
   const location = useLocation();
   const IsSettingsPage = location.pathname === "/settings";
   const { data: notes = [] } = useGetNotes();
-  const { toggleFilter } = useFiltersStore.getState();
+  const { toggleFilter, setRenderOption } = useFiltersStore.getState();
   const tags = getSortedTags(notes);
   const tagFilters = useFiltersStore((s) => s.tagFilters);
   const renderOption = useFiltersStore((s) => s.renderOption);
-  const setRenderOption = useFiltersStore((s) => s.setRenderOption);
 
   return (
     <div className={styles.sidebar}>
@@ -46,6 +45,7 @@ export const Sidebar = () => {
               >
                 {option === "all" ? <HomeIcon /> : <ArchiveIcon />}
                 <p>{`${capitalizeStr(option)} Notes`}</p>
+                {isActive && <ChevronRightIcon />}
               </Button>
             );
           })}
