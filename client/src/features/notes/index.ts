@@ -11,3 +11,4 @@ export {
   useToggleIsArchived,
   useUpdateNote,
 } from "./hooks/useNotes";
+export { useBuildNotesQuery } from "./hooks/useBuildNotesQuery";

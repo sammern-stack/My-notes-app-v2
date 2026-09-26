@@ -1,10 +1,7 @@
 import styles from "./Dialog.module.scss";
+import { useDialogStore, useEditorStore } from "@/shared/stores";
 import {
-  useDialogStore,
-  useEditorStore,
-  useFiltersStore,
-} from "@/shared/stores";
-import {
+  useBuildNotesQuery,
   useDeleteNote,
   useGetNotes,
   useToggleIsArchived,
@@ -16,14 +13,14 @@ import RestoreIcon from "@/assets/images/icon-restore.svg?react";
 import { DialogConfirm } from "./DialogConfirm";
 
 export const Dialog = () => {
+  const notesQuery = useBuildNotesQuery();
+  const { refetch: refetchNotes } = useGetNotes(notesQuery);
   const dialog = useDialogStore((s) => s.dialog);
   const { closeDialog } = useDialogStore.getState();
 
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const selectFirstNote = useEditorStore((s) => s.selectFirstNote);
   const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
-  const getQuery = useFiltersStore((s) => s.getQuery);
-  const { refetch: refetchNotes } = useGetNotes(getQuery());
   const { mutateAsync: deleteNote } = useDeleteNote();
   const { mutateAsync: toggleIsArchived } = useToggleIsArchived(
     selectedNoteId ?? "",

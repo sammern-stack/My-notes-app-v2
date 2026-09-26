@@ -1,5 +1,5 @@
 import styles from "./Home.module.scss";
-import { NoteCard, useGetNotes } from "@/features/notes";
+import { NoteCard, useBuildNotesQuery, useGetNotes } from "@/features/notes";
 import { OpenNote, PageLayout } from "@/layout";
 import { Button, Dialog } from "@/shared/components";
 import {
@@ -13,8 +13,8 @@ import RestoreIcon from "@/assets/images/icon-restore.svg?react";
 import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 
 const Home = () => {
-  const getQuery = useFiltersStore((s) => s.getQuery);
-  const { data: notes = [] } = useGetNotes(getQuery());
+  const notesQuery = useBuildNotesQuery();
+  const { data: notes = [] } = useGetNotes(notesQuery);
   const editorState = useEditorStore((s) => s.editorState);
   const helperText = useFiltersStore((s) => s.generateHelperText());
   const emptyStateText = useFiltersStore((s) =>

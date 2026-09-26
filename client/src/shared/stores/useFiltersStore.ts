@@ -1,15 +1,5 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { NotesQuery } from "@/shared/types/note.types";
-
-const buildQuery = (render: RenderOption, tags: string[]): NotesQuery => {
-  const query: Record<string, unknown> = {};
-
-  query.tags = tags;
-  if (render === "archived") query.isArchived = true;
-
-  return query;
-};
 
 export type RenderOption = "all" | "archived";
 
@@ -23,7 +13,6 @@ interface FiltersStore {
   clearTagFilters: () => void;
 
   // Helpers
-  getQuery: () => NotesQuery;
   generateHelperText: () => string | null;
   generateEmptyStateText: (notesCount: number) => string | null;
   generatePageTitle: () => string;
@@ -52,11 +41,6 @@ export const useFiltersStore = create<FiltersStore>()(
       },
 
       // Helpers
-      getQuery: () => {
-        const { renderOption, tagFilters } = get();
-        return buildQuery(renderOption, tagFilters);
-      },
-
       generateHelperText: () => {
         const { renderOption, tagFilters } = get();
         if (renderOption === "all" && tagFilters.length === 0) return null;
