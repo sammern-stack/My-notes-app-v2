@@ -19,11 +19,14 @@ import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 
 const Home = () => {
   useSelectFirstNote();
+
   const notesQuery = useBuildNotesQuery();
   const { data: notes = [] } = useGetNotes(notesQuery);
+
   const emptyText = useEmptyText(notes.length);
   const helperText = useHelperText();
   const startCreatingNote = useStartCreateNote();
+
   const editorState = useEditorStore((s) => s.editorState);
   const { openDialog } = useDialogStore.getState();
   const { isArchived } = useEditorStore((s) => s.activeNote);
