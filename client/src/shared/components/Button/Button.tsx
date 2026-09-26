@@ -1,5 +1,7 @@
-import type { ComponentPropsWithoutRef } from "react";
 import styles from "./Button.module.scss";
+import type { ComponentPropsWithoutRef } from "react";
+
+import ChevronRightIcon from "@/assets/images/icon-chevron-right.svg?react";
 
 type ButtonVariant =
   | "primary"
@@ -31,6 +33,7 @@ export const Button = ({
   return (
     <button className={buttonClasses} {...props}>
       {children}
+      {isActive && <ChevronRightIcon />}
     </button>
   );
 };
