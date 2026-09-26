@@ -14,30 +14,30 @@ export const Dialog = () => {
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
   const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
-  const { mutateAsync: deleteNote } = useDeleteNote();
-  const { mutateAsync: toggleIsArchived } = useToggleIsArchived(
+  const { mutate: deleteNote } = useDeleteNote();
+  const { mutate: toggleIsArchived } = useToggleIsArchived(
     selectedNoteId ?? "",
   );
 
   if (!dialog) return null;
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (!selectedNoteId) return;
-    await deleteNote(selectedNoteId);
+    deleteNote(selectedNoteId);
     setSelectedNoteId(null);
     closeDialog();
   };
 
-  const handleArchive = async () => {
+  const handleArchive = () => {
     if (!selectedNoteId) return;
-    await toggleIsArchived();
+    toggleIsArchived();
     closeDialog();
     setActiveNoteField("isArchived", true);
   };
 
-  const handleRestore = async () => {
+  const handleRestore = () => {
     if (!selectedNoteId) return;
-    await toggleIsArchived();
+    toggleIsArchived();
     closeDialog();
     setActiveNoteField("isArchived", false);
   };

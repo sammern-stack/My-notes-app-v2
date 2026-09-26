@@ -56,7 +56,7 @@ export const useToggleIsArchived = (noteId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async () => (await notesApi.toggleIsArchivedReq(noteId)).data,
+    mutationFn: () => notesApi.toggleIsArchivedReq(noteId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
       queryClient.invalidateQueries({ queryKey: ["note", noteId] });
@@ -68,8 +68,7 @@ export const useDeleteNote = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (noteId: string) =>
-      (await notesApi.deleteNoteReq(noteId)).data,
+    mutationFn: (noteId: string) => notesApi.deleteNoteReq(noteId),
     onSuccess: (_, noteId) => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
       queryClient.removeQueries({ queryKey: ["note", noteId] });
