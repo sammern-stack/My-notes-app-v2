@@ -1,4 +1,13 @@
 .page {
+  &__title {
+    @include font-size(1);
+    color: var(--primary-color);
+
+    & > span:first-child {
+      color: var(--title-color);
+    }
+  }
+
   &__header {
     height: 81px;
     display: flex;
