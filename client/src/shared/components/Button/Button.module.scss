@@ -31,4 +31,36 @@
     background: var(--red-500);
     color: var(--primary-background);
   }
+
+  &--selectable {
+    width: 100%;
+    @include flex-gap(24px);
+    padding: 10px 12px;
+    margin: 6px 0;
+    border-radius: 8px;
+    color: var(--secondary-color);
+
+    &:hover {
+      background: var(--secondary-background);
+
+      & > svg {
+        color: var(--blue-700);
+      }
+    }
+
+    p {
+      flex: 1;
+      text-align: left;
+    }
+  }
+
+  &--active {
+    background: var(--secondary-background);
+    color: var(--primary-color);
+    @include borderWithBefore(var(--primary-stroke));
+
+    & > svg {
+      color: var(--blue-700);
+    }
+  }
 }

@@ -10,6 +10,7 @@ import HomeIcon from "@/assets/images/icon-home.svg?react";
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 import { capitalizeStr } from "@/shared/utils";
 import type { RenderOption } from "@/shared/stores/useFiltersStore";
+import { Button } from "@/shared/components";
 
 const RenderOptions: RenderOption[] = ["all", "archived"];
 
@@ -34,22 +35,18 @@ export const Sidebar = () => {
         <div className={styles.sidebar__renderOptions}>
           {RenderOptions.map((option) => {
             const isActive = IsSettingsPage ? false : renderOption === option;
-
-            const buttonClasses = [
-              styles.sidebar__renderOption,
-              isActive && styles["sidebar__renderOption--active"],
-            ].join(" ");
-
-            const handleClick = () => {
-              if (IsSettingsPage) return;
-              setRenderOption(option);
-            };
+            const handleClick = () =>
+              IsSettingsPage ? null : setRenderOption(option);
 
             return (
-              <button className={buttonClasses} onClick={handleClick}>
+              <Button
+                variant="selectable"
+                isActive={isActive}
+                onClick={handleClick}
+              >
                 {option === "all" ? <HomeIcon /> : <ArchiveIcon />}
                 <p>{`${capitalizeStr(option)} Notes`}</p>
-              </button>
+              </Button>
             );
           })}
         </div>
@@ -58,20 +55,18 @@ export const Sidebar = () => {
         <div className={styles.sidebar__tags}>
           {tags.map((tag) => {
             const isActive = IsSettingsPage ? false : tagFilters.includes(tag);
-
-            const tagClasses = [
-              styles.sidebar__tag,
-              isActive && styles["sidebar__tag--active"],
-            ].join(" ");
-
-            const handleToggleTag = () =>
+            const handleClick = () =>
               IsSettingsPage ? null : toggleFilter(tag);
 
             return (
-              <button className={tagClasses} onClick={handleToggleTag}>
+              <Button
+                variant="selectable"
+                isActive={isActive}
+                onClick={handleClick}
+              >
                 <TagIcon /> <p>{tag}</p>
                 {isActive && <ChevronRightIcon />}
-              </button>
+              </Button>
             );
           })}
         </div>

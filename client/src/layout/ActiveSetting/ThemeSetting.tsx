@@ -1,12 +1,13 @@
-import { useConfigStore } from "@/shared/stores";
+import styles from "./ActiveSetting.module.scss";
+import { useThemeStore } from "@/features/settings";
+
 import SunIcon from "@/assets/images/icon-sun.svg?react";
 import MoonIcon from "@/assets/images/icon-moon.svg?react";
 import SystemThemeIcon from "@/assets/images/icon-system-theme.svg?react";
-import styles from "./ActiveSetting.module.scss";
 
 export const ThemeSetting = () => {
-  const theme = useConfigStore((s) => s.theme);
-  const setTheme = useConfigStore((s) => s.setTheme);
+  const theme = useThemeStore((s) => s.theme);
+  const setTheme = useThemeStore((s) => s.setTheme);
 
   return (
     <div

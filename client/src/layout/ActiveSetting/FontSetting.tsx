@@ -1,12 +1,12 @@
-import { useConfigStore } from "@/shared/stores";
 import SansSerifIcon from "@/assets/images/icon-font-sans-serif.svg?react";
 import SerifIcon from "@/assets/images/icon-font-serif.svg?react";
 import MonospaceIcon from "@/assets/images/icon-font-monospace.svg?react";
 import styles from "./ActiveSetting.module.scss";
+import { useFontStore } from "@/features/settings/stores/fontStore";
 
 export const FontSetting = () => {
-  const font = useConfigStore((s) => s.font);
-  const setFont = useConfigStore((s) => s.setFont);
+  const font = useFontStore((s) => s.font);
+  const setFont = useFontStore((s) => s.setFont);
 
   return (
     <div
