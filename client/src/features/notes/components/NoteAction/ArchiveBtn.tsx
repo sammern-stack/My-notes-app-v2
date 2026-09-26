@@ -1,13 +1,13 @@
+import styles from "./NoteAction.module.scss";
 import { useDialogStore, useEditorStore } from "@/shared/stores";
 import { LabelWithIcon } from "@/shared/components";
+
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 import RestoreIcon from "@/assets/images/icon-restore.svg?react";
-import styles from "./NoteAction.module.scss";
 
 export const ArchiveBtn = () => {
+  const { openDialog } = useDialogStore.getState();
   const { isArchived } = useEditorStore((s) => s.activeNote);
-  const setDialogIsOpen = useDialogStore((s) => s.setDialogIsOpen);
-  const setDialogPurpose = useDialogStore((s) => s.setDialogPurpose);
 
   return (
     <LabelWithIcon
@@ -15,10 +15,7 @@ export const ArchiveBtn = () => {
       className={`${styles["note__action"]} ${styles["note__action--archive"]}`}
       icon={isArchived ? RestoreIcon : ArchiveIcon}
       label={isArchived ? "Restore Note" : "Archive Note"}
-      onClick={() => {
-        setDialogPurpose(isArchived ? "restore" : "archive");
-        setDialogIsOpen(true);
-      }}
+      onClick={() => openDialog(isArchived ? "restoreNote" : "archiveNote")}
     />
   );
 };

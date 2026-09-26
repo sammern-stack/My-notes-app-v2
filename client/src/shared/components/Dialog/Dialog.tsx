@@ -1,23 +1,24 @@
+import styles from "./Dialog.module.scss";
 import {
   useDialogStore,
   useEditorStore,
   useFiltersStore,
 } from "@/shared/stores";
-import { capitalizeStr } from "@/shared/utils";
 import {
   useDeleteNote,
   useGetNotes,
   useToggleIsArchived,
 } from "@/features/notes";
+
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 import RestoreIcon from "@/assets/images/icon-restore.svg?react";
-import styles from "./Dialog.module.scss";
+import { DialogConfirm } from "./DialogConfirm";
 
 export const Dialog = () => {
-  const dialogIsOpen = useDialogStore((s) => s.dialogIsOpen);
-  const setDialogIsOpen = useDialogStore((s) => s.setDialogIsOpen);
-  const dialogPurpose = useDialogStore((s) => s.dialogPurpose);
+  const dialog = useDialogStore((s) => s.dialog);
+  const { closeDialog } = useDialogStore.getState();
+
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const selectFirstNote = useEditorStore((s) => s.selectFirstNote);
   const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
@@ -28,91 +29,62 @@ export const Dialog = () => {
     selectedNoteId ?? "",
   );
 
-  if (!dialogIsOpen || !dialogPurpose) return null;
+  if (!dialog) return null;
 
-  const dialogContent = {
-    delete: {
-      icon: DeleteIcon,
-      title: "Delete Note",
-      content:
-        "Are you sure you want to permanently delete this note? This action cannot be undone.",
-      onClick: async () => {
-        if (!selectedNoteId) return;
-        await deleteNote(selectedNoteId);
-        const { data: notes = [] } = await refetchNotes();
-        selectFirstNote(notes);
-        setDialogIsOpen(false);
-      },
-    },
+  const handleDelete = async () => {
+    if (!selectedNoteId) return;
+    await deleteNote(selectedNoteId);
+    const { data: notes = [] } = await refetchNotes();
+    selectFirstNote(notes);
+    closeDialog();
+  };
 
-    archive: {
-      icon: ArchiveIcon,
-      title: "Archive Note",
-      content:
-        "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
-      onClick: async () => {
-        if (!selectedNoteId) return;
-        await toggleIsArchived();
-        setDialogIsOpen(false);
-        setActiveNoteField("isArchived", true);
-      },
-    },
+  const handleArchive = async () => {
+    if (!selectedNoteId) return;
+    await toggleIsArchived();
+    closeDialog();
+    setActiveNoteField("isArchived", true);
+  };
 
-    restore: {
-      icon: RestoreIcon,
-      title: "Restore Note",
-      content: "Are you sure you want to restore this note?",
-      onClick: async () => {
-        if (!selectedNoteId) return;
-        await toggleIsArchived();
-        setDialogIsOpen(false);
-        setActiveNoteField("isArchived", false);
-      },
-    },
-  }[dialogPurpose];
-  const DialogIcon = dialogContent.icon;
-
-  const handleCancel = () => setDialogIsOpen(false);
+  const handleRestore = async () => {
+    if (!selectedNoteId) return;
+    await toggleIsArchived();
+    closeDialog();
+    setActiveNoteField("isArchived", false);
+  };
 
   return (
     <>
-      <div className={styles["page__dialog"]}>
-        <div className={styles["page__dialog-content"]}>
-          <div className={styles["page__dialog-icon"]}>
-            <DialogIcon />
-          </div>
-
-          <div className={styles["page__dialog-body"]}>
-            <div className={styles["page__dialog-title"]}>
-              {dialogContent.title}
-            </div>
-
-            <div className={styles["page__dialog-description"]}>
-              {dialogContent.content}
-            </div>
-          </div>
-        </div>
-
-        <div className={styles["page__dialog-divider"]}></div>
-
-        <div className={styles["page__dialog-btns"]}>
-          <button
-            className={`${styles["page__dialog-btn"]} ${styles["page__dialog-btn--cancel"]}`}
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
-
-          <button
-            className={`${styles["page__dialog-btn"]} ${styles[`page__dialog-btn--${dialogPurpose}`]}`}
-            onClick={dialogContent.onClick}
-          >
-            {capitalizeStr(dialogPurpose)}
-          </button>
-        </div>
-      </div>
-
-      <div className={styles["page__dialog-backdrop"]}></div>
+      {dialog.type === "deleteNote" && (
+        <DialogConfirm
+          icon={DeleteIcon}
+          title="Delete Note"
+          action={handleDelete}
+        >
+          Are you sure you want to permanently delete this note? This action
+          cannot be undone.
+        </DialogConfirm>
+      )}
+      {dialog.type === "archiveNote" && (
+        <DialogConfirm
+          icon={ArchiveIcon}
+          title="Archive Note"
+          action={handleArchive}
+        >
+          Are you sure you want to archive this note? You can find it in the
+          Archived Notes section and restore it anytime.
+        </DialogConfirm>
+      )}
+      {dialog.type === "restoreNote" && (
+        <DialogConfirm
+          icon={RestoreIcon}
+          title="Restore Note"
+          action={handleRestore}
+        >
+          Are you sure you want to restore this note?
+        </DialogConfirm>
+      )}
+      <div className={styles.dialog__backdrop}></div>
     </>
   );
 };

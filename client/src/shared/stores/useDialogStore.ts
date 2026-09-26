@@ -1,19 +1,21 @@
 import { create } from "zustand";
 
-type Purpose = "delete" | "archive" | "restore" | null;
+type DialogType = "deleteNote" | "archiveNote" | "restoreNote";
+type DialogPayload = Record<string, unknown>;
+
+type Dialog = {
+  type: DialogType;
+  payload: DialogPayload;
+} | null;
 
 interface DialogStore {
-  dialogIsOpen: boolean;
-  setDialogIsOpen: (state: boolean) => void;
-
-  dialogPurpose: Purpose;
-  setDialogPurpose: (purpose: Purpose) => void;
+  dialog: Dialog;
+  openDialog: (type: DialogType, payload?: DialogPayload) => void;
+  closeDialog: () => void;
 }
 
 export const useDialogStore = create<DialogStore>((set) => ({
-  dialogIsOpen: false,
-  setDialogIsOpen: (state) => set({ dialogIsOpen: state }),
-
-  dialogPurpose: null,
-  setDialogPurpose: (purpose) => set({ dialogPurpose: purpose }),
+  dialog: null,
+  openDialog: (type, payload = {}) => set({ dialog: { type, payload } }),
+  closeDialog: () => set({ dialog: null }),
 }));
