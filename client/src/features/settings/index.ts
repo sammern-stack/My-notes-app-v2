@@ -1,3 +1,7 @@
+// Views
+export { SettingsViewTheme } from "./views/SettingsViewTheme";
+export { SettingsViewFont } from "./views/SettingsViewFont";
+
 // Stores
 export { useThemeStore } from "./stores/themeStore";
 export { useFontStore } from "./stores/fontStore";

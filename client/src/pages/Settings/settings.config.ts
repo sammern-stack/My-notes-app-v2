@@ -1,9 +1,9 @@
+import { SettingsViewTheme, SettingsViewFont } from "@/features/settings";
 import type { ComponentType, SVGProps } from "react";
-import SunIcon from "@/assets/images/icon-sun.svg?react";
-import FontIcon from "@/assets/images/icon-font.svg?react";
 import type { ActiveSetting } from "./Settings";
-import { FontSetting } from "@/layout/ActiveSetting/FontSetting";
-import { ThemeSetting } from "@/layout/ActiveSetting/ThemeSetting";
+
+import FontIcon from "@/assets/images/icon-font.svg?react";
+import SunIcon from "@/assets/images/icon-sun.svg?react";
 
 export interface Setting {
   tab: ActiveSetting;
@@ -17,12 +17,12 @@ export const settingsConfig: Setting[] = [
     tab: "theme",
     label: "Color Theme",
     icon: SunIcon,
-    view: ThemeSetting,
+    view: SettingsViewTheme,
   },
   {
     tab: "font",
     label: "Font Theme",
     icon: FontIcon,
-    view: FontSetting,
+    view: SettingsViewFont,
   },
 ];

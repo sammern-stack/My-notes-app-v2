@@ -1,11 +1,11 @@
-import styles from "./ActiveSetting.module.scss";
+import styles from "./SettingsView.module.scss";
 import { useThemeStore } from "@/features/settings";
 
 import SunIcon from "@/assets/images/icon-sun.svg?react";
 import MoonIcon from "@/assets/images/icon-moon.svg?react";
 import SystemThemeIcon from "@/assets/images/icon-system-theme.svg?react";
 
-export const ThemeSetting = () => {
+export const SettingsViewTheme = () => {
   const theme = useThemeStore((s) => s.theme);
   const setTheme = useThemeStore((s) => s.setTheme);
 

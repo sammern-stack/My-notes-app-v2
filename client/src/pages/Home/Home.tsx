@@ -2,6 +2,7 @@ import styles from "./Home.module.scss";
 
 import {
   NoteCard,
+  OpenNote,
   useBuildNotesQuery,
   useGetNotes,
   useStartCreateNote,
@@ -9,7 +10,7 @@ import {
 } from "@/features/notes";
 
 import { useEmptyText, useHelperText } from "@/features/filters";
-import { OpenNote, PageLayout } from "@/layout";
+import { PageLayout } from "@/layout";
 import { Button, Dialog } from "@/shared/components";
 import { useDialogStore, useEditorStore } from "@/shared/stores";
 
