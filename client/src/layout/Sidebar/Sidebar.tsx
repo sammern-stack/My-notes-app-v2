@@ -34,14 +34,11 @@ export const Sidebar = () => {
         <div className={styles.sidebar__renderOptions}>
           {RenderOptions.map((option) => {
             const isActive = !IsSettingsPage && renderOption === option;
-            const handleClick = () =>
-              !IsSettingsPage && setRenderOption(option);
-
             return (
               <Button
                 variant="selectable"
                 isActive={isActive}
-                onClick={handleClick}
+                onClick={() => !IsSettingsPage && setRenderOption(option)}
               >
                 {option === "all" ? <HomeIcon /> : <ArchiveIcon />}
                 <p>{`${capitalizeStr(option)} Notes`}</p>
@@ -55,13 +52,11 @@ export const Sidebar = () => {
         <div className={styles.sidebar__tags}>
           {tags.map((tag) => {
             const isActive = !IsSettingsPage && tagFilters.includes(tag);
-            const handleClick = () => !IsSettingsPage && toggleFilter(tag);
-
             return (
               <Button
                 variant="selectable"
                 isActive={isActive}
-                onClick={handleClick}
+                onClick={() => !IsSettingsPage && toggleFilter(tag)}
               >
                 <TagIcon /> <p>{tag}</p>
                 {isActive && <ChevronRightIcon />}
