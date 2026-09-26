@@ -96,4 +96,10 @@
   border-left: 1px solid var(--primary-stroke);
   @include flex-gap(12px, column);
   padding: 20px 16px;
+
+  &__action {
+    span {
+      flex: 1;
+    }
+  }
 }

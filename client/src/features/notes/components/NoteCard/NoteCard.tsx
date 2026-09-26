@@ -7,8 +7,9 @@ interface NoteCardProps {
   note: NoteModel;
 }
 
-export const NoteCard = ({ note }: NoteCardProps) => {
-  const { _id, title, tags, createdAt } = note;
+export const NoteCard = ({
+  note: { _id, title, tags, createdAt },
+}: NoteCardProps) => {
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
 

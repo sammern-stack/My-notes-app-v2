@@ -1,8 +1,16 @@
 import styles from "./Home.module.scss";
-import { NoteAction, NoteCard, useGetNotes } from "@/features/notes";
+import { NoteCard, useGetNotes } from "@/features/notes";
 import { OpenNote, PageLayout } from "@/layout";
-import { Dialog } from "@/shared/components";
-import { useEditorStore, useFiltersStore } from "@/shared/stores";
+import { Button, Dialog } from "@/shared/components";
+import {
+  useDialogStore,
+  useEditorStore,
+  useFiltersStore,
+} from "@/shared/stores";
+
+import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
+import RestoreIcon from "@/assets/images/icon-restore.svg?react";
+import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 
 const Home = () => {
   const getQuery = useFiltersStore((s) => s.getQuery);
@@ -13,14 +21,21 @@ const Home = () => {
     s.generateEmptyStateText(notes.length),
   );
   const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
+  const { openDialog } = useDialogStore.getState();
+  const { isArchived } = useEditorStore((s) => s.activeNote);
 
   const handleCreateNote = () => startCreatingNote();
+
+  const handleArchive = () => {
+    openDialog(isArchived ? "restoreNote" : "archiveNote");
+  };
+
+  const handleDelete = () => openDialog("deleteNote");
 
   return (
     <PageLayout>
       <div className={styles.notesList}>
-        <NoteAction action="create" />
-
+        <Button onClick={handleCreateNote}>+ Create New Note</Button>
         <div className={styles.notesList__content}>
           {helperText && (
             <div className={styles.notesList__helperText}>{helperText}</div>
@@ -46,8 +61,22 @@ const Home = () => {
       </div>
       <OpenNote />
       <div className={styles.actions}>
-        <NoteAction action="archive" />
-        <NoteAction action="delete" />
+        <Button
+          variant="border"
+          onClick={handleArchive}
+          className={styles.actions__action}
+        >
+          {isArchived ? <RestoreIcon /> : <ArchiveIcon />}
+          <span>{isArchived ? "Restore Note" : "Archive Note"}</span>
+        </Button>
+        <Button
+          variant="border"
+          onClick={handleDelete}
+          className={styles.actions__action}
+        >
+          <DeleteIcon />
+          <span>Delete Note</span>
+        </Button>
       </div>
       <Dialog />
     </PageLayout>
