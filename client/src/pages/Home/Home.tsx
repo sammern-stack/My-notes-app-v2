@@ -1,5 +1,13 @@
 import styles from "./Home.module.scss";
-import { NoteCard, useBuildNotesQuery, useGetNotes } from "@/features/notes";
+
+import {
+  NoteCard,
+  useBuildNotesQuery,
+  useGetNotes,
+  useStartCreateNote,
+  useSelectFirstNote,
+} from "@/features/notes";
+
 import { useEmptyText, useHelperText } from "@/features/filters";
 import { OpenNote, PageLayout } from "@/layout";
 import { Button, Dialog } from "@/shared/components";
@@ -10,16 +18,15 @@ import RestoreIcon from "@/assets/images/icon-restore.svg?react";
 import DeleteIcon from "@/assets/images/icon-delete.svg?react";
 
 const Home = () => {
+  useSelectFirstNote();
   const notesQuery = useBuildNotesQuery();
   const { data: notes = [] } = useGetNotes(notesQuery);
   const emptyText = useEmptyText(notes.length);
   const helperText = useHelperText();
+  const startCreatingNote = useStartCreateNote();
   const editorState = useEditorStore((s) => s.editorState);
-  const startCreatingNote = useEditorStore((s) => s.startCreatingNote);
   const { openDialog } = useDialogStore.getState();
   const { isArchived } = useEditorStore((s) => s.activeNote);
-
-  const handleCreateNote = () => startCreatingNote();
 
   const handleArchive = () => {
     openDialog(isArchived ? "restoreNote" : "archiveNote");
@@ -30,7 +37,7 @@ const Home = () => {
   return (
     <PageLayout>
       <div className={styles.notesList}>
-        <Button onClick={handleCreateNote}>+ Create New Note</Button>
+        <Button onClick={() => startCreatingNote()}>+ Create New Note</Button>
         <div className={styles.notesList__content}>
           {helperText && (
             <div className={styles.notesList__helperText}>{helperText}</div>
@@ -40,7 +47,7 @@ const Home = () => {
             <div className={styles.notesList__empty}>
               {emptyText}{" "}
               {emptyText.endsWith(", or") && (
-                <span onClick={handleCreateNote}>create new note</span>
+                <span onClick={() => startCreatingNote()}>create new note</span>
               )}
             </div>
           )}

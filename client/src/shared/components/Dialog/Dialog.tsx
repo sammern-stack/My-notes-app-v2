@@ -1,11 +1,6 @@
 import styles from "./Dialog.module.scss";
 import { useDialogStore, useEditorStore } from "@/shared/stores";
-import {
-  useBuildNotesQuery,
-  useDeleteNote,
-  useGetNotes,
-  useToggleIsArchived,
-} from "@/features/notes";
+import { useDeleteNote, useToggleIsArchived } from "@/features/notes";
 
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 import DeleteIcon from "@/assets/images/icon-delete.svg?react";
@@ -13,13 +8,11 @@ import RestoreIcon from "@/assets/images/icon-restore.svg?react";
 import { DialogConfirm } from "./DialogConfirm";
 
 export const Dialog = () => {
-  const notesQuery = useBuildNotesQuery();
-  const { refetch: refetchNotes } = useGetNotes(notesQuery);
   const dialog = useDialogStore((s) => s.dialog);
   const { closeDialog } = useDialogStore.getState();
 
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
-  const selectFirstNote = useEditorStore((s) => s.selectFirstNote);
+  const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
   const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
   const { mutateAsync: deleteNote } = useDeleteNote();
   const { mutateAsync: toggleIsArchived } = useToggleIsArchived(
@@ -31,8 +24,7 @@ export const Dialog = () => {
   const handleDelete = async () => {
     if (!selectedNoteId) return;
     await deleteNote(selectedNoteId);
-    const { data: notes = [] } = await refetchNotes();
-    selectFirstNote(notes);
+    setSelectedNoteId(null);
     closeDialog();
   };
 

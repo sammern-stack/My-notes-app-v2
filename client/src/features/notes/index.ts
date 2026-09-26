@@ -12,3 +12,5 @@ export {
   useUpdateNote,
 } from "./hooks/useNotes";
 export { useBuildNotesQuery } from "./hooks/useBuildNotesQuery";
+export { useStartCreateNote } from "./hooks/useStartCreateNote";
+export { useSelectFirstNote } from "./hooks/useSelectFirstNote";

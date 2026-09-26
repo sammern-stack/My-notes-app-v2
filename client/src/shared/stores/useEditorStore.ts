@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { NoteModel } from "@/shared/types/note.types";
 
 const EDITOR_EMPTY_NOTE = {
   title: "",
@@ -39,16 +38,11 @@ interface EditorStore {
     field: keyof EditorNote,
     value: string | boolean,
   ) => void;
-
-  // Actions
-  startCreatingNote: () => void;
-  selectFirstNote: (notes: NoteModel[]) => void;
 }
 
 export const useEditorStore = create<EditorStore>()(
   persist(
-    (set, get) => ({
-      // States
+    (set) => ({
       editorState: "updating",
       setEditorState: (state) => set({ editorState: state }),
 
@@ -62,18 +56,6 @@ export const useEditorStore = create<EditorStore>()(
       setActiveNote: (note) => set({ activeNote: note }),
       setActiveNoteField: (field, value) => {
         set((s) => ({ activeNote: { ...s.activeNote, [field]: value } }));
-      },
-
-      // Actions
-      startCreatingNote: () => {
-        get().setEditorState("creating");
-        get().setCashedSelectedId(get().selectedNoteId);
-        get().setSelectedNoteId(null);
-        get().setActiveNote(EDITOR_EMPTY_NOTE);
-      },
-
-      selectFirstNote: (notes) => {
-        get().setSelectedNoteId(notes[0]?._id ?? null);
       },
     }),
     {
