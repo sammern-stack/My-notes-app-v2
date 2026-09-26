@@ -1,16 +1,8 @@
 import { useEffect } from "react";
-import { useConfigStore, useEditorStore } from "@/shared/stores";
+import { useEditorStore } from "@/shared/stores";
 import { useGetNote } from "@/features/notes";
 
 export const useStartApp = () => {
-  const theme = useConfigStore((s) => s.theme);
-  const font = useConfigStore((s) => s.font);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    document.documentElement.setAttribute("data-font", font);
-  }, [theme, font]);
-
   const setActiveNote = useEditorStore((s) => s.setActiveNote);
   const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
   const { data: note } = useGetNote(selectedNoteId ?? "");

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useStartApp } from "@/shared/hooks";
+import { useTheme, useFont } from "@/features/settings";
 import { AppLoader, Dialog } from "@/shared/components";
 
 const Home = lazy(() => import("@/pages/Home/Home"));
@@ -8,6 +9,8 @@ const Settings = lazy(() => import("@/pages/Settings/Settings"));
 
 function App() {
   useStartApp();
+  useTheme();
+  useFont();
 
   return (
     <Suspense fallback={<AppLoader />}>
