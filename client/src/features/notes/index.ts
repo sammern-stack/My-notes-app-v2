@@ -14,6 +14,7 @@ export {
   useUpdateNote,
 } from "./hooks/useNotes";
 export { useBuildNotesQuery } from "./hooks/useBuildNotesQuery";
+export { useTiptapEditor } from "./hooks/useTiptapEditor";
 export { useStartCreateNote } from "./hooks/useStartCreateNote";
 export { useSelectFirstNote } from "./hooks/useSelectFirstNote";
 export { useCancelNote } from "./hooks/actions/useCancelNote";
