@@ -39,9 +39,9 @@ const Home = () => {
 
   return (
     <PageLayout>
-      <div className={styles.notesList}>
+      <div className={styles.notes}>
         <Button onClick={() => startCreatingNote()}>+ Create New Note</Button>
-        <div className={styles.notesList__content}>
+        <div className={styles.notes__content}>
           <HelperText />
           <EmptyState notesLength={notes.length} />
           <CreatingNoteCard />
@@ -51,11 +51,11 @@ const Home = () => {
         </div>
       </div>
       <OpenNote />
-      <div className={styles.actions}>
+      <div className={styles.notes__actions}>
         <Button
           variant="border"
           onClick={handleArchive}
-          className={styles.actions__action}
+          className={styles.notes__action}
         >
           {isArchived ? <RestoreIcon /> : <ArchiveIcon />}
           <span>{isArchived ? "Restore Note" : "Archive Note"}</span>
@@ -63,7 +63,7 @@ const Home = () => {
         <Button
           variant="border"
           onClick={handleDelete}
-          className={styles.actions__action}
+          className={styles.notes__action}
         >
           <DeleteIcon />
           <span>Delete Note</span>

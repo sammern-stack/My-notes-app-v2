@@ -1,4 +1,4 @@
-.notesList {
+.notes {
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -14,70 +14,13 @@
     @include scrollable;
   }
 
-  &__untitledNote {
+  &__actions {
+    @include scrollable-child();
+    width: 258px;
+    border-left: 1px solid var(--primary-stroke);
     @include flex-gap(12px, column);
-    padding: 8px;
-    border-radius: 6px;
-    background: var(--secondary-background);
-    @include font-size(3);
-    color: var(--primary-color);
-    text-align: left;
+    padding: 20px 16px;
   }
-}
-
-.notes {
-  &__list {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    gap: 16px;
-    width: 290px;
-    padding: 20px 16px 20px 32px;
-    border-right: 1px solid var(--primary-stroke);
-  }
-
-  &__create-btn {
-    padding: 12px 16px;
-    @include font-size(4);
-    background: var(--blue-500);
-    border-radius: 8px;
-    color: var(--neutral-000);
-
-    &:hover {
-      background: var(--blue-700);
-    }
-  }
-
-  &__archived-text {
-    @include font-size(5);
-    color: var(--secondary-color);
-  }
-
-  &__empty-state {
-    @include font-size(5);
-    padding: 8px;
-    background: var(--secondary-background);
-    border: 1px solid var(--primary-stroke);
-    border-radius: 8px;
-
-    & > span {
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  }
-
-  &__list-content {
-    @include flex-gap(4px, column);
-    @include scrollable;
-  }
-}
-
-.actions {
-  @include scrollable-child();
-  width: 258px;
-  border-left: 1px solid var(--primary-stroke);
-  @include flex-gap(12px, column);
-  padding: 20px 16px;
 
   &__action {
     span {
