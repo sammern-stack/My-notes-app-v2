@@ -1,94 +1,46 @@
 import styles from "./SettingsView.module.scss";
 import { useThemeStore } from "@/features/settings";
-
-import SunIcon from "@/assets/images/icon-sun.svg?react";
-import MoonIcon from "@/assets/images/icon-moon.svg?react";
-import SystemThemeIcon from "@/assets/images/icon-system-theme.svg?react";
+import { themeOptions } from "@/features/settings/config/themeOptions";
 
 export const SettingsViewTheme = () => {
   const theme = useThemeStore((s) => s.theme);
   const setTheme = useThemeStore((s) => s.setTheme);
 
   return (
-    <div
-      className={`${styles["setting__panel"]} ${styles["setting__panel--theme"]}`}
-    >
-      <div className={styles["setting__header"]}>
-        <h3 className={styles["setting__title"]}>Color Theme</h3>
-        <p className={styles["setting__description"]}>
+    <div className={styles.settingsView}>
+      <div className={styles.settingsView__header}>
+        <h3 className={styles.settingsView__title}>Color Theme</h3>
+        <p className={styles.settingsView__description}>
           Choose your color theme:
         </p>
       </div>
 
-      <div className={styles["setting__theme-options"]}>
-        <label
-          htmlFor="theme-light"
-          className={`${styles["setting__theme-label"]} ${theme === "light" ? styles["setting__theme-label--active"] : ""}`}
-        >
-          <div className={styles["setting__theme-icon"]}>
-            <SunIcon />
-          </div>
+      <div className={styles.settingsView__themeOptions}>
+        {themeOptions.map(({ value, id, label, description, Icon }) => (
+          <label
+            key={value}
+            htmlFor={id}
+            className={`${styles.settingsView__themeLabel} ${theme === value ? styles["settingsView__themeLabel--active"] : ""}`}
+          >
+            <div className={styles.settingsView__themeIcon}>
+              <Icon />
+            </div>
 
-          <div className={styles["setting__theme-description"]}>
-            <p>Light Mode</p>
-            <p>Pick a clean and classic light theme</p>
-          </div>
+            <div className={styles.settingsView__themeDescription}>
+              <p>{label}</p>
+              <p>{description}</p>
+            </div>
 
-          <input
-            type="radio"
-            name="theme-option"
-            id="theme-light"
-            className={styles["setting__theme-input"]}
-            checked={theme === "light"}
-            onChange={() => setTheme("light")}
-          />
-        </label>
-
-        <label
-          htmlFor="theme-dark"
-          className={`${styles["setting__theme-label"]} ${theme === "dark" ? styles["setting__theme-label--active"] : ""}`}
-        >
-          <div className={styles["setting__theme-icon"]}>
-            <MoonIcon />
-          </div>
-
-          <div className={styles["setting__theme-description"]}>
-            <p>Dark Mode</p>
-            <p>Select a sleek and modern dark theme</p>
-          </div>
-
-          <input
-            type="radio"
-            name="theme-option"
-            id="theme-dark"
-            className={styles["setting__theme-input"]}
-            checked={theme === "dark"}
-            onChange={() => setTheme("dark")}
-          />
-        </label>
-
-        <label
-          htmlFor="theme-system"
-          className={`${styles["setting__theme-label"]} ${theme === "system" ? styles["setting__theme-label--active"] : ""}`}
-        >
-          <div className={styles["setting__theme-icon"]}>
-            <SystemThemeIcon />
-          </div>
-
-          <div className={styles["setting__theme-description"]}>
-            <p>System</p>
-            <p>Adapts to your device's theme</p>
-          </div>
-
-          <input
-            type="radio"
-            name="theme-option"
-            id="theme-system"
-            className={styles["setting__theme-input"]}
-            checked={theme === "system"}
-            onChange={() => setTheme("system")}
-          />
-        </label>
+            <input
+              type="radio"
+              name="theme-option"
+              id={id}
+              className={styles.settingsView__themeInput}
+              checked={theme === value}
+              onChange={() => setTheme(value)}
+            />
+          </label>
+        ))}
       </div>
     </div>
   );

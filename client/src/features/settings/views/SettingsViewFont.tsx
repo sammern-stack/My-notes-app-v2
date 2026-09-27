@@ -1,7 +1,5 @@
 import styles from "./SettingsView.module.scss";
-import SansSerifIcon from "@/assets/images/icon-font-sans-serif.svg?react";
-import SerifIcon from "@/assets/images/icon-font-serif.svg?react";
-import MonospaceIcon from "@/assets/images/icon-font-monospace.svg?react";
+import { fontOptions } from "@/features/settings/config/fontOptions";
 import { useFontStore } from "@/features/settings/stores/fontStore";
 
 export const SettingsViewFont = () => {
@@ -9,85 +7,40 @@ export const SettingsViewFont = () => {
   const setFont = useFontStore((s) => s.setFont);
 
   return (
-    <div
-      className={`${styles["setting__panel"]} ${styles["setting__panel--theme"]}`}
-    >
-      <div className={styles["setting__header"]}>
-        <h3 className={styles["setting__title"]}>Font Theme</h3>
-        <p className={styles["setting__description"]}>
+    <div className={styles.settingsView}>
+      <div className={styles.settingsView__header}>
+        <h3 className={styles.settingsView__title}>Font Theme</h3>
+        <p className={styles.settingsView__description}>
           Choose your font theme:
         </p>
       </div>
 
-      <div className={styles["setting__font-options"]}>
-        <label
-          htmlFor="font-inter"
-          className={`${styles["setting__font-label"]} ${font === "inter" ? styles["setting__font-label--active"] : ""}`}
-        >
-          <div className={styles["setting__font-icon"]}>
-            <SansSerifIcon />
-          </div>
+      <div className={styles.settingsView__fontOptions}>
+        {fontOptions.map(({ value, id, label, description, Icon }) => (
+          <label
+            key={value}
+            htmlFor={id}
+            className={`${styles.settingsView__fontLabel} ${font === value ? styles["settingsView__fontLabel--active"] : ""}`}
+          >
+            <div className={styles.settingsView__fontIcon}>
+              <Icon />
+            </div>
 
-          <div className={styles["setting__font-description"]}>
-            <p>Sans-serif</p>
-            <p>Clean and modern, easy to read</p>
-          </div>
+            <div className={styles.settingsView__fontDescription}>
+              <p>{label}</p>
+              <p>{description}</p>
+            </div>
 
-          <input
-            type="radio"
-            name="font-option"
-            id="font-inter"
-            className={styles["setting__font-input"]}
-            checked={font === "inter"}
-            onChange={() => setFont("inter")}
-          />
-        </label>
-
-        <label
-          htmlFor="font-noto-serif"
-          className={`${styles["setting__font-label"]} ${font === "noto-serif" ? styles["setting__font-label--active"] : ""}`}
-        >
-          <div className={styles["setting__font-icon"]}>
-            <SerifIcon />
-          </div>
-
-          <div className={styles["setting__font-description"]}>
-            <p>Serif</p>
-            <p>Classic and elegant for a timeless feel.</p>
-          </div>
-
-          <input
-            type="radio"
-            name="font-option"
-            id="font-noto-serif"
-            className={styles["setting__font-input"]}
-            checked={font === "noto-serif"}
-            onChange={() => setFont("noto-serif")}
-          />
-        </label>
-
-        <label
-          htmlFor="font-source-code-pro"
-          className={`${styles["setting__font-label"]} ${font === "source-code-pro" ? styles["setting__font-label--active"] : ""}`}
-        >
-          <div className={styles["setting__font-icon"]}>
-            <MonospaceIcon />
-          </div>
-
-          <div className={styles["setting__font-description"]}>
-            <p>Monospace</p>
-            <p>Code-like, great for a technical vibe</p>
-          </div>
-
-          <input
-            type="radio"
-            name="font-option"
-            id="font-source-code-pro"
-            className={styles["setting__font-input"]}
-            checked={font === "source-code-pro"}
-            onChange={() => setFont("source-code-pro")}
-          />
-        </label>
+            <input
+              type="radio"
+              name="font-option"
+              id={id}
+              className={styles.settingsView__fontInput}
+              checked={font === value}
+              onChange={() => setFont(value)}
+            />
+          </label>
+        ))}
       </div>
     </div>
   );

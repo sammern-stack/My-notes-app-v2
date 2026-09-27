@@ -1,13 +1,7 @@
-.setting {
+.settingsView {
   flex: 1;
-
-  &__panel {
-    padding: 32px;
-
-    &--theme {
-      @include flex-gap(24px, column);
-    }
-  }
+  padding: 32px;
+  @include flex-gap(24px, column);
 
   &__header {
     @include flex-gap(4px, column);
@@ -23,13 +17,13 @@
     color: var(--secondary-color);
   }
 
-  &__theme-options,
-  &__font-options {
+  &__themeOptions,
+  &__fontOptions {
     @include flex-gap(16px, column);
   }
 
-  &__theme-icon,
-  &__font-icon {
+  &__themeIcon,
+  &__fontIcon {
     padding: 8px;
     background: var(--primary-background);
     border: 1px solid var(--subtle-stroke);
@@ -37,8 +31,8 @@
     color: var(--primary-color);
   }
 
-  &__theme-label,
-  &__font-label {
+  &__themeLabel,
+  &__fontLabel {
     width: 528px;
     @include flex-gap(16px);
     align-items: center;
@@ -53,8 +47,8 @@
     }
   }
 
-  &__theme-description,
-  &__font-description {
+  &__themeDescription,
+  &__fontDescription {
     flex: 1;
     @include flex-gap(6px, column);
 
