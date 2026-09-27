@@ -1,7 +1,7 @@
 import styles from "./Home.module.scss";
+import { Fragment } from "react";
 
 import {
-  NoteCard,
   OpenNote,
   HelperText,
   EmptyState,
@@ -16,6 +16,7 @@ import {
 import { PageLayout } from "@/layout";
 import { Button } from "@/shared/components";
 import { useDialogStore } from "@/shared/stores";
+import { cls, formatDate } from "@/shared/utils";
 
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
 import RestoreIcon from "@/assets/images/icon-restore.svg?react";
@@ -30,6 +31,9 @@ const Home = () => {
 
   const { openDialog } = useDialogStore.getState();
   const { isArchived } = useEditorStore((s) => s.activeNote);
+  const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
+  const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
+  const isNoteSelected = (id: string) => id === selectedNoteId;
 
   const handleArchive = () => {
     openDialog(isArchived ? "restoreNote" : "archiveNote");
@@ -39,19 +43,38 @@ const Home = () => {
 
   return (
     <PageLayout>
-      <div className={styles.notes}>
+      <section className={styles.notes}>
         <Button onClick={() => startCreatingNote()}>+ Create New Note</Button>
         <div className={styles.notes__content}>
           <HelperText />
           <EmptyState notesLength={notes.length} />
           <CreatingNoteCard />
-          {notes.map((note) => (
-            <NoteCard key={note._id} note={note} />
+          {notes.map(({ _id, title, tags, createdAt }) => (
+            <Fragment key={_id}>
+              <button
+                className={cls(
+                  styles.notes__card,
+                  isNoteSelected(_id) && styles.notes__cardActive,
+                )}
+                onClick={() => setSelectedNoteId(_id)}
+              >
+                <h3 className={styles.notes__cardTitle}>{title}</h3>
+                <ul className={styles.notes__cardTags}>
+                  {tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+                <p className={styles.notes__cardCreatedAt}>
+                  {formatDate(createdAt)}
+                </p>
+              </button>
+              <hr className={styles.notes__listDivider} />
+            </Fragment>
           ))}
         </div>
-      </div>
+      </section>
       <OpenNote />
-      <div className={styles.notes__actions}>
+      <section className={styles.notes__actions}>
         <Button
           variant="border"
           onClick={handleArchive}
@@ -68,7 +91,7 @@ const Home = () => {
           <DeleteIcon />
           <span>Delete Note</span>
         </Button>
-      </div>
+      </section>
     </PageLayout>
   );
 };

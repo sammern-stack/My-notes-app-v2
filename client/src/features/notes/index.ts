@@ -1,5 +1,4 @@
 // Components
-export { NoteCard } from "./components/NoteCard/NoteCard";
 export { NoteEditor } from "./components/NoteEditor/NoteEditor";
 export { OpenNote } from "./components/OpenNote/OpenNote";
 export { HelperText } from "./components/HelperText/HelperText";

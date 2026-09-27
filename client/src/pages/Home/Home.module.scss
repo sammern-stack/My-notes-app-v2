@@ -14,6 +14,47 @@
     @include scrollable;
   }
 
+  &__card {
+    @include flex-gap(12px, column);
+    padding: 8px;
+    border-radius: 6px;
+
+    &:hover,
+    &Active {
+      background: var(--secondary-background);
+    }
+  }
+
+  &__cardTitle {
+    @include font-size(3);
+    color: var(--primary-color);
+    text-align: left;
+  }
+
+  &__cardTags {
+    @include flex-gap(4px);
+
+    li {
+      @include font-size(6);
+      color: var(--primary-color);
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--tag-background);
+    }
+  }
+
+  &__cardCreatedAt {
+    @include font-size(6);
+    color: var(--secondary-color);
+    text-align: left;
+  }
+
+  &__listDivider {
+    outline: none;
+    border: none;
+    @include divider-styles;
+  }
+
   &__actions {
     @include scrollable-child();
     width: 258px;
