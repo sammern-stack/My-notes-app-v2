@@ -1,0 +1,9 @@
+.creatingNoteCard {
+  @include flex-gap(12px, column);
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--secondary-background);
+  @include font-size(3);
+  color: var(--primary-color);
+  text-align: left;
+}

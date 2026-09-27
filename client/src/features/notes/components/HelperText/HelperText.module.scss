@@ -1,0 +1,4 @@
+.helperText {
+  @include font-size(5);
+  color: var(--secondary-color);
+}

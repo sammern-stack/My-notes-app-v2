@@ -3,16 +3,18 @@ import styles from "./Home.module.scss";
 import {
   NoteCard,
   OpenNote,
+  HelperText,
+  EmptyState,
+  CreatingNoteCard,
   useBuildNotesQuery,
   useGetNotes,
   useStartCreateNote,
   useSelectFirstNote,
+  useEditorStore,
 } from "@/features/notes";
 
-import { useEmptyText, useHelperText } from "@/features/filters";
 import { PageLayout } from "@/layout";
 import { Button, Dialog } from "@/shared/components";
-import { useEditorStore } from "@/features/notes";
 import { useDialogStore } from "@/shared/stores";
 
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
@@ -24,12 +26,8 @@ const Home = () => {
 
   const notesQuery = useBuildNotesQuery();
   const { data: notes = [] } = useGetNotes(notesQuery);
-
-  const emptyText = useEmptyText(notes.length);
-  const helperText = useHelperText();
   const startCreatingNote = useStartCreateNote();
 
-  const editorState = useEditorStore((s) => s.editorState);
   const { openDialog } = useDialogStore.getState();
   const { isArchived } = useEditorStore((s) => s.activeNote);
 
@@ -44,23 +42,9 @@ const Home = () => {
       <div className={styles.notesList}>
         <Button onClick={() => startCreatingNote()}>+ Create New Note</Button>
         <div className={styles.notesList__content}>
-          {helperText && (
-            <div className={styles.notesList__helperText}>{helperText}</div>
-          )}
-
-          {emptyText && (
-            <div className={styles.notesList__empty}>
-              {emptyText}{" "}
-              {emptyText.endsWith(", or") && (
-                <span onClick={() => startCreatingNote()}>create new note</span>
-              )}
-            </div>
-          )}
-
-          {editorState === "creating" && (
-            <div className={styles.notesList__untitledNote}>Untitled Note</div>
-          )}
-
+          <HelperText />
+          <EmptyState notesLength={notes.length} />
+          <CreatingNoteCard />
           {notes.map((note) => (
             <NoteCard key={note._id} note={note} />
           ))}
