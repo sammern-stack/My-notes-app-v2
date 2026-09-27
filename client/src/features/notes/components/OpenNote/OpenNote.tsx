@@ -1,14 +1,8 @@
 import styles from "./OpenNote.module.scss";
 import { useEditorStore } from "@/features/notes";
-import {
-  useCreateNote,
-  useGetNote,
-  useOpenNote,
-  useUpdateNote,
-} from "@/features/notes";
+import { useCancelNote, useOpenNote, useSaveNote } from "@/features/notes";
 import { formatDate } from "@/shared/utils";
 import { NoteEditor } from "@/features/notes";
-import { normalizeTags } from "@/features/notes";
 
 import TagIcon from "@/assets/images/icon-tag.svg?react";
 import StatusIcon from "@/assets/images/icon-status.svg?react";
@@ -17,57 +11,9 @@ import { Button } from "@/shared/components";
 
 export const OpenNote = () => {
   const note = useEditorStore((s) => s.activeNote);
-  const { handleNoteTitle, handleNoteContent } = useOpenNote();
-  const { setActiveNoteField } = useEditorStore.getState();
-  const activeNote = useEditorStore((s) => s.activeNote);
-  const setActiveNote = useEditorStore((s) => s.setActiveNote);
-  const editorState = useEditorStore((s) => s.editorState);
-  const setEditorState = useEditorStore((s) => s.setEditorState);
-  const selectedNoteId = useEditorStore((s) => s.selectedNoteId);
-  const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
-  const cashedSelectedId = useEditorStore((s) => s.cashedSelectedId);
-  const setCashedSelectedId = useEditorStore((s) => s.setCashedSelectedId);
-  const { refetch: refetchNote } = useGetNote(selectedNoteId);
-  const { mutateAsync: createNote } = useCreateNote();
-  const { mutateAsync: updateNote } = useUpdateNote(selectedNoteId);
-
-  const handleSave = async () => {
-    if (editorState === "creating") {
-      const newNote = await createNote({
-        ...activeNote,
-        tags: normalizeTags(activeNote.tags),
-      });
-
-      setSelectedNoteId(newNote._id);
-      setEditorState("updating");
-    }
-
-    if (selectedNoteId && editorState === "updating") {
-      const updatedNote = await updateNote({
-        title: activeNote.title,
-        tags: normalizeTags(activeNote.tags),
-        content: activeNote.content,
-      });
-
-      setSelectedNoteId(updatedNote._id);
-
-      setActiveNote({ ...updatedNote, tags: updatedNote.tags.join(", ") });
-    }
-  };
-
-  const handleCancel = async () => {
-    if (editorState === "creating") {
-      setEditorState("updating");
-      setSelectedNoteId(cashedSelectedId);
-      setCashedSelectedId("");
-    }
-
-    if (selectedNoteId && editorState === "updating") {
-      const { data: prevNote } = await refetchNote();
-      if (!prevNote) return;
-      setActiveNote({ ...prevNote, tags: prevNote.tags.join(", ") });
-    }
-  };
+  const { handleNoteTitle, handleNoteContent, handleNoteTags } = useOpenNote();
+  const handleSave = useSaveNote();
+  const handleCancel = useCancelNote();
 
   return (
     <div className={styles.note}>
@@ -89,7 +35,7 @@ export const OpenNote = () => {
               type="text"
               placeholder="Add tags separated by commas (e.g. Work, Planning)"
               value={note.tags}
-              onChange={(e) => setActiveNoteField("tags", e.target.value)}
+              onChange={handleNoteTags}
             />
           </div>
         </div>

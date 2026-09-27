@@ -6,9 +6,9 @@ import { useEffect } from "react";
 export const useSelectFirstNote = () => {
   const notesQuery = useBuildNotesQuery();
   const { data: notes = [] } = useGetNotes(notesQuery);
-  const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
 
   useEffect(() => {
+    const { setSelectedNoteId } = useEditorStore.getState();
     setSelectedNoteId(notes[0]?._id ?? "");
-  }, [notes, setSelectedNoteId]);
+  }, [notes]);
 };
