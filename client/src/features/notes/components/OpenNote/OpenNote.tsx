@@ -51,14 +51,7 @@ export const OpenNote = () => {
 
       setSelectedNoteId(updatedNote._id);
 
-      setActiveNote({
-        title: updatedNote.title,
-        tags: updatedNote.tags.join(", "),
-        content: updatedNote.content,
-        isArchived: updatedNote.isArchived,
-        createdAt: updatedNote.createdAt,
-        updatedAt: updatedNote.updatedAt,
-      });
+      setActiveNote({ ...updatedNote, tags: updatedNote.tags.join(", ") });
     }
   };
 
@@ -72,14 +65,7 @@ export const OpenNote = () => {
     if (selectedNoteId && editorState === "updating") {
       const { data: prevNote } = await refetchNote();
       if (!prevNote) return;
-      setActiveNote({
-        title: prevNote.title,
-        tags: prevNote.tags.join(", "),
-        content: prevNote.content,
-        createdAt: prevNote.createdAt,
-        updatedAt: prevNote.updatedAt,
-        isArchived: prevNote.isArchived,
-      });
+      setActiveNote({ ...prevNote, tags: prevNote.tags.join(", ") });
     }
   };
 

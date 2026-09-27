@@ -14,7 +14,7 @@ import {
 } from "@/features/notes";
 
 import { PageLayout } from "@/layout";
-import { Button, Dialog } from "@/shared/components";
+import { Button } from "@/shared/components";
 import { useDialogStore } from "@/shared/stores";
 
 import ArchiveIcon from "@/assets/images/icon-archive.svg?react";
@@ -69,7 +69,6 @@ const Home = () => {
           <span>Delete Note</span>
         </Button>
       </div>
-      <Dialog />
     </PageLayout>
   );
 };
