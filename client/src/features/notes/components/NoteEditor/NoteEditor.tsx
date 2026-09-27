@@ -1,6 +1,8 @@
 import { useEffect, useMemo } from "react";
 import { useEditor, EditorContent, EditorContext } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import Document from "@tiptap/extension-document";
+import Paragraph from "@tiptap/extension-paragraph";
+import Text from "@tiptap/extension-text";
 
 import styles from "./NoteEditor.module.scss";
 
@@ -10,15 +12,13 @@ interface NoteEditorProps {
   editable?: boolean;
 }
 
-const extensions = [StarterKit];
-
 export const NoteEditor = ({
   content,
   onChange,
   editable = true,
 }: NoteEditorProps) => {
   const editor = useEditor({
-    extensions,
+    extensions: [Document, Paragraph, Text],
     content,
     editable,
     onUpdate: ({ editor }) => {
