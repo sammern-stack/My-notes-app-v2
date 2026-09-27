@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { EditorContent, EditorContext } from "@tiptap/react";
-import { useTiptapEditor } from "@/features/notes";
+import { useTiptapEditor } from "@/features/notes/hooks/useTiptapEditor";
 
 import styles from "./NoteEditor.module.scss";
 
