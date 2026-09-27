@@ -7,3 +7,6 @@ export const formatDate = (date: string): string =>
     month: "short",
     year: "numeric",
   });
+
+export const cls = (...classes: (string | false | null | undefined)[]) =>
+  classes.filter(Boolean).join(" ");

@@ -1,6 +1,7 @@
 import styles from "./SettingsView.module.scss";
 import { fontOptions } from "@/features/settings/config/fontOptions";
 import { useFontStore } from "@/features/settings/stores/fontStore";
+import { cls } from "@/shared/utils";
 
 export const SettingsViewFont = () => {
   const font = useFontStore((s) => s.font);
@@ -20,7 +21,10 @@ export const SettingsViewFont = () => {
           <label
             key={value}
             htmlFor={id}
-            className={`${styles.settingsView__fontLabel} ${font === value ? styles["settingsView__fontLabel--active"] : ""}`}
+            className={cls(
+              styles.settingsView__fontLabel,
+              font === value && styles["settingsView__fontLabel--active"],
+            )}
           >
             <div className={styles.settingsView__fontIcon}>
               <Icon />

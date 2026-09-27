@@ -1,5 +1,6 @@
 import styles from "./Button.module.scss";
 import type { ComponentPropsWithoutRef } from "react";
+import { cls } from "@/shared/utils";
 
 import ChevronRightIcon from "@/assets/images/icon-chevron-right.svg?react";
 
@@ -23,12 +24,12 @@ export const Button = ({
   isActive,
   ...props
 }: ButtonProps) => {
-  const buttonClasses = [
+  const buttonClasses = cls(
     className,
     styles.button,
     styles[`button--${variant}`],
-    variant === "selectable" && isActive ? styles["button--active"] : "",
-  ].join(" ");
+    variant === "selectable" && isActive && styles["button--active"],
+  );
 
   return (
     <button className={buttonClasses} {...props}>

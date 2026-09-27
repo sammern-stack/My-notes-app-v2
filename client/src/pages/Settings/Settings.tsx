@@ -3,6 +3,7 @@ import { PageLayout } from "@/layout";
 import { settingsConfig } from "./settings.config";
 import { useState } from "react";
 import ChevronRightIcon from "@/assets/images/icon-chevron-right.svg?react";
+import { cls } from "@/shared/utils";
 
 export type ActiveSetting = "theme" | "font";
 
@@ -21,10 +22,10 @@ const Settings = () => {
         {settingsConfig.map(({ tab, label, icon: Icon }) => (
           <button
             key={tab}
-            className={[
+            className={cls(
               styles.settings__setting,
               isActiveSetting(tab) && styles["settings__setting--active"],
-            ].join(" ")}
+            )}
             onClick={() => setActiveSettingTab(tab)}
           >
             <Icon /> <p>{label}</p>
