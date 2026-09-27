@@ -5,7 +5,6 @@ export { HelperText } from "./components/HelperText/HelperText";
 export { EmptyState } from "./components/EmptyState/EmptyState";
 export { CreatingNoteCard } from "./components/CreatingNoteCard/CreatingNoteCard";
 
-export { useOpenNote } from "./hooks/useOpenNote";
 export {
   useCreateNote,
   useDeleteNote,

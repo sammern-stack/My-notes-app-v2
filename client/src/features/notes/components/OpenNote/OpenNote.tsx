@@ -1,17 +1,22 @@
 import styles from "./OpenNote.module.scss";
-import { useEditorStore } from "@/features/notes";
-import { useCancelNote, useOpenNote, useSaveNote } from "@/features/notes";
+
+import {
+  NoteEditor,
+  useCancelNote,
+  useSaveNote,
+  useEditorStore,
+} from "@/features/notes";
+
 import { formatDate } from "@/shared/utils";
-import { NoteEditor } from "@/features/notes";
+import { Button } from "@/shared/components";
 
 import TagIcon from "@/assets/images/icon-tag.svg?react";
 import StatusIcon from "@/assets/images/icon-status.svg?react";
 import ClockIcon from "@/assets/images/icon-clock.svg?react";
-import { Button } from "@/shared/components";
 
 export const OpenNote = () => {
   const note = useEditorStore((s) => s.activeNote);
-  const { handleNoteTitle, handleNoteContent, handleNoteTags } = useOpenNote();
+  const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
   const handleSave = useSaveNote();
   const handleCancel = useCancelNote();
 
@@ -22,7 +27,7 @@ export const OpenNote = () => {
           type="text"
           placeholder="Enter a title..."
           value={note.title}
-          onChange={handleNoteTitle}
+          onChange={(e) => setActiveNoteField("title", e.target.value)}
         />
       </h1>
       <div className={styles.note__properties}>
@@ -35,7 +40,7 @@ export const OpenNote = () => {
               type="text"
               placeholder="Add tags separated by commas (e.g. Work, Planning)"
               value={note.tags}
-              onChange={handleNoteTags}
+              onChange={(e) => setActiveNoteField("tags", e.target.value)}
             />
           </div>
         </div>
@@ -58,7 +63,10 @@ export const OpenNote = () => {
       </div>
       <div className={styles.note__divider}></div>
       <div className={styles.note__content}>
-        <NoteEditor content={note.content} onChange={handleNoteContent} />
+        <NoteEditor
+          content={note.content}
+          onChange={(html) => setActiveNoteField("content", html)}
+        />
       </div>
       <div className={styles.note__divider}></div>
       <div className={styles.note__actions}>
