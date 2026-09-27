@@ -9,6 +9,6 @@ export const useSelectFirstNote = () => {
   const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
 
   useEffect(() => {
-    setSelectedNoteId(notes[0]?._id);
+    setSelectedNoteId(notes[0]?._id ?? "");
   }, [notes, setSelectedNoteId]);
 };

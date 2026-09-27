@@ -16,16 +16,14 @@ export const Dialog = () => {
   const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
   const setActiveNoteField = useEditorStore((s) => s.setActiveNoteField);
   const { mutate: deleteNote } = useDeleteNote();
-  const { mutate: toggleIsArchived } = useToggleIsArchived(
-    selectedNoteId ?? "",
-  );
+  const { mutate: toggleIsArchived } = useToggleIsArchived(selectedNoteId);
 
   if (!dialog) return null;
 
   const handleDelete = () => {
     if (!selectedNoteId) return;
     deleteNote(selectedNoteId);
-    setSelectedNoteId(null);
+    setSelectedNoteId("");
     closeDialog();
   };
 

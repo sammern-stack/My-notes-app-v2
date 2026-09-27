@@ -12,7 +12,7 @@ export const useStartCreateNote = () => {
   return useCallback(() => {
     setEditorState("creating");
     setCashedSelectedId(selectedNoteId);
-    setSelectedNoteId(null);
+    setSelectedNoteId("");
     setActiveNote(EDITOR_EMPTY_NOTE);
   }, [
     setEditorState,

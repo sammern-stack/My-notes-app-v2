@@ -27,9 +27,9 @@ export const OpenNote = () => {
   const setSelectedNoteId = useEditorStore((s) => s.setSelectedNoteId);
   const cashedSelectedId = useEditorStore((s) => s.cashedSelectedId);
   const setCashedSelectedId = useEditorStore((s) => s.setCashedSelectedId);
-  const { refetch: refetchNote } = useGetNote(selectedNoteId ?? "");
+  const { refetch: refetchNote } = useGetNote(selectedNoteId);
   const { mutateAsync: createNote } = useCreateNote();
-  const { mutateAsync: updateNote } = useUpdateNote(selectedNoteId ?? "");
+  const { mutateAsync: updateNote } = useUpdateNote(selectedNoteId);
 
   const handleSave = async () => {
     if (editorState === "creating") {
@@ -59,7 +59,7 @@ export const OpenNote = () => {
     if (editorState === "creating") {
       setEditorState("updating");
       setSelectedNoteId(cashedSelectedId);
-      setCashedSelectedId(null);
+      setCashedSelectedId("");
     }
 
     if (selectedNoteId && editorState === "updating") {

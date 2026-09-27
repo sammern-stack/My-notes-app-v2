@@ -11,7 +11,6 @@ const EDITOR_EMPTY_NOTE = {
 };
 
 type EditorState = "updating" | "creating";
-type NullString = string | null;
 type EditorNote = {
   title: string;
   tags: string;
@@ -25,11 +24,11 @@ interface EditorStore {
   editorState: EditorState;
   setEditorState: (state: EditorState) => void;
 
-  selectedNoteId: NullString;
-  setSelectedNoteId: (id: NullString) => void;
+  selectedNoteId: string;
+  setSelectedNoteId: (id: string) => void;
 
-  cashedSelectedId: NullString;
-  setCashedSelectedId: (id: NullString) => void;
+  cashedSelectedId: string;
+  setCashedSelectedId: (id: string) => void;
 
   activeNote: EditorNote;
   setActiveNote: (note: EditorNote) => void;
@@ -45,10 +44,10 @@ export const useEditorStore = create<EditorStore>()(
       editorState: "updating",
       setEditorState: (state) => set({ editorState: state }),
 
-      selectedNoteId: null,
+      selectedNoteId: "",
       setSelectedNoteId: (id) => set({ selectedNoteId: id }),
 
-      cashedSelectedId: null,
+      cashedSelectedId: "",
       setCashedSelectedId: (id) => set({ cashedSelectedId: id }),
 
       activeNote: EDITOR_EMPTY_NOTE,
